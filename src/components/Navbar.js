@@ -3,20 +3,51 @@ import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../store/actions/authActions";
 
+import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
+
+// style here
+const useStyle = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  rightToolbar: {
+    marginLeft: "auto",
+  },
+
+  linkUnderline: {
+    textDecoration: "none",
+    color: "whitesmoke",
+  },
+}));
+
 const Navbar = (props) => {
+  const classes = useStyle();
+
   const SignedInLinks = (
     <ul className="right">
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className={classes.linkUnderline}>
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/silent">Silent Bidding</NavLink>
+        <NavLink to="/silent" className={classes.linkUnderline}>
+          Silent Bidding
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/live">Live Bidding</NavLink>
+        <NavLink to="/live" className={classes.linkUnderline}>
+          Live Bidding
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/dashboard" className={classes.linkUnderline}>
+          Dashboard
+        </NavLink>
       </li>
       <li>
         <a onClick={props.signOut}>Log Out</a>
@@ -24,29 +55,42 @@ const Navbar = (props) => {
     </ul>
   );
   const SignedOutLinks = (
-    <ul className="right">
+    <ul style={{ listStyle: "none", display: "flex" }}>
       <li>
-        <NavLink to="/signup">Signup</NavLink>
+        {" "}
+        <Button color="inherit">
+          <NavLink to="/signup" className={classes.linkUnderline}>
+            Signup
+          </NavLink>
+        </Button>{" "}
       </li>
       <li>
-        <NavLink to="/signin">Login</NavLink>
+        {" "}
+        <Button color="inherit">
+          <NavLink to="/signin" className={classes.linkUnderline}>
+            Login
+          </NavLink>
+        </Button>{" "}
       </li>
     </ul>
   );
 
   const { auth } = props;
-  // console.log(auth);
   const links = auth.uid ? SignedInLinks : SignedOutLinks;
 
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to="/" className="brand-logo">
-          IPL-AUCTION
-        </Link>
-        {links}
-      </div>
-    </nav>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Link to="/" className="brand-logo" className={classes.linkUnderline}>
+            <Typography variant="h6" className={classes.title}>
+              IPL-AUCTION
+            </Typography>
+          </Link>
+          <div className={classes.rightToolbar}>{links}</div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 

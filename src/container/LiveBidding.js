@@ -2,9 +2,58 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { db } from "../config/Firebase";
+import LiveBiddingHelper from "./LiveBiddingHelper";
 
 const LiveBidding = ({ auth }) => {
-  const [playerCard, setPlayerCard] = useState({
+  const [play, setPlay] = useState({});
+  const [playerId, setPlayerId] = useState(0);
+  const fetchsome = () => {
+    db.collection("players")
+      .where("display", "==", true)
+      .where("category", "==", "live")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, "=>", doc.data());
+          setPlay(doc.data());
+          setPlayerId(doc.id);
+        });
+      })
+      .catch((error) => {
+        console.log("Could not fetch");
+      });
+  };
+  console.log(play);
+
+  useEffect(() => {
+    console.log("Working....");
+    fetchsome();
+  }, []);
+
+  /* if (!auth.uid) return <Redirect to="/signin" />; */
+  return (
+    <div>
+      <LiveBiddingHelper player={play} playerId={playerId} teamId={auth.uid} />
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+  };
+};
+
+/* const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds)),
+  };
+}; */
+
+export default connect(mapStateToProps)(LiveBidding);
+
+/* const [playerCard, setPlayerCard] = useState({
     Batavg: "",
     Image: "",
     Runs: "",
@@ -16,26 +65,9 @@ const LiveBidding = ({ auth }) => {
     maxbidBy: "",
     name: "",
     strikerate: "",
-  });
-  const [play, setPlay] = useState({});
-  const fetchsome = () => {
-    db.collection("players")
-      .where("display", "==", true)
-      .where("category", "==", "live")
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          console.log(doc.id, "=>", doc.data());
-          setPlay(doc.data());
-          console.log(play);
-        });
-      })
-      .catch((error) => {
-        console.log("Could not fetch");
-      });
-  };
+  }); */
 
-  const fetchCard = () => {
+/* const fetchCard = () => {
     db.collection("players").onSnapshot((snapshot) => {
       const result = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -63,32 +95,4 @@ const LiveBidding = ({ auth }) => {
       });
       console.log(playerCard);
     });
-  };
-
-  useEffect(() => {
-    console.log("Working....");
-    fetchsome();
-  }, []);
-
-  /* if (!auth.uid) return <Redirect to="/signin" />; */
-  return (
-    <div>
-      <h1>Live Bidding</h1>
-    </div>
-  );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    authError: state.auth.authError,
-    auth: state.firebase.auth,
-  };
-};
-
-/* const mapDispatchToProps = (dispatch) => {
-  return {
-    signIn: (creds) => dispatch(signIn(creds)),
-  };
-}; */
-
-export default connect(mapStateToProps)(LiveBidding);
+  }; */
