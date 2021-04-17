@@ -12,6 +12,7 @@ import SignUp from "./container/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./container/Dashboard";
 import LiveBidding from "./container/LiveBidding";
+import SilentBidding from "./container/SilentBidding";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/live" component={LiveBidding} />
+          <Route exact path="/silent" component={SilentBidding} />
         </Switch>
       </Router>
     </Provider>

@@ -5,7 +5,9 @@ const PlayerSection = ({ player }) => {
 
   return (
     <div>
-      <h1>{player}</h1>
+      {player.map((p) => {
+        return <h1>{p}</h1>;
+      })}
     </div>
   );
 };

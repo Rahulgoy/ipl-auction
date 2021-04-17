@@ -17,6 +17,23 @@ const LiveBidding = ({ auth }) => {
     name: "",
     strikerate: "",
   });
+  const [play, setPlay] = useState({});
+  const fetchsome = () => {
+    db.collection("players")
+      .where("display", "==", true)
+      .where("category", "==", "live")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, "=>", doc.data());
+          setPlay(doc.data());
+          console.log(play);
+        });
+      })
+      .catch((error) => {
+        console.log("Could not fetch");
+      });
+  };
 
   const fetchCard = () => {
     db.collection("players").onSnapshot((snapshot) => {
@@ -50,7 +67,7 @@ const LiveBidding = ({ auth }) => {
 
   useEffect(() => {
     console.log("Working....");
-    fetchCard();
+    fetchsome();
   }, []);
 
   /* if (!auth.uid) return <Redirect to="/signin" />; */

@@ -21,10 +21,9 @@ const Dashboard = ({ auth }) => {
           setTeam(res.data);
         }
       });
-      console.log(team);
     });
   };
-
+  console.log(team);
   useEffect(() => {
     fetchTeam();
   }, []);
