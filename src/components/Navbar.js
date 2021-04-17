@@ -23,7 +23,8 @@ const useStyle = makeStyles((theme) => ({
 
   linkUnderline: {
     textDecoration: 'none',
-    color: 'whitesmoke'
+    color: 'whitesmoke',
+    cursor: 'pointer'
   }
 
 }));
@@ -33,15 +34,14 @@ const Navbar = (props) => {
   const classes = useStyle();
 
   const SignedInLinks = (
-    <ul>
-      <li> <NavLink to="/"  className={classes.linkUnderline}>Home</NavLink> </li>
-      <li> <NavLink to="/live"  className={classes.linkUnderline}>Live Bidding</NavLink></li>
-
-      {/* <li> <NavLink to="/dashboard"  className={classes.linkUnderline}>Dashboard</NavLink> </li> */}
-      
-      <li> <a onClick={props.signOut}  className={classes.linkUnderline}>Log Out</a> </li>
+    <ul style={{listStyle: 'none', display: "flex"}}>
+      <li> <Button color="inherit"><NavLink to="/"  className={classes.linkUnderline}>Home</NavLink></Button> </li>
+      <li> <Button color="inherit"><NavLink to="/live"  className={classes.linkUnderline}>Live Bidding</NavLink></Button> </li>
+      <li> <Button color="inherit"><NavLink to="/dashboard"  className={classes.linkUnderline}>Dashboard</NavLink></Button> </li>
+      <li> <Button color="inherit"><a onClick={props.signOut}  className={classes.linkUnderline}>Log Out</a></Button> </li>
     </ul>
   );
+
   const SignedOutLinks = (
     <ul style={{listStyle: 'none', display: "flex"}}>
       <li> <Button color="inherit"><NavLink to="/signup" className={classes.linkUnderline}>Signup</NavLink></Button> </li>
@@ -50,8 +50,8 @@ const Navbar = (props) => {
   );
 
   const { auth } = props;
-  const links = auth.uid  ? SignedInLinks : SignedOutLinks;
-
+  const links = auth.uid ? SignedInLinks : SignedOutLinks;
+  
   return (
     <div className={classes.root}>
     <AppBar position="static">

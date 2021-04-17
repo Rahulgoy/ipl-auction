@@ -5,6 +5,17 @@ import { teamStats } from "../store/actions/playerActions";
 import { db } from "../config/Firebase";
 import General from "./Dashboards/General";
 
+import { Typography } from '@material-ui/core'
+import {createMuiTheme} from '@material-ui/core/styles'
+
+const theme = createMuiTheme({
+  palette: {
+    text:{
+      primary: "#FFFFFF"
+    }
+  }
+});
+
 const Dashboard = ({ auth }) => {
   const [team, setTeam] = useState([]);
 
@@ -31,10 +42,12 @@ const Dashboard = ({ auth }) => {
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div>
-      <h1>{auth.uid}</h1>
-      <General player={team} />
+      <Typography variant='h4' style={{color:'blue'}}> {auth.uid} </Typography>
+      <div>
+        <General player={team} />
+      </div>
     </div>
-  );
+  ); 
 };
 
 const mapStateToProps = (state) => {
