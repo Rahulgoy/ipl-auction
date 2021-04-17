@@ -85,6 +85,7 @@ const SilentBidding = ({ auth, playerB }) => {
             <StyledTableCell>Bowling Avg</StyledTableCell>
             <StyledTableCell>Economy</StyledTableCell>
             <StyledTableCell>Baseprice</StyledTableCell>
+            <StyledTableCell>Max Bid</StyledTableCell>
             <StyledTableCell>Place Bid</StyledTableCell>
           </TableRow>
         </TableHead>

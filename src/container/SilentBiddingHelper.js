@@ -32,6 +32,7 @@ const SilentBiddingHelper = ({ player, playerId }) => {
       <StyledTableCell></StyledTableCell>
       <StyledTableCell></StyledTableCell>
       <StyledTableCell>{player.baseprice}</StyledTableCell>
+      <StyledTableCell></StyledTableCell>
       <StyledTableCell>
         <form>
             <input
