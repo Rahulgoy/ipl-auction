@@ -1,24 +1,40 @@
 import React, { useState } from "react";
 import { Bids } from "../store/actions/playerActions";
 import { connect } from "react-redux";
+
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+// import classes from "*.module.css";
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+
 const SilentBiddingHelper = ({ player, playerId }) => {
   const [nextBid, setnextBid] = useState(0);
   console.log(player);
   return (
     <>
-      <h1>{playerId}</h1>
-      <tr>
-        <td>{player.name}</td>
-        <td>{player.Runs}</td>
-        <td>{player.Batavg}</td>
-        <td>{player.strikerate}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{player.baseprice}</td>
+      {/* <h1>{playerId}</h1> */}
 
-        <td>
-          <form>
+      <StyledTableCell>{player.name}</StyledTableCell>
+      <StyledTableCell>{player.Runs}</StyledTableCell>
+      <StyledTableCell>{player.Batavg}</StyledTableCell>
+      <StyledTableCell>{player.strikerate}</StyledTableCell>
+      <StyledTableCell></StyledTableCell>
+      <StyledTableCell></StyledTableCell>
+      <StyledTableCell></StyledTableCell>
+      <StyledTableCell>{player.baseprice}</StyledTableCell>
+      <StyledTableCell></StyledTableCell>
+      <StyledTableCell>
+        <form>
             <input
               value={nextBid}
               onChange={(event) => {
@@ -29,9 +45,9 @@ const SilentBiddingHelper = ({ player, playerId }) => {
             <button type="submit" onClick={Bids(playerId, nextBid)}>
               Bid
             </button>
-          </form>
-        </td>
-      </tr>
+        </form>
+      </StyledTableCell>
+      
     </>
   );
 };

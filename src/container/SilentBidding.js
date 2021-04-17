@@ -4,6 +4,37 @@ import { Bids } from "../store/actions/playerActions";
 import { connect } from "react-redux";
 import SilentBiddingHelper from "./SilentBiddingHelper";
 
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    
+  },
+}))(TableRow);
+
+const useStyles = makeStyles({
+  table: {
+    // minWidth: 700,
+  },
+});
+
+
+
+
 const SilentBidding = ({ auth, playerB }) => {
   const [silentPlayers, setSilentPlayers] = useState([]);
 
@@ -38,32 +69,46 @@ const SilentBidding = ({ auth, playerB }) => {
     fetchSilent();
   }, []);
 
+  const classes = useStyles();
   return (
-    <div>
+    <Container>
       <h1>Silent</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Runs</th>
-          <th>Batting Avg</th>
-          <th>StrikeRate</th>
-          <th>Wickets</th>
-          <th>Bowling Avg</th>
-          <th>Economy</th>
-          <th>Baseprice</th>
-          <th>Place Bid</th>
-        </tr>
-        {silentPlayers.map((player) => {
-          return (
-            <SilentBiddingHelper
-              key={player.id}
-              player={player.data}
-              playerId={playerId}
-            />
-          );
-        })}
-      </table>
-    </div>
+      <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="customized table">
+        <TableHead stickyHeader>
+          <TableRow>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Runs</StyledTableCell>
+            <StyledTableCell>Batting Avg</StyledTableCell>
+            <StyledTableCell>Strike Rate</StyledTableCell>
+            <StyledTableCell>Wickets</StyledTableCell>
+            <StyledTableCell>Bowling Avg</StyledTableCell>
+            <StyledTableCell>Economy</StyledTableCell>
+            <StyledTableCell>Baseprice</StyledTableCell>
+            <StyledTableCell>Max Bid</StyledTableCell>
+            <StyledTableCell>Place Bid</StyledTableCell>
+          </TableRow>
+        </TableHead>
+
+        <TableBody>
+          <StyledTableRow>
+          {silentPlayers.map((player) => {
+            return (
+              <SilentBiddingHelper
+                key={player.id}
+                player={player.data}
+                playerId={playerId}
+              />
+            );
+          })}
+          </StyledTableRow>
+
+        </TableBody>
+      </Table>
+      </TableContainer>
+
+
+    </Container>
   );
 };
 

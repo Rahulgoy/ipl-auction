@@ -21,7 +21,7 @@ import theme from "./assets/js/DarkTheme";
 
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
+    // <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <Router>
           <Navbar />
@@ -35,7 +35,7 @@ function App() {
           </Switch>
         </Router>
       </Provider>
-    </MuiThemeProvider>
+    // </MuiThemeProvider>
   );
 }
 
