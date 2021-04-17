@@ -3,11 +3,11 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Pages
-import Home from "./conatainer/Home";
-import SignIn from "./conatainer/SignIn";
-import SignUp from "./conatainer/SignUp";
+import Home from "./container/Home";
+import SignIn from "./container/SignIn";
+import SignUp from "./container/SignUp";
 import Navbar from "./components/Navbar";
-import Dashboard from "./conatainer/Dashboard";
+import Dashboard from "./container/Dashboard";
 
 //Store
 import store from "./store/store";
