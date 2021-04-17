@@ -34,8 +34,12 @@ const Navbar = (props) => {
 
   const SignedInLinks = (
     <ul>
-      <li> <NavLink to="/" className={classes.linkUnderline}>Home</NavLink> </li>
-      <li> <a onClick={props.signOut} className={classes.linkUnderline}>Log Out</a> </li>
+      <li> <NavLink to="/"  className={classes.linkUnderline}>Home</NavLink> </li>
+      <li> <NavLink to="/live"  className={classes.linkUnderline}>Live Bidding</NavLink></li>
+
+      {/* <li> <NavLink to="/dashboard"  className={classes.linkUnderline}>Dashboard</NavLink> </li> */}
+      
+      <li> <a onClick={props.signOut}  className={classes.linkUnderline}>Log Out</a> </li>
     </ul>
   );
   const SignedOutLinks = (
