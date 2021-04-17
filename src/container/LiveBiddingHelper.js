@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../config/Firebase";
 import firebase from "firebase";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(320);
+  const [biddingValue, setbiddingValue] = useState(player.baseprice);
   console.log(player.baseprice);
   console.log(biddingValue);
   console.log(playerId);
