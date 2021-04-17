@@ -29,5 +29,23 @@ export const Bids = ({ playerId, biddingprice }) => {
           err
         );
       });
+
+    const maxi = 0;
+    firestore
+      .collection("players")
+      .where("name", "==", playerId)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log("Max:", doc.data().maxbid);
+          maxi = doc.data().maxbid;
+        });
+      });
+    if (maxi < biddingprice) {
+      firestore.collection("players").doc(playerId).update({
+        maxbid: biddingprice,
+        maxbidBy: teamId,
+      });
+    }
   };
 };

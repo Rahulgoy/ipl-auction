@@ -6,7 +6,7 @@ const PlayerSection = ({ player }) => {
   return (
     <div>
       {player.map((p) => {
-        return <h1>{p}</h1>;
+        return <h1 key={p}>{p}</h1>;
       })}
     </div>
   );
