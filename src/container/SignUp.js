@@ -15,12 +15,14 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const formAlignStyle = {
-  backgroundColor: "#010202",
-  height: "100vh",
-  paddingTop: "40px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  backgroundColor:'#010202',
+  height: '100vh',
+  paddingTop: '40px',
+  display: 'flex', 
+  flexDirection: 'row',
+  alignItems: 'center', 
+  position: 'relative',
+
 };
 
 class SignUp extends Component {
@@ -55,11 +57,14 @@ class SignUp extends Component {
           md={8}
           lg={4}
           style={{
+            position:'absolute',
+            transform: 'translateX(-50%)',
+            left: '50%',
+            top: '10%',
             backgroundColor: "white",
-            left: "50%",
-            background: "rgba(255,255,255)",
-            borderRadius: "10px",
-            padding: "20px",
+            background: 'rgba(255,255,255)',
+            borderRadius: '10px',
+            padding: '20px',
           }}
         >
           {/* form header lock icon */}

@@ -13,9 +13,10 @@ const formAlignStyle = {
   height: '100vh',
   paddingTop: '40px',
   display: 'flex', 
-  flexDirection: 'column', 
+  flexDirection: 'row',
   alignItems: 'center', 
-  
+  position: 'relative',
+
 }
 
 class SignIn extends Component {
@@ -52,8 +53,11 @@ class SignIn extends Component {
               lg={4}
               style={{
 
-                backgroundColor: "white",
+                position:'absolute',
+                transform: 'translateX(-50%)',
                 left: '50%',
+                top: '10%',
+                backgroundColor: "white",
                 background: 'rgba(255,255,255)',
                 borderRadius: '10px',
                 padding: '20px',
