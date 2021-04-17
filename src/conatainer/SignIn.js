@@ -3,59 +3,142 @@ import { connect } from "react-redux";
 import { signIn } from "../store/actions/authActions";
 import { Redirect } from "react-router-dom";
 
+
+import { Avatar, Box, Button, CssBaseline, Grid, Typography, TextField } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
+const formAlignStyle = {
+  backgroundColor:'#010202',
+  height: '100vh',
+  paddingTop: '40px',
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center', 
+  
+}
+
 class SignIn extends Component {
   state = {
-    email: "",
-    password: "",
-  };
-  handleChange = (e) => {
-    e.preventDefault();
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
-  };
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.signIn(this.state);
-  };
-  render() {
-    const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to="/" />;
-    return (
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Sign In</h5>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Login</button>
-            <div className="center red-text">
-              {authError ? <p>{authError}</p> : null}
-            </div>
-          </div>
-        </form>
-      </div>
-    );
-  }
+  email: "",
+      password: "",
+    };
+    handleChange = (e) => {
+      e.preventDefault();
+      this.setState({
+        [e.target.id]: e.target.value,
+      });
+    };
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.signIn(this.state);
+    };
+
+   render() {
+      const { authError, auth } = this.props;
+      if(auth.uid) return <Redirect to='/' />
+
+
+      return (
+        <div style={formAlignStyle}>
+          <CssBaseline />
+
+            <Grid container spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+              xs={12}
+              md={8}
+              lg={4}
+              style={{
+
+                backgroundColor: "white",
+                left: '50%',
+                background: 'rgba(255,255,255)',
+                borderRadius: '10px',
+                padding: '20px',
+              }}
+            >
+              
+            {/* form header lock icon */}
+              <Avatar spacing={1} style={{ backgroundColor: '#f48fb1', color: '#000'  }} >
+                <LockOutlinedIcon />
+              </Avatar>
+              
+            {/* form header */}
+              <Typography component="h1" variant="h4" style={{fontWeight: '600'}}>Sign In</Typography>
+
+              {/* signin form */}
+              <Grid item xs={10} md={6} lg={12}>
+                  <Box>
+                      <form onSubmit={this.handleSubmit}>
+                      <TextField 
+                          variant="outlined"
+                          margin="normal"
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                          autoFocus
+                          required
+                          fullWidth
+
+                          type="email"
+                          id="email"
+                          onChange={this.handleChange}   
+                          />
+
+                        <TextField
+                          variant="outlined"
+                          margin="normal"
+                          name="password"
+                          label="Password"
+                          autoComplete="current-password"
+                          required
+                          fullWidth
+
+                          id="password"
+                          type="password"
+                          onChange={this.handleChange}
+                        />
+
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          fullWidth
+
+                          style={{
+                            margin: '24px 0px 16px'
+                          }}
+                        >
+                          Sign In
+                        </Button>
+                        
+                        <div className="center red-text">
+                          {authError ? <p>{authError}</p> : null}
+                        </div>
+                    </form>
+                  </Box>
+              </Grid>
+
+            </Grid>
+          {/* </div> */}
+        </div>
+       );
+   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    authError: state.auth.authError,
-    auth: state.firebase.auth,
-  };
-};
-
+    return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
+    };
+    };
+    
 const mapDispatchToProps = (dispatch) => {
-  return {
-    signIn: (creds) => dispatch(signIn(creds)),
-  };
+    return {
+        signIn: (creds) => dispatch(signIn(creds)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
