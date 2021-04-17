@@ -8,6 +8,7 @@ const BiddingHistory = ({ bid }) => {
     db.collection("users").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
         if (doc.id === bid.id) {
+          console.log("Doc:", doc.id, "  Bid:", bid.id);
           setTeam(doc.data());
         }
       });

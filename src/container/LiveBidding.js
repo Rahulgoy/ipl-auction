@@ -6,7 +6,7 @@ import LiveBiddingHelper from "./LiveBiddingHelper";
 
 const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
-  const [playerId, setPlayerId] = useState(0);
+  const [playerId, setPlayerId] = useState("admin");
   const fetchsome = () => {
     db.collection("players")
       .where("display", "==", true)

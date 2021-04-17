@@ -6,13 +6,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(
     320 /* parseInt(player.baseprice) */
   );
-  const [bidDisplay, setbidDisplay] = useState([
-    {
-      id: "",
-      biddingprice: parseInt(player.baseprice),
-      timestamp: "",
-    },
-  ]);
+  const [bidDisplay, setbidDisplay] = useState([]);
 
   const sendBid = (e) => {
     e.preventDefault();
@@ -32,6 +26,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         },
         { merge: true }
       );
+    console.log("Maxbid:", player.maxbid);
+    console.log("Price:", biddingValue);
     if (player.maxbid < biddingValue) {
       db.collection("players").doc(playerId).update({
         maxbid: biddingValue,
@@ -45,7 +41,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   console.log("ID:", playerId);
   useEffect(() => {
     db.collection("players")
-      .doc(String(playerId))
+      .doc(playerId)
       .collection("Bids")
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
@@ -53,12 +49,12 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             // console.log(doc.id);
             console.log("bid:", b);
             setbidDisplay([
-              ...bidDisplay,
               {
                 id: doc.id,
                 biddingprice: b.biddingprice,
                 timestamp: b.timestamp,
               },
+              ...bidDisplay,
             ]);
           });
         });
@@ -84,7 +80,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       </form>
       {bidDisplay.map((bid) => {
         return (
-          console.log("bid:", bid), (<BiddingHistory key={bid.id} bid={bid} />)
+          console.log("bid:", bid),
+          (<BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />)
         );
       })}
     </div>
