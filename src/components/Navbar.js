@@ -10,6 +10,12 @@ const Navbar = (props) => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
+        <NavLink to="/live">Live Bidding</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+      </li>
+      <li>
         <a onClick={props.signOut}>Log Out</a>
       </li>
     </ul>
