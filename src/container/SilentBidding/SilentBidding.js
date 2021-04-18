@@ -40,6 +40,20 @@ const SilentBidding = ({ auth, playerB }) => {
   const fetchSilent = () => {
     db.collection("players")
       .where("category", "==", "silent")
+      .onSnapshot((snapshot) => {
+        snapshot.forEach((doc) => {
+          setplayerId(doc.id);
+
+          console.log(doc.id, "=>", doc.data());
+          setSilentPlayers((silentPlayers) => [
+            ...silentPlayers,
+            { id: doc.id, data: doc.data() },
+          ]);
+        });
+      });
+
+    /* db.collection("players")
+      .where("category", "==", "silent")
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
@@ -54,7 +68,7 @@ const SilentBidding = ({ auth, playerB }) => {
       })
       .catch((error) => {
         console.log("Could not fetch");
-      });
+      }); */
   };
 
   console.log(silentPlayers);

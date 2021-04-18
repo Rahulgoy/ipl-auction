@@ -5,25 +5,62 @@ import BiddingHistory from "./BiddingHistory";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(player.baseprice);
   const [bidDisplay, setbidDisplay] = useState([]);
+  const [teamBids, setteamBids] = useState(null);
 
   const sendBid = (e) => {
     e.preventDefault();
+    ///Set bid to database
 
-    db.collection("players")
+    /* db.collection("players")
       .doc(playerId)
       .collection("Bids")
       .doc(teamId)
-      .set(
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.data().bid.map((b) => {
+            if (teamBids === null) {
+              setteamBids([b]);
+              // console.log("bid", b);
+            } else {
+              teamBids.map((bi) => {
+                if (bi.biddingprice !== b.biddingprice) {
+                  console.log(bi.biddingprice !== b.biddingprice);
+                  console.log("bi:", bi.biddingprice);
+                  console.log("b:", b.biddingprice);
+                  setteamBids([...teamBids, b]);
+                }
+              });
+            }
+          });
+        }
+      }); */
+
+    if (teamBids !== null) {
+      setteamBids([
         {
-          bid: [
-            {
-              biddingprice: biddingValue,
-              timestamp: firebase.firestore.Timestamp.now(),
-            },
-          ],
+          biddingprice: biddingValue,
+          timestamp: firebase.firestore.Timestamp.now(),
         },
-        { merge: true }
-      );
+        ...teamBids,
+      ]);
+    } else {
+      setteamBids([
+        {
+          biddingprice: biddingValue,
+          timestamp: firebase.firestore.Timestamp.now(),
+        },
+      ]);
+    }
+    if (teamBids !== null) {
+      db.collection("players")
+        .doc(playerId)
+        .collection("Bids")
+        .doc(teamId)
+        .set({
+          bid: teamBids,
+        });
+    }
+
     console.log("Maxbid:", player.maxbid);
     console.log("Price:", biddingValue);
     if (player.maxbid < biddingValue) {
@@ -32,33 +69,40 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
-    if (biddingValue < 300 && biddingValue >= 200)
+    if (biddingValue < 200 && biddingValue >= 20)
       setbiddingValue(biddingValue + 10);
-    else setbiddingValue(biddingValue + 20);
+    else if (biddingValue < 500 && biddingValue >= 200)
+      setbiddingValue(biddingValue + 20);
+    else setbiddingValue(biddingValue + 25);
   };
-  console.log("ID:", playerId);
+  console.log(teamBids);
+  // console.log("ID:", playerId);
   useEffect(() => {
+    //fetch bids from database
     db.collection("players")
       .doc(playerId)
       .collection("Bids")
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
-          doc.data().bid.map((b) => {
-            // console.log(doc.id);
-            console.log("bid:", b);
-            setbidDisplay([
-              {
-                id: doc.id,
-                biddingprice: b.biddingprice,
-                timestamp: b.timestamp,
-              },
-              ...bidDisplay,
-            ]);
-          });
+          if (doc.exists) {
+            doc.data().bid.map((b) => {
+              // console.log(doc.id);
+              // console.log("bid:", b);
+              setbidDisplay([
+                {
+                  id: doc.id,
+                  biddingprice: b.biddingprice,
+                  timestamp: b.timestamp,
+                },
+                ...bidDisplay,
+              ]);
+            });
+          }
         });
       });
   }, []);
-  console.log(bidDisplay);
+  // console.log(bidDisplay);
+  // console.log(teamBids);
   return (
     <div>
       <h2>
@@ -76,12 +120,14 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           <p>{biddingValue}</p>Bid
         </button>
       </form>
-      {bidDisplay.map((bid) => {
-        return (
-          console.log("bid:", bid),
-          (<BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />)
-        );
-      })}
+      {/* {bidDisplay !== null
+        ? bidDisplay.map((bid) => {
+            return (
+              // console.log("bid:", bid),
+              <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />
+            );
+          })
+        : console.log("No bids")} */}
     </div>
   );
 };

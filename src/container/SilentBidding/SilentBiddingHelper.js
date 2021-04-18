@@ -63,8 +63,6 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
-
-    window.location.reload(true);
   };
   useEffect(() => {
     if (player.status === "close") {
