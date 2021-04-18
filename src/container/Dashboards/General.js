@@ -11,7 +11,6 @@ const General = ({ player }) => {
       <h3 style={{ color: "blue" }}>
         {player.teamBalance ? player.teamBalance : "No Balance"}Cr
       </h3>
-      <PlayerSection player={player.players ? player.players : null} />
     </div>
   );
 };

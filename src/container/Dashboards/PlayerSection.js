@@ -1,13 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../../config/Firebase";
+import Categories from "./Categories";
+import Players from "./Players";
 
-const PlayerSection = ({ player }) => {
-  console.log(player);
+///
+import "../../assets/css/dashboard.css";
+
+const PlayerSection = () => {
+  const [categories, setCategories] = useState([]);
+  // let categories = [];
+  const [team, setTeam] = useState([]);
+  const [AllPlayers, setAllPlayers] = useState([]);
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const fetchPlayers = () => {
+    console.log("Fetching Players");
+    db.collection("players").onSnapshot((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        console.log(doc.data());
+        setAllPlayers((AllPlayers) => [
+          ...AllPlayers,
+          { id: doc.id, data: doc.data() },
+        ]);
+      });
+    });
+  };
+  const fetchTeam = () => {
+    db.collection("users").onSnapshot((snapshot) => {
+      snapshot.docs.map((doc) => {
+        if (categories === null) {
+          setCategories({ id: doc.id, data: doc.data().teamName });
+        } else {
+          setCategories((categories) => [
+            ...categories,
+            {
+              id: doc.id,
+              data: doc.data().teamName,
+            },
+          ]);
+        }
+      });
+
+      /* const result = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+      result.map((res) => {
+        console.log(res.data);
+        // categories.push([res.data.teamName]);
+      }); */
+    });
+  };
+
+  const filterPlayers = (category, id) => {
+    console.log("C", id);
+
+    const filterPlayers = AllPlayers.filter(
+      (player) => player.data.team === id
+    );
+    setFilteredPlayers(filterPlayers);
+  };
+  console.log(AllPlayers);
+
+  useEffect(() => {
+    fetchTeam();
+    fetchPlayers();
+  }, []);
 
   return (
     <div>
-      {/* {player.map((p) => {
-        return <h1 key={p}>{p}</h1>;
-      })} */}
+      {categories === null ? (
+        console.log("No category")
+      ) : (
+        <Categories filterPlayers={filterPlayers} categories={categories} />
+      )}
+      <Players
+        players={
+          filteredPlayers ? filteredPlayers : console.log("No player Available")
+        }
+      />
     </div>
   );
 };

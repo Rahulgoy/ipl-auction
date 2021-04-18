@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
 
@@ -8,13 +8,16 @@ const BiddingHistory = ({ bid }) => {
     db.collection("users").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
         if (doc.id === bid.id) {
-          // console.log("Doc:", doc.id, "  Bid:", bid.id);
+          //console.log("Doc:", doc.id, "  Bid:", bid.id);
+          console.log(doc.data());
+          console.log(bid);
+
           setTeam(doc.data());
         }
       });
     });
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchUser();
   }, []);
   // console.log("team:", team);
