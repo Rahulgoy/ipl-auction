@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import Categories from "./Categories";
 import Players from "./Players";
+
+///
+import "../../assets/css/dashboard.css";
+
 const PlayerSection = () => {
   const [categories, setCategories] = useState([]);
   // let categories = [];
