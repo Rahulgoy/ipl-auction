@@ -15,30 +15,15 @@ import {
   Paper,
 } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import BlurredImage from '../../assets/img/BlurredImage.png';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
-  body: {
-    fontSize: 14,
-  },
+
 }))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-const useStyles = makeStyles({
-  table: {
-    // minWidth: 700,
-  },
-});
 
 const SilentBidding = ({ auth, playerB }) => {
   const [silentPlayers, setSilentPlayers] = useState([]);
@@ -74,45 +59,51 @@ const SilentBidding = ({ auth, playerB }) => {
     fetchSilent();
   }, []);
 
-  const classes = useStyles();
+  
   return (
     <Container>
       <h1>Silent</h1>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead stickyHeader>
-            <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell>Runs</StyledTableCell>
-              <StyledTableCell>Batting Avg</StyledTableCell>
-              <StyledTableCell>Strike Rate</StyledTableCell>
-              <StyledTableCell>Wickets</StyledTableCell>
-              <StyledTableCell>Bowling Avg</StyledTableCell>
-              <StyledTableCell>Economy</StyledTableCell>
-              <StyledTableCell>Baseprice</StyledTableCell>
-              <StyledTableCell>Max Bid</StyledTableCell>
-              <StyledTableCell>Place Bid</StyledTableCell>
-            </TableRow>
-          </TableHead>
 
-          <TableBody>
-            <StyledTableRow>
-              {silentPlayers.map((player) => {
-                return player ? (
-                  <SilentBiddingHelper
-                    key={player.id}
-                    player={player.data}
-                    playerId={playerId}
-                    teamId={auth.uid}
-                  />
-                ) : (
-                  console.log("No player")
-                );
-              })}
-            </StyledTableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className='tableWrapper'>
+        <div className='black'>
+            <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img>
+            <div className='backText'>
+              <TableContainer component={Paper}>
+                <Table className='table' aria-label="customized table">
+                  <TableHead stickyHeader>
+                    <TableRow>
+                      <StyledTableCell>Name</StyledTableCell>
+                      <StyledTableCell>Runs</StyledTableCell>
+                      <StyledTableCell>Batting Avg</StyledTableCell>
+                      <StyledTableCell>Strike Rate</StyledTableCell>
+                      <StyledTableCell>Wickets</StyledTableCell>
+                      <StyledTableCell>Bowling Avg</StyledTableCell>
+                      <StyledTableCell>Economy</StyledTableCell>
+                      <StyledTableCell>Baseprice</StyledTableCell>
+                      <StyledTableCell>Max Bid</StyledTableCell>
+                      <StyledTableCell>Place Bid</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+
+                  <TableBody>
+                    {silentPlayers.map((player) => {
+                      return player ? (
+                        <SilentBiddingHelper
+                          key={player.id}
+                          player={player.data}
+                          playerId={playerId}
+                          teamId={auth.uid}
+                        />
+                      ) : (
+                        console.log("No player")
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };
