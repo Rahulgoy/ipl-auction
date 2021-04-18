@@ -7,6 +7,7 @@ import General from "./Dashboards/General";
 
 import { Typography } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
+import PlayerSection from "./Dashboards/PlayerSection";
 
 const theme = createMuiTheme({
   palette: {
@@ -17,7 +18,7 @@ const theme = createMuiTheme({
 });
 
 const Dashboard = ({ auth }) => {
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState(null);
 
   const fetchTeam = () => {
     db.collection("users").onSnapshot((snapshot) => {
@@ -27,8 +28,8 @@ const Dashboard = ({ auth }) => {
       }));
       result.map((res) => {
         if (res.id === auth.uid) {
-          console.log(res.data.teamBalance);
-          console.log(typeof res.data.teamBalance);
+          // console.log(res.data.teamBalance);
+          // console.log(typeof res.data.teamBalance);
           setTeam(res.data);
         }
       });
@@ -42,11 +43,12 @@ const Dashboard = ({ auth }) => {
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div>
-      <Typography variant="h4" style={{ color: "blue" }}>
+      {/* {<Typography variant="h4" style={{ color: "blue" }}>
         {" "}
-        {auth.uid}{" "}
-      </Typography>
+        {auth.uid}{" "}}
+      </Typography> */}
       {team === null ? console.log("No team") : <General player={team} />}
+      <PlayerSection />
     </div>
   );
 };

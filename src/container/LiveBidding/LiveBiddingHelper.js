@@ -3,7 +3,7 @@ import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(player.baseprice);
+  const [biddingValue, setbiddingValue] = useState(player.maxbid);
   const [bidDisplay, setbidDisplay] = useState([]);
   const [teamBids, setteamBids] = useState(null);
 
@@ -120,14 +120,14 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           <p>{biddingValue}</p>Bid
         </button>
       </form>
-      {/* {bidDisplay !== null
+      {bidDisplay !== null
         ? bidDisplay.map((bid) => {
             return (
               // console.log("bid:", bid),
               <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />
             );
           })
-        : console.log("No bids")} */}
+        : console.log("No bids")}
     </div>
   );
 };
