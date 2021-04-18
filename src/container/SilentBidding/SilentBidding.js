@@ -22,6 +22,9 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
+  body: {
+    color: theme.palette.common.white
+  }
 
 }))(TableCell);
 
@@ -32,6 +35,20 @@ const SilentBidding = ({ auth, playerB }) => {
 
   const fetchSilent = () => {
     db.collection("players")
+      .where("category", "==", "silent")
+      .onSnapshot((snapshot) => {
+        snapshot.forEach((doc) => {
+          setplayerId(doc.id);
+
+          console.log(doc.id, "=>", doc.data());
+          setSilentPlayers((silentPlayers) => [
+            ...silentPlayers,
+            { id: doc.id, data: doc.data() },
+          ]);
+        });
+      });
+
+    /* db.collection("players")
       .where("category", "==", "silent")
       .get()
       .then((snapshot) => {
@@ -47,7 +64,7 @@ const SilentBidding = ({ auth, playerB }) => {
       })
       .catch((error) => {
         console.log("Could not fetch");
-      });
+      }); */
   };
 
   console.log(silentPlayers);
@@ -58,7 +75,6 @@ const SilentBidding = ({ auth, playerB }) => {
 
     fetchSilent();
   }, []);
-
   
   return (
     <Container>
@@ -66,13 +82,13 @@ const SilentBidding = ({ auth, playerB }) => {
 
       <div className='tableWrapper'>
         <div className='black'>
-            <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img>
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
             <div className='backText'>
-              <TableContainer component={Paper}>
+              <TableContainer>
                 <Table className='table' aria-label="customized table">
                   <TableHead stickyHeader>
                     <TableRow>
-                      <StyledTableCell>Name</StyledTableCell>
+                      <StyledTableCell >Name</StyledTableCell>
                       <StyledTableCell>Runs</StyledTableCell>
                       <StyledTableCell>Batting Avg</StyledTableCell>
                       <StyledTableCell>Strike Rate</StyledTableCell>
@@ -101,6 +117,7 @@ const SilentBidding = ({ auth, playerB }) => {
                   </TableBody>
                 </Table>
               </TableContainer>
+            
           </div>
         </div>
       </div>

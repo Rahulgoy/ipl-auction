@@ -41,7 +41,7 @@ export const signUp = (newUser) => {
           .doc(resp.user.uid)
           .set({
             teamName: newUser.teamName,
-            teamBalance: 60,
+            teamBalance: 8000,
             initials: newUser.teamName[0] + newUser.teamName[1],
             players: [],
           });

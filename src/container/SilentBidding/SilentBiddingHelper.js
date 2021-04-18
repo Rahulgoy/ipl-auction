@@ -28,8 +28,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
-
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
 
@@ -59,7 +57,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
       });
     }
 
-    window.location.reload(true);
+    // window.location.reload(true);
   };
   useEffect(() => {
     if (player.status === "close") {

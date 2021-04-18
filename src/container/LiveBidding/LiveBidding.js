@@ -14,7 +14,7 @@ const LiveBidding = ({ auth }) => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
-          console.log(doc.id, "=>", doc.data());
+          // console.log(doc.id, "=>", doc.data());
           setPlay(doc.data());
           setPlayerId(doc.id);
         });
@@ -33,7 +33,15 @@ const LiveBidding = ({ auth }) => {
   /* if (!auth.uid) return <Redirect to="/signin" />; */
   return (
     <div>
-      <LiveBiddingHelper player={play} playerId={playerId} teamId={auth.uid} />
+      {play !== null && playerId !== "admin" ? (
+        <LiveBiddingHelper
+          player={play}
+          playerId={playerId}
+          teamId={auth.uid}
+        />
+      ) : (
+        console.log("No play")
+      )}
     </div>
   );
 };
