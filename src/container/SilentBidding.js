@@ -7,6 +7,13 @@ import SilentBiddingHelper from "./SilentBiddingHelper";
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+
+// Dark Theme
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import theme from '../assets/js/DarkTheme';
+import zIndex from "@material-ui/core/styles/zIndex";
+
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -15,24 +22,23 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
+
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    
-  },
-}))(TableRow);
 
 const useStyles = makeStyles({
-  table: {
-    // minWidth: 700,
+  tableWrapper: {
   },
+
+  empty:{
+
+    },
+    
+  table:{
+    
+  },
+
 });
-
-
 
 
 const SilentBidding = ({ auth, playerB }) => {
@@ -71,44 +77,50 @@ const SilentBidding = ({ auth, playerB }) => {
 
   const classes = useStyles();
   return (
+    
+    <div>
     <Container>
-      <h1>Silent</h1>
-      <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead stickyHeader>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Runs</StyledTableCell>
-            <StyledTableCell>Batting Avg</StyledTableCell>
-            <StyledTableCell>Strike Rate</StyledTableCell>
-            <StyledTableCell>Wickets</StyledTableCell>
-            <StyledTableCell>Bowling Avg</StyledTableCell>
-            <StyledTableCell>Economy</StyledTableCell>
-            <StyledTableCell>Baseprice</StyledTableCell>
-            <StyledTableCell>Max Bid</StyledTableCell>
-            <StyledTableCell>Place Bid</StyledTableCell>
-          </TableRow>
-        </TableHead>
+      <h1>Silent Bidding</h1>
+      <div className={classes.tableWrapper}>
 
-        <TableBody>
-          <StyledTableRow>
-          {silentPlayers.map((player) => {
-            return (
-              <SilentBiddingHelper
-                key={player.id}
-                player={player.data}
-                playerId={playerId}
-              />
-            );
-          })}
-          </StyledTableRow>
+        <div className={classes.empty}></div>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="customized table">
+              <TableHead stickyHeader>
+                <TableRow>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell>Runs</StyledTableCell>
+                  <StyledTableCell>Batting Avg</StyledTableCell>
+                  <StyledTableCell>Strike Rate</StyledTableCell>
+                  <StyledTableCell>Wickets</StyledTableCell>
+                  <StyledTableCell>Bowling Avg</StyledTableCell>
+                  <StyledTableCell>Economy</StyledTableCell>
+                  <StyledTableCell>Baseprice</StyledTableCell>
+                  <StyledTableCell>Max Bid</StyledTableCell>
+                  <StyledTableCell>Place Bid</StyledTableCell>
+                </TableRow>
+            </TableHead>
 
-        </TableBody>
-      </Table>
-      </TableContainer>
+            <TableBody>
 
+              {silentPlayers.map((player) => {
+                return (
+                  <SilentBiddingHelper
+                    key={player.id}
+                    player={player.data}
+                    playerId={playerId}
+                  />
+                );
+              })}
 
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+      </div>
     </Container>
+  </div>
+
   );
 };
 

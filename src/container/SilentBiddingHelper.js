@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
-// import classes from "*.module.css";
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -16,6 +16,15 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    
+  },
+}))(TableRow);
+
 
 const SilentBiddingHelper = ({ player, playerId }) => {
   const [nextBid, setnextBid] = useState(0);
@@ -23,31 +32,32 @@ const SilentBiddingHelper = ({ player, playerId }) => {
   return (
     <>
       {/* <h1>{playerId}</h1> */}
+      <StyledTableRow>
+        <StyledTableCell>{player.name}</StyledTableCell>
+        <StyledTableCell>{player.Runs}</StyledTableCell>
+        <StyledTableCell>{player.Batavg}</StyledTableCell>
+        <StyledTableCell>{player.strikerate}</StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell>{player.baseprice}</StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell>
+          <form>
+              <input
+                value={nextBid}
+                onChange={(event) => {
+                  event.preventDefault();
+                  setnextBid(event.target.value);
+                }}
+              />
+              <button type="submit" onClick={Bids(playerId, nextBid)}>
+                Bid
+              </button>
+          </form>
+        </StyledTableCell>
 
-      <StyledTableCell>{player.name}</StyledTableCell>
-      <StyledTableCell>{player.Runs}</StyledTableCell>
-      <StyledTableCell>{player.Batavg}</StyledTableCell>
-      <StyledTableCell>{player.strikerate}</StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell>{player.baseprice}</StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell>
-        <form>
-            <input
-              value={nextBid}
-              onChange={(event) => {
-                event.preventDefault();
-                setnextBid(event.target.value);
-              }}
-            />
-            <button type="submit" onClick={Bids(playerId, nextBid)}>
-              Bid
-            </button>
-        </form>
-      </StyledTableCell>
-      
+      </StyledTableRow>
     </>
   );
 };
