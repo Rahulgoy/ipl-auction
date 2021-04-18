@@ -1,6 +1,10 @@
 import React from "react";
 
 const Players = ({ players }) => {
+  console.log("length", players.length);
+  if (players.length < 1) {
+    return <p>No Players Available</p>;
+  }
   return (
     <div className="section-center">
       {players.map((player) => {

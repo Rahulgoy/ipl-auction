@@ -69,7 +69,11 @@ const PlayerSection = () => {
       ) : (
         <Categories filterPlayers={filterPlayers} categories={categories} />
       )}
-      <Players players={filteredPlayers} />
+      <Players
+        players={
+          filteredPlayers ? filteredPlayers : console.log("No player Available")
+        }
+      />
     </div>
   );
 };
