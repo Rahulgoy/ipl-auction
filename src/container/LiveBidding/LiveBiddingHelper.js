@@ -3,9 +3,7 @@ import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(
-    320 /* parseInt(player.baseprice) */
-  );
+  const [biddingValue, setbiddingValue] = useState(player.baseprice);
   const [bidDisplay, setbidDisplay] = useState([]);
 
   const sendBid = (e) => {

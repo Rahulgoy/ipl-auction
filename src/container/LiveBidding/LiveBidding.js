@@ -33,7 +33,15 @@ const LiveBidding = ({ auth }) => {
   /* if (!auth.uid) return <Redirect to="/signin" />; */
   return (
     <div>
-      <LiveBiddingHelper player={play} playerId={playerId} teamId={auth.uid} />
+      {play !== null ? (
+        <LiveBiddingHelper
+          player={play}
+          playerId={playerId}
+          teamId={auth.uid}
+        />
+      ) : (
+        console.log("No play")
+      )}
     </div>
   );
 };

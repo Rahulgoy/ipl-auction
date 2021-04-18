@@ -26,14 +26,6 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
 const useStyles = makeStyles({
   table: {
     // minWidth: 700,
@@ -96,20 +88,18 @@ const SilentBidding = ({ auth, playerB }) => {
           </TableHead>
 
           <TableBody>
-            <StyledTableRow>
-              {silentPlayers.map((player) => {
-                return player ? (
-                  <SilentBiddingHelper
-                    key={player.id}
-                    player={player.data}
-                    playerId={playerId}
-                    teamId={auth.uid}
-                  />
-                ) : (
-                  console.log("No player")
-                );
-              })}
-            </StyledTableRow>
+            {silentPlayers.map((player) => {
+              return player ? (
+                <SilentBiddingHelper
+                  key={player.id}
+                  player={player.data}
+                  playerId={playerId}
+                  teamId={auth.uid}
+                />
+              ) : (
+                console.log("No player")
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

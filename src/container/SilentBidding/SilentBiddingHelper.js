@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Bids } from "../../store/actions/playerActions";
 import { connect } from "react-redux";
 import firebase from "firebase";
@@ -27,12 +27,19 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
 
   const sendBid = (e) => {
     e.preventDefault();
-
     db.collection("players")
       .doc(player.name)
       .collection("Bids")
@@ -56,40 +63,50 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
+
+    window.location.reload(true);
   };
+  useEffect(() => {
+    if (player.status === "close") {
+      db.collection("players").doc(player.name).update({
+        team: player.maxbidBy,
+      });
+    }
+  }, [player.status]);
   return (
     <>
       {/* <h1>{playerId}</h1> */}
-
-      <StyledTableCell>{player.name}</StyledTableCell>
-      <StyledTableCell>{player.Runs}</StyledTableCell>
-      <StyledTableCell>{player.Batavg}</StyledTableCell>
-      <StyledTableCell>{player.strikerate}</StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell></StyledTableCell>
-      <StyledTableCell>{player.baseprice}</StyledTableCell>
-      <StyledTableCell>{player.maxbid}</StyledTableCell>
-      <StyledTableCell>
-        <form onSubmit={sendBid}>
-          <input
-            value={biddingValue}
-            onChange={(event) => {
-              event.preventDefault();
-              setbiddingValue(event.target.value);
-            }}
-          />
-          <button
-            type="submit"
-            /* onClick={(event) => {
+      <StyledTableRow>
+        <StyledTableCell>{player.name}</StyledTableCell>
+        <StyledTableCell>{player.Runs}</StyledTableCell>
+        <StyledTableCell>{player.Batavg}</StyledTableCell>
+        <StyledTableCell>{player.strikerate}</StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell></StyledTableCell>
+        <StyledTableCell>{player.baseprice}</StyledTableCell>
+        <StyledTableCell>{player.maxbid}</StyledTableCell>
+        <StyledTableCell>
+          <form onSubmit={sendBid}>
+            <input
+              value={biddingValue}
+              onChange={(event) => {
+                event.preventDefault();
+                setbiddingValue(event.target.value);
+              }}
+            />
+            <button
+              type="submit"
+              /* onClick={(event) => {
               event.preventDefault();
               Bids(playerId, nextBid);
             }} */
-          >
-            Bid
-          </button>
-        </form>
-      </StyledTableCell>
+            >
+              Bid
+            </button>
+          </form>
+        </StyledTableCell>
+      </StyledTableRow>
     </>
   );
 };
