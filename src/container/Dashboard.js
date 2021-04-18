@@ -5,21 +5,21 @@ import { teamStats } from "../store/actions/playerActions";
 import { db } from "../config/Firebase";
 import General from "./Dashboards/General";
 
-import { Typography } from '@material-ui/core'
-import {createMuiTheme} from '@material-ui/core/styles'
+import { Typography } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
-    text:{
-      primary: "#FFFFFF"
-    }
-  }
+    text: {
+      primary: "#FFFFFF",
+    },
+  },
 });
 
 const Dashboard = ({ auth }) => {
   const [team, setTeam] = useState([]);
 
-  const fetchTeam = async () => {
+  const fetchTeam = () => {
     db.collection("users").onSnapshot((snapshot) => {
       const result = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -27,7 +27,7 @@ const Dashboard = ({ auth }) => {
       }));
       result.map((res) => {
         if (res.id === auth.uid) {
-          console.log(parseInt(res.data.teamBalance));
+          console.log(res.data.teamBalance);
           console.log(typeof res.data.teamBalance);
           setTeam(res.data);
         }
@@ -35,18 +35,20 @@ const Dashboard = ({ auth }) => {
     });
   };
   console.log(team);
+  if (team === null) console.log("NULL");
   useEffect(() => {
     fetchTeam();
   }, []);
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div>
-      <Typography variant='h4' style={{color:'blue'}}> {auth.uid} </Typography>
-      <div>
-        <General player={team} />
-      </div>
+      <Typography variant="h4" style={{ color: "blue" }}>
+        {" "}
+        {auth.uid}{" "}
+      </Typography>
+      {team === null ? console.log("No team") : <General player={team} />}
     </div>
-  ); 
+  );
 };
 
 const mapStateToProps = (state) => {

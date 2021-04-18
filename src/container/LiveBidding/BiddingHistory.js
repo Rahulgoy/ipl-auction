@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../config/Firebase";
+import { db } from "../../config/Firebase";
 import firebase from "firebase";
 
 const BiddingHistory = ({ bid }) => {

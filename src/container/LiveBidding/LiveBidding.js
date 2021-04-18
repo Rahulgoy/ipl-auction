@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { db } from "../config/Firebase";
+import { db } from "../../config/Firebase";
 import LiveBiddingHelper from "./LiveBiddingHelper";
 
 const LiveBidding = ({ auth }) => {

@@ -3,11 +3,11 @@ import authReducer from "./authReducer";
 import { combineReducers } from "redux";
 import { firestoreReducer } from "redux-firestore";
 import { firebaseReducer } from "react-redux-firebase";
-import playerReducer from "./playerReducer";
+import silentplayerReducer from "./playerReducer";
 
 export default combineReducers({
   auth: authReducer,
-  playerB: playerReducer,
+  playerB: silentplayerReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
 });

@@ -1,8 +1,11 @@
 import firebase from "firebase";
+import { ADD_BID, ADD_BID_ERROR, MAX_BID_UPDATED } from "../types";
+
 export const Bids = ({ playerId, biddingprice }) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const teamId = getState().firebase.auth.uid;
+    console.log("Actions----");
     firestore
       .collection("players")
       .doc(playerId)
@@ -12,19 +15,19 @@ export const Bids = ({ playerId, biddingprice }) => {
         bid: [
           {
             biddingprice: biddingprice,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            timestamp: firebase.firestore.Timestamp.now(),
           },
         ],
       })
       .then(() => {
         dispatch({
-          type: "ADD_BID",
+          type: ADD_BID,
         });
       })
       .catch((err) => {
         dispatch(
           {
-            type: "ADD_BID_ERROR",
+            type: ADD_BID_ERROR,
           },
           err
         );
@@ -42,10 +45,18 @@ export const Bids = ({ playerId, biddingprice }) => {
         });
       });
     if (maxi < biddingprice) {
-      firestore.collection("players").doc(playerId).update({
-        maxbid: biddingprice,
-        maxbidBy: teamId,
-      });
+      firestore
+        .collection("players")
+        .doc(playerId)
+        .update({
+          maxbid: biddingprice,
+          maxbidBy: teamId,
+        })
+        .then(() => {
+          dispatch({
+            type: MAX_BID_UPDATED,
+          });
+        });
     }
   };
 };

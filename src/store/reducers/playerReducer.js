@@ -1,6 +1,8 @@
-const initState = {};
+const initState = {
+  silentPlayer: [],
+};
 
-const playerReducer = (state = initState, action) => {
+const silentplayerReducer = (state = initState, action) => {
   switch (action.type) {
     case "ADD_BID":
       console.log("Bid Added Successfully");
@@ -13,4 +15,4 @@ const playerReducer = (state = initState, action) => {
   }
 };
 
-export default playerReducer;
+export default silentplayerReducer;
