@@ -27,9 +27,23 @@ const useStyle = makeStyles((theme) => ({
 
 const Navbar = (props) => {
   const classes = useStyle();
+  const { auth } = props;
 
   const SignedInLinks = (
     <ul style={{ listStyle: "none", display: "flex" }}>
+      {auth.uid === "zZfVKoYwMWURII0q8tmvK6rvXvi1" ? (
+        <li>
+          {" "}
+          <Button color="inherit">
+            <NavLink to="/admin" className={classes.linkUnderline}>
+              Admin
+            </NavLink>
+          </Button>{" "}
+        </li>
+      ) : (
+        console.log("Not Admin")
+      )}
+
       <li>
         {" "}
         <Button color="inherit">
@@ -94,7 +108,6 @@ const Navbar = (props) => {
     </ul>
   );
 
-  const { auth } = props;
   const links = auth.uid ? SignedInLinks : SignedOutLinks;
   return (
     <div className={classes.root}>
@@ -105,6 +118,7 @@ const Navbar = (props) => {
               IPL-AUCTION
             </Typography>
           </Link>
+
           <div className={classes.rightToolbar}>{links}</div>
         </Toolbar>
       </AppBar>

@@ -70,9 +70,9 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{player.Runs}</StyledTableCell>
         <StyledTableCell>{player.Batavg}</StyledTableCell>
         <StyledTableCell>{player.strikerate}</StyledTableCell>
-        <StyledTableCell></StyledTableCell>
-        <StyledTableCell></StyledTableCell>
-        <StyledTableCell></StyledTableCell>
+        <StyledTableCell>{player.wickets}</StyledTableCell>
+        <StyledTableCell>{player.Bowlavg}</StyledTableCell>
+        <StyledTableCell>{player.economy}</StyledTableCell>
         <StyledTableCell>{player.baseprice}</StyledTableCell>
         <StyledTableCell>{player.maxbid}</StyledTableCell>
         <StyledTableCell>

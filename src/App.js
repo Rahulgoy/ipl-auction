@@ -21,6 +21,7 @@ import SilentBidding from "./container/SilentBidding/SilentBidding";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./assets/js/DarkTheme";
 import Admin from "./container/Admin/Admin";
+import PlayerForm from "./container/Admin/PlayerForm";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/live" component={LiveBidding} />
           <Route exact path="/silent" component={SilentBidding} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/playerform" component={PlayerForm} />
         </Switch>
       </Router>
     </Provider>

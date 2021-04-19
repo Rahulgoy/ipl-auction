@@ -115,6 +115,11 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         <p>Strike Rate: {player.strikerate}</p>
         <p>Base Price: {player.baseprice} lakhs</p>
       </span>
+      <span>
+        <p>Wickets: {player.wickets}</p>
+        <p>Economy: {player.economy}</p>
+        <p>Bowling Average: {player.Bowlavg}</p>
+      </span>
       <form>
         <button type="submit" onClick={sendBid}>
           <p>{biddingValue}</p>Bid

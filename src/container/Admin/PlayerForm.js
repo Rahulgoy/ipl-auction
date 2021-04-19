@@ -5,6 +5,8 @@ import {
   Box,
   Grid,
   CssBaseline,
+  InputLabel,
+  MenuItem,
 } from "@material-ui/core";
 import React, { Component, useState } from "react";
 import { db } from "../../config/Firebase";
@@ -77,13 +79,13 @@ class PlayerForm extends Component {
   }; */
   render() {
     const { authError, auth } = this.props;
-    if (!auth.uid) return <Redirect to="/" />;
+    if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
     return (
       <div>
         <CssBaseline />
-        <Grid item xs={10} md={6} lg={12}>
-          <Box>
-            <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
+          <Grid container justify="center" alignItems="center" spacing={3}>
+            <Grid item xs={6}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -151,6 +153,7 @@ class PlayerForm extends Component {
                 type="text"
                 onChange={this.handleChange}
               />
+
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -171,111 +174,133 @@ class PlayerForm extends Component {
                 type="text"
                 onChange={this.handleChange}
               />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="wickets"
-                label="Wickets"
-                fullWidth
-                id="wickets"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="economy"
-                label="economy"
-                fullWidth
-                id="economy"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <Select
-                native
-                name="category"
-                onChange={this.handleChange}
-                default="silent"
-              >
-                <option value={"live"}>live</option>
-                <option value={"silent"}>silent</option>
-              </Select>
-              <Select
-                native
-                name="display"
-                onChange={this.handleChange}
-                default="false"
-              >
-                <option value={"true"}>true</option>
-                <option value={"false"}>false</option>
-              </Select>
-              <Select
-                native
-                name="status"
-                onChange={this.handleChange}
-                default="open"
-              >
-                <option value={"open"}>open</option>
-                <option value={"close"}>close</option>
-              </Select>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="maxbid"
-                label="maxbid"
-                fullWidth
-                id="maxbid"
-                type="number"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="maxbidBy"
-                label="maxbidBy"
-                fullWidth
-                id="maxbidBy"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="team"
-                label="team"
-                fullWidth
-                id="team"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="class"
-                label="class"
-                fullWidth
-                id="class"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                style={{
-                  margin: "24px 0px 16px",
-                }}
-              >
-                Submit
-              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Box>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="wickets"
+                  label="Wickets"
+                  fullWidth
+                  id="wickets"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="economy"
+                  label="economy"
+                  fullWidth
+                  id="economy"
+                  type="text"
+                  onChange={this.handleChange}
+                />
 
-              <div className="center red-text">
-                {authError ? <p>{authError}</p> : null}
-              </div>
-            </form>
-          </Box>
-        </Grid>
+                <InputLabel id="demo-simple-select-filled-label">
+                  category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="category"
+                  name="category"
+                  label="category"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value={"live"}>live</MenuItem>
+                  <MenuItem value={"silent"}>silent</MenuItem>
+                </Select>
+                <InputLabel id="demo-simple-select-filled-label">
+                  display
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="display"
+                  name="display"
+                  label="display"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value={"true"}>true</MenuItem>
+                  <MenuItem value={"false"}>false</MenuItem>
+                </Select>
+                <InputLabel id="demo-simple-select-filled-label">
+                  Status
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="status"
+                  name="status"
+                  label="status"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value={"open"}>open</MenuItem>
+                  <MenuItem value={"close"}>close</MenuItem>
+                </Select>
+
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="maxbid"
+                  label="maxbid"
+                  fullWidth
+                  id="maxbid"
+                  type="number"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="maxbidBy"
+                  label="maxbidBy"
+                  fullWidth
+                  id="maxbidBy"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="team"
+                  label="team"
+                  fullWidth
+                  id="team"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="class"
+                  label="class"
+                  fullWidth
+                  id="class"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              style={{
+                margin: "24px 0px 16px",
+              }}
+            >
+              Submit
+            </Button>
+          </Grid>
+          <Grid item xs={4}></Grid>
+
+          <div className="center red-text">
+            {authError ? <p>{authError}</p> : null}
+          </div>
+        </form>
       </div>
     );
   }
