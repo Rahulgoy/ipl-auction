@@ -3,37 +3,12 @@ import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
+  const [biddingValue, setbiddingValue] = useState(0);
   const [bidDisplay, setbidDisplay] = useState([]);
   const [teamBids, setteamBids] = useState(null);
 
   const sendBid = (e) => {
     e.preventDefault();
-    ///Set bid to database
-
-    /* db.collection("players")
-      .doc(playerId)
-      .collection("Bids")
-      .doc(teamId)
-      .onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          snapshot.data().bid.map((b) => {
-            if (teamBids === null) {
-              setteamBids([b]);
-              // console.log("bid", b);
-            } else {
-              teamBids.map((bi) => {
-                if (bi.biddingprice !== b.biddingprice) {
-                  console.log(bi.biddingprice !== b.biddingprice);
-                  console.log("bi:", bi.biddingprice);
-                  console.log("b:", b.biddingprice);
-                  setteamBids([...teamBids, b]);
-                }
-              });
-            }
-          });
-        }
-      }); */
 
     if (teamBids !== null) {
       setteamBids([
@@ -51,7 +26,31 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         },
       ]);
     }
-    if (teamBids !== null) {
+
+    const ref = db
+      .collection("players")
+      .doc(playerId)
+      .collection("Bids")
+      .doc(teamId);
+
+    ref.get().then((snapshot) => {
+      if (snapshot.exists) {
+        console.log();
+        ref.set({
+          bid: teamBids,
+        });
+      } else {
+        ref.set({
+          bid: [
+            {
+              biddingprice: biddingValue,
+              timestamp: firebase.firestore.Timestamp.now(),
+            },
+          ],
+        });
+      }
+    });
+    /* if (teamBids !== null) {
       db.collection("players")
         .doc(playerId)
         .collection("Bids")
@@ -59,11 +58,27 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         .set({
           bid: teamBids,
         });
-    }
+    } else {
+      db.collection("players")
+        .doc(playerId)
+        .collection("Bids")
+        .doc(teamId)
+        .set({
+          bid: [
+            {
+              biddingprice: biddingValue,
+              timestamp: firebase.firestore.Timestamp.now(),
+            },
+          ],
+        });
+    } */
 
     console.log("Maxbid:", player.maxbid);
     console.log("Price:", biddingValue);
-    if (player.maxbid < biddingValue) {
+    if (
+      parseInt(player.maxbid) < parseInt(biddingValue) ||
+      parseInt(player.maxbid) === parseInt(player.baseprice)
+    ) {
       db.collection("players").doc(playerId).update({
         maxbid: biddingValue,
         maxbidBy: teamId,
@@ -77,6 +92,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   };
   console.log(teamBids);
   // console.log("ID:", playerId);
+  useEffect(() => {
+    db.collection("players")
+      .doc(playerId)
+      .onSnapshot((doc) => {
+        if (doc.data().maxbid !== null) setbiddingValue(doc.data().maxbid);
+      });
+  }, [biddingValue]);
   useEffect(() => {
     //fetch bids from database
     db.collection("players")
@@ -100,8 +122,9 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           }
         });
       });
-  }, [biddingValue]);
+  }, []);
   // console.log(bidDisplay);
+  console.log(biddingValue);
   // console.log(teamBids);
   return (
     <div>
@@ -166,3 +189,29 @@ export default LiveBiddingHelper;
         });
       }
     }); */
+
+///Set bid to database
+
+/* db.collection("players")
+      .doc(playerId)
+      .collection("Bids")
+      .doc(teamId)
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.data().bid.map((b) => {
+            if (teamBids === null) {
+              setteamBids([b]);
+              // console.log("bid", b);
+            } else {
+              teamBids.map((bi) => {
+                if (bi.biddingprice !== b.biddingprice) {
+                  console.log(bi.biddingprice !== b.biddingprice);
+                  console.log("bi:", bi.biddingprice);
+                  console.log("b:", b.biddingprice);
+                  setteamBids([...teamBids, b]);
+                }
+              });
+            }
+          });
+        }
+      }); */

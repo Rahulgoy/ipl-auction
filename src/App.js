@@ -23,6 +23,7 @@ import theme from "./assets/js/DarkTheme";
 import Admin from "./container/Admin/Admin";
 import PlayerForm from "./container/Admin/PlayerForm";
 import UpdatePlayer from "./container/Admin/UpdatePlayer";
+import UserUpdate from "./container/Admin/UserUpdate";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/playerform" component={PlayerForm} />
           <Route exact path="/updateplayer" component={UpdatePlayer} />
+          <Route exact path="/updateuser" component={UserUpdate} />
         </Switch>
       </Router>
     </Provider>
