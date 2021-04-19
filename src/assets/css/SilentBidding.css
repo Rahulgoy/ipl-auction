@@ -1,0 +1,26 @@
+body{
+    /* background-color: #000; */
+}
+
+.tableWrapper{
+    width: 100%;  
+    /* background-image: url('../img/bgstyle.png'); */
+    background-size: cover;
+    background-position: 100%;
+    background: linear-gradient(132.47deg, rgba(255, 255, 255, 0.2) 47.68%, rgba(255, 255, 255, 0) 7.37%);
+}
+
+.table{
+    
+    
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* backdrop-filter: blur(80px); */
+    /* border-radius: 18px; */
+    mix-blend-mode: soft-light;
+    /* background-blend-mode: color-burn; */
+    
+}   
+    
+
+
+

@@ -15,6 +15,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import BlurredImage from '../../assets/img/BlurredImage.png';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -22,15 +23,10 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+    color: theme.palette.common.white
+  }
 
-const useStyles = makeStyles({
-  table: {
-    // minWidth: 700,
-  },
-});
+}))(TableCell);
 
 const SilentBidding = ({ auth, playerB }) => {
   const [silentPlayers, setSilentPlayers] = useState([]);
@@ -79,44 +75,52 @@ const SilentBidding = ({ auth, playerB }) => {
 
     fetchSilent();
   }, []);
-
-  const classes = useStyles();
+  
   return (
     <Container>
       <h1>Silent</h1>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead stickyHeader>
-            <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell>Runs</StyledTableCell>
-              <StyledTableCell>Batting Avg</StyledTableCell>
-              <StyledTableCell>Strike Rate</StyledTableCell>
-              <StyledTableCell>Wickets</StyledTableCell>
-              <StyledTableCell>Bowling Avg</StyledTableCell>
-              <StyledTableCell>Economy</StyledTableCell>
-              <StyledTableCell>Baseprice</StyledTableCell>
-              <StyledTableCell>Max Bid</StyledTableCell>
-              <StyledTableCell>Place Bid</StyledTableCell>
-            </TableRow>
-          </TableHead>
 
-          <TableBody>
-            {silentPlayers.map((player) => {
-              return player ? (
-                <SilentBiddingHelper
-                  key={player.id}
-                  player={player.data}
-                  playerId={playerId}
-                  teamId={auth.uid}
-                />
-              ) : (
-                console.log("No player")
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className='tableWrapper'>
+        <div className='black'>
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
+            <div className='backText'>
+              <TableContainer>
+                <Table className='table' aria-label="customized table">
+                  <TableHead stickyHeader>
+                    <TableRow>
+                      <StyledTableCell >Name</StyledTableCell>
+                      <StyledTableCell>Runs</StyledTableCell>
+                      <StyledTableCell>Batting Avg</StyledTableCell>
+                      <StyledTableCell>Strike Rate</StyledTableCell>
+                      <StyledTableCell>Wickets</StyledTableCell>
+                      <StyledTableCell>Bowling Avg</StyledTableCell>
+                      <StyledTableCell>Economy</StyledTableCell>
+                      <StyledTableCell>Baseprice</StyledTableCell>
+                      <StyledTableCell>Max Bid</StyledTableCell>
+                      <StyledTableCell>Place Bid</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+
+                  <TableBody>
+                    {silentPlayers.map((player) => {
+                      return player ? (
+                        <SilentBiddingHelper
+                          key={player.id}
+                          player={player.data}
+                          playerId={playerId}
+                          teamId={auth.uid}
+                        />
+                      ) : (
+                        console.log("No player")
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };

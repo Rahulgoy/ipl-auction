@@ -5,17 +5,10 @@ import firebase from "firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
-  Container,
-  Table,
-  TableBody,
   TableCell,
-  TableContainer,
-  TableHead,
   TableRow,
-  Paper,
 } from "@material-ui/core";
 import { db } from "../../config/Firebase";
-// import classes from "*.module.css";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -63,6 +56,8 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
+
+    // window.location.reload(true);
   };
   useEffect(() => {
     if (player.status === "close") {
@@ -73,7 +68,6 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   }, [player.status]);
   return (
     <>
-      {/* <h1>{playerId}</h1> */}
       <StyledTableRow>
         <StyledTableCell>{player.name}</StyledTableCell>
         <StyledTableCell>{player.Runs}</StyledTableCell>
