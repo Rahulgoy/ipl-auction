@@ -12,19 +12,20 @@ import { db } from "../../config/Firebase";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
+    // borderTopLeftRadius: '10px',
+    // borderTopRightRadius: '10px',
   },
   body: {
     fontSize: 14,
+    borderBottom: 'none',
   },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
+      border: 'none',
   },
 }))(TableRow);
 
@@ -37,7 +38,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
       .doc(player.name)
       .collection("Bids")
       .doc(teamId)
-      .set(
+      .update(
         {
           bid: [
             {
@@ -69,16 +70,16 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   return (
     <>
       <StyledTableRow>
-        <StyledTableCell>{player.name}</StyledTableCell>
-        <StyledTableCell>{player.Runs}</StyledTableCell>
-        <StyledTableCell>{player.Batavg}</StyledTableCell>
-        <StyledTableCell>{player.strikerate}</StyledTableCell>
-        <StyledTableCell></StyledTableCell>
-        <StyledTableCell></StyledTableCell>
-        <StyledTableCell></StyledTableCell>
-        <StyledTableCell>{player.baseprice}</StyledTableCell>
-        <StyledTableCell>{player.maxbid}</StyledTableCell>
-        <StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>{player.name}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>{player.Runs}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>{player.Batavg}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>{player.strikerate}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}></StyledTableCell>
+        <StyledTableCell style={{color:'white'}}></StyledTableCell>
+        <StyledTableCell style={{color:'white'}}></StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>₹ {player.baseprice}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>₹ {player.maxbid}</StyledTableCell>
+        <StyledTableCell style={{color:'white'}}>
           <form onSubmit={sendBid}>
             <input
               value={biddingValue}
@@ -99,6 +100,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
           </form>
         </StyledTableCell>
       </StyledTableRow>
+
     </>
   );
 };

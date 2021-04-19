@@ -19,11 +19,13 @@ import BlurredImage from '../../assets/img/BlurredImage.png';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
+    borderBottom: 'none',
   },
   body: {
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    borderBottom: 'none',
   }
 
 }))(TableCell);
@@ -78,7 +80,7 @@ const SilentBidding = ({ auth, playerB }) => {
   
   return (
     <Container>
-      <h1>Silent</h1>
+      <h1 style={{color:'white'}}>Silent</h1>
 
       <div className='tableWrapper'>
         <div className='black'>
@@ -87,7 +89,7 @@ const SilentBidding = ({ auth, playerB }) => {
               <TableContainer>
                 <Table className='table' aria-label="customized table">
                   <TableHead stickyHeader>
-                    <TableRow>
+                    <TableRow className='tableHeaderRow'>
                       <StyledTableCell >Name</StyledTableCell>
                       <StyledTableCell>Runs</StyledTableCell>
                       <StyledTableCell>Batting Avg</StyledTableCell>
