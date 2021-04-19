@@ -9,7 +9,7 @@ const LiveBidding = ({ auth }) => {
   const [playerId, setPlayerId] = useState("admin");
   const fetchsome = () => {
     db.collection("players")
-      .where("display", "==", true)
+      .where("display", "==", "true")
       .where("category", "==", "live")
       .get()
       .then((snapshot) => {
@@ -30,7 +30,7 @@ const LiveBidding = ({ auth }) => {
     fetchsome();
   }, []);
 
-  /* if (!auth.uid) return <Redirect to="/signin" />; */
+  if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div>
       {play !== null && playerId !== "admin" ? (

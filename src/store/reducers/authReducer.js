@@ -28,6 +28,18 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null,
       };
+    case "ADD_PLAYER_SUCCESS":
+      console.log("player added successfully");
+      return {
+        ...state,
+        authError: null,
+      };
+    case "ADD_PLAYER_ERROR":
+      console.log("player add error");
+      return {
+        ...state,
+        authError: "Adding Player failed",
+      };
 
     case "SIGNUP_ERROR":
       console.log("signup error");

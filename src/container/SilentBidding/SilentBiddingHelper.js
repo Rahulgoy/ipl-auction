@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import {
-  TableCell,
-  TableRow,
-} from "@material-ui/core";
+import { TableCell, TableRow } from "@material-ui/core";
 import { db } from "../../config/Firebase";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -32,7 +29,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
 
   const sendBid = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     db.collection("players")
       .doc(player.name)
       .collection("Bids")

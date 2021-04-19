@@ -20,6 +20,7 @@ import SilentBidding from "./container/SilentBidding/SilentBidding";
 // Dark Theme
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./assets/js/DarkTheme";
+import Admin from "./container/Admin/Admin";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/live" component={LiveBidding} />
           <Route exact path="/silent" component={SilentBidding} />
+          <Route exact path="/admin" component={Admin} />
         </Switch>
       </Router>
     </Provider>

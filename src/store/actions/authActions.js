@@ -36,21 +36,53 @@ export const signUp = (newUser) => {
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then((resp) => {
-        return firestore
-          .collection("users")
-          .doc(resp.user.uid)
-          .set({
-            teamName: newUser.teamName,
-            teamBalance: 8000,
-            initials: newUser.teamName[0] + newUser.teamName[1],
-            players: [],
-          });
+        return firestore.collection("users").doc(resp.user.uid).set({
+          teamName: newUser.teamName,
+          teamBalance: 8000,
+          initials: newUser.initials,
+          players: [],
+        });
       })
       .then(() => {
         dispatch({ type: "SIGNUP_SUCCESS" });
       })
       .catch((err) => {
         dispatch({ type: "SIGNUP_ERROR", err });
+      });
+  };
+};
+
+export const AddPlayer = (player) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    firestore
+      .collection("players")
+      .doc(player.name)
+      .set({
+        name: player.name,
+        age: player.age,
+        baseprice: player.baseprice,
+        Batavg: player.Batavg,
+        Image: player.Image,
+        Runs: player.Runs,
+        strikerate: player.strikerate,
+        Bowlavg: player.Bowlavg,
+        wickets: player.wickets,
+        economy: player.economy,
+        category: player.category,
+        display: player.display,
+        status: player.status,
+        maxbid: player.maxbid,
+        maxbidBy: player.maxbidBy,
+        team: player.team,
+        class: player.class,
+      })
+      .then(() => {
+        dispatch({ type: "ADD_PLAYER_SUCCESS" });
+      })
+      .catch((err) => {
+        dispatch({ type: "ADD_PLAYER_ERROR", err });
       });
   };
 };

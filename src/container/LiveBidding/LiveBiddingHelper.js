@@ -3,7 +3,7 @@ import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(player.maxbid);
+  const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [teamBids, setteamBids] = useState(null);
 
@@ -69,11 +69,11 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
-    if (biddingValue < 200 && biddingValue >= 20)
-      setbiddingValue(biddingValue + 10);
-    else if (biddingValue < 500 && biddingValue >= 200)
-      setbiddingValue(biddingValue + 20);
-    else setbiddingValue(biddingValue + 25);
+    if (parseInt(biddingValue) < 200 && parseInt(biddingValue) >= 20)
+      setbiddingValue(parseInt(biddingValue) + 10);
+    else if (parseInt(biddingValue) < 500 && parseInt(biddingValue) >= 200)
+      setbiddingValue(parseInt(biddingValue) + 20);
+    else setbiddingValue(parseInt(biddingValue) + 25);
   };
   console.log(teamBids);
   // console.log("ID:", playerId);
@@ -100,7 +100,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           }
         });
       });
-  }, []);
+  }, [biddingValue]);
   // console.log(bidDisplay);
   // console.log(teamBids);
   return (
