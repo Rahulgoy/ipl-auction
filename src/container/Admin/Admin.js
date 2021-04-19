@@ -10,6 +10,9 @@ const Admin = () => {
       <Button color="inherit">
         <NavLink to="/playerform">Add Player</NavLink>
       </Button>
+      <Button color="inherit">
+        <NavLink to="/updateplayer">Update Player</NavLink>
+      </Button>
     </>
   );
 };

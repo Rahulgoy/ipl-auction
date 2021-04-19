@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../config/Firebase";
-import { Bids } from "../../store/actions/playerActions";
+
 import { connect } from "react-redux";
 import SilentBiddingHelper from "./SilentBiddingHelper";
 

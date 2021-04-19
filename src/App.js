@@ -22,6 +22,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./assets/js/DarkTheme";
 import Admin from "./container/Admin/Admin";
 import PlayerForm from "./container/Admin/PlayerForm";
+import UpdatePlayer from "./container/Admin/UpdatePlayer";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/silent" component={SilentBidding} />
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/playerform" component={PlayerForm} />
+          <Route exact path="/updateplayer" component={UpdatePlayer} />
         </Switch>
       </Router>
     </Provider>
