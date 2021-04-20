@@ -13,7 +13,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     if (teamBids !== null) {
       setteamBids([
         {
-          biddingprice: biddingValue,
+          biddingprice: player.helperbid,
           timestamp: firebase.firestore.Timestamp.now(),
         },
         ...teamBids,
@@ -21,7 +21,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     } else {
       setteamBids([
         {
-          biddingprice: biddingValue,
+          biddingprice: player.helperbid,
           timestamp: firebase.firestore.Timestamp.now(),
         },
       ]);
@@ -43,7 +43,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         ref.set({
           bid: [
             {
-              biddingprice: biddingValue,
+              biddingprice: player.helperbid,
               timestamp: firebase.firestore.Timestamp.now(),
             },
           ],
@@ -72,23 +72,37 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           ],
         });
     } */
-
+    //try
     console.log("Maxbid:", player.maxbid);
-    console.log("Price:", biddingValue);
+    console.log("Price:", player.helperbid);
     if (
-      parseInt(player.maxbid) < parseInt(biddingValue) ||
+      parseInt(player.maxbid) < parseInt(player.helperbid) ||
       parseInt(player.maxbid) === parseInt(player.baseprice)
     ) {
       db.collection("players").doc(playerId).update({
-        maxbid: biddingValue,
+        maxbid: player.helperbid,
         maxbidBy: teamId,
       });
     }
-    if (parseInt(biddingValue) < 200 && parseInt(biddingValue) >= 20)
-      setbiddingValue(parseInt(biddingValue) + 10);
-    else if (parseInt(biddingValue) < 500 && parseInt(biddingValue) >= 200)
-      setbiddingValue(parseInt(biddingValue) + 20);
-    else setbiddingValue(parseInt(biddingValue) + 25);
+    const ref2 = db.collection("players").doc(playerId);
+    if (parseInt(player.helperbid) < 200 && parseInt(player.helperbid) >= 20)
+      ref2.update({
+        helperbid: parseInt(player.helperbid) + 10,
+      });
+    else if (
+      parseInt(player.helperbid) < 500 &&
+      parseInt(player.helperbid) >= 200
+    ) {
+      ref2.update({
+        helperbid: parseInt(player.helperbid) + 20,
+      });
+      //setbiddingValue(parseInt(player.helperbid) + 20);
+    } else {
+      ref2.update({
+        helperbid: parseInt(player.helperbid) + 25,
+      });
+      //setbiddingValue(parseInt(player.helperbid) + 25);
+    }
   };
   console.log(teamBids);
   // console.log("ID:", playerId);
@@ -124,7 +138,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
   }, []);
   // console.log(bidDisplay);
-  console.log(biddingValue);
+  console.log(player.helperbid);
   // console.log(teamBids);
   return (
     <div>
@@ -145,7 +159,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       </span>
       <form>
         <button type="submit" onClick={sendBid}>
-          <p>{biddingValue}</p>Bid
+          <p>{player.helperbid}</p>Bid
         </button>
       </form>
       {bidDisplay !== null

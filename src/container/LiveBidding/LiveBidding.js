@@ -28,7 +28,7 @@ const LiveBidding = ({ auth }) => {
   useEffect(() => {
     console.log("Working....");
     fetchsome();
-  }, []);
+  }, [play.helperbid]);
 
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
