@@ -55,6 +55,36 @@ const Dashboard = ({ auth }) => {
   useEffect(() => {
     fetchTeam();
   }, []);
+
+  useEffect(() => {
+    db.collection("players")
+      .where("category", "==", "silent")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.docs.map((doc) => {
+            console.log(doc.data().name);
+            console.log(doc.data().maxbidBy);
+            db.collection("players").doc(doc.data().name).update({
+              team: doc.data().maxbidBy,
+            });
+            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
+
+            ref3.onSnapshot((snapshot) => {
+              if (snapshot.exists) {
+                console.log(snapshot.data().teamBalance);
+                ref3.update({
+                  teamBalance:
+                    parseInt(snapshot.data().teamBalance) -
+                    parseInt(doc.data().maxbid),
+                });
+              }
+            });
+          });
+        }
+      });
+  }, []);
+
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div className={classes.root}>

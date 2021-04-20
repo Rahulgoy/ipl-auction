@@ -112,8 +112,26 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         setbidDisplay(snapshot.docs.map((doc) => doc.data()));
       });
   }, []);
+
+  useEffect(() => {
+    if (player.status === "close") {
+      db.collection("players").doc(player.name).update({
+        team: player.maxbidBy,
+      });
+      const ref3 = db.collection("users").doc(player.maxbidBy);
+
+      ref3.onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
+          });
+        }
+      });
+    }
+  }, [player.status]);
   //console.log(bidDisplay);
-  console.log(biddingValue);
+  // console.log(biddingValue);
 
   return (
     <Grid container justify="center" spacing={3}>
@@ -131,6 +149,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           <p>Wickets: {player.wickets}</p>
           <p>Economy: {player.economy}</p>
           <p>Bowling Average: {player.Bowlavg}</p>
+          <p>Rating: {player.rating}</p>
         </Grid>
         <p>Base Price: {player.baseprice} lakhs</p>
         {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}

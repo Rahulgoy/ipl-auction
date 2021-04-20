@@ -12,6 +12,7 @@ const LiveBidding = ({ auth }) => {
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
+      .where("status", "==", "open")
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
           // console.log(doc.id, "=>", doc.data());
@@ -54,7 +55,7 @@ const LiveBidding = ({ auth }) => {
           teamId={auth.uid}
         />
       ) : (
-        console.log("No play")
+        <h1>No Player to Bid</h1>
       )}
     </div>
   );

@@ -28,7 +28,7 @@ const StyledTableRow = withStyles((theme) => ({
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState("");
   const [maxBid, setmaxBid] = useState(0);
-  console.log(player);
+  //console.log(player);
   const sendBid = (e) => {
     e.preventDefault();
     db.collection("players")
@@ -61,8 +61,37 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         setmaxBid(snapshot.data().maxbid);
       });
   }, [player.maxbidBy]);
+
+  /// Assign Players
   useEffect(() => {
-    if (player.status === "close") {
+    db.collection("players")
+      .where("category", "==", "silent")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.docs.map((doc) => {
+            console.log(doc.data().name);
+            console.log(doc.data().maxbidBy);
+            db.collection("players").doc(doc.data().name).update({
+              team: doc.data().maxbidBy,
+            });
+            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
+
+            ref3.onSnapshot((snapshot) => {
+              if (snapshot.exists) {
+                console.log(snapshot.data().teamBalance);
+                ref3.update({
+                  teamBalance:
+                    parseInt(snapshot.data().teamBalance) -
+                    parseInt(doc.data().maxbid),
+                });
+              }
+            });
+          });
+        }
+      });
+  }, [player.status]);
+  /* if (player.status === "close") {
       db.collection("players").doc(player.name).update({
         team: player.maxbidBy,
       });
@@ -70,16 +99,14 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
 
       ref3.onSnapshot((snapshot) => {
         if (snapshot.exists) {
-          snapshot.docs.map((doc) => {
-            ref3.update({
-              teamBalance:
-                parseInt(doc.data().teamBalance) - parseInt(player.maxbid),
-            });
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
           });
         }
       });
-    }
-  }, [player.status]);
+    } */
+
   return (
     <>
       <StyledTableRow>
@@ -90,6 +117,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{player.wickets}</StyledTableCell>
         <StyledTableCell>{player.Bowlavg}</StyledTableCell>
         <StyledTableCell>{player.economy}</StyledTableCell>
+        <StyledTableCell>{player.rating}</StyledTableCell>
         <StyledTableCell>{player.baseprice}</StyledTableCell>
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>

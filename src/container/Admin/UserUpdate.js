@@ -30,23 +30,22 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
+///----------------------------Main Section---------------------------------------
+
 const UserUpdate = () => {
   const [teams, setTeams] = useState([]);
 
   const fetchTeam = () => {
-    db.collection("users")
-      .get()
-      .then((snapshot) => {
+    db.collection("users").onSnapshot((snapshot) => {
+      if (snapshot.exists) {
         snapshot.forEach((doc) => {
           //setplayerId(doc.id);
-
           //console.log(doc.id, "=>", doc.data());
           setTeams((teams) => [...teams, { id: doc.id, data: doc.data() }]);
         });
-      })
-      .catch((error) => {
-        console.log("Could not fetch");
-      });
+      }
+    });
   };
 
   useEffect(() => {
@@ -80,7 +79,7 @@ const UserUpdate = () => {
                         //playerId={playerId}
                       />
                     ) : (
-                      console.log("No Team")
+                      <h1>No team Fetched</h1>
                     );
                   })}
                 </TableBody>

@@ -18,6 +18,9 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
+///----------------------------Main Section---------------------------------------
+
 const AllTeams = ({ team }) => {
   const [balance, setBalance] = useState({
     balance: 0,

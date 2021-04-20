@@ -16,6 +16,9 @@ const Admin = () => {
       <Button color="inherit">
         <NavLink to="/updateuser">Update User</NavLink>
       </Button>
+      <Button color="inherit">
+        <NavLink to="/signup">Add User/Team</NavLink>
+      </Button>
     </>
   );
 };
