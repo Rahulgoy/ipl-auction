@@ -6,7 +6,6 @@ import { Grid } from "@material-ui/core";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
-  const [teamBids, setteamBids] = useState(null);
 
   const sendBid = (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       setbiddingValue(parseInt(biddingValue) + 25);
     }
   };
-  console.log(teamBids);
+
   // console.log("ID:", playerId);
   useEffect(() => {
     ///setting bidding value
@@ -69,7 +68,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   }, []);
   //console.log(bidDisplay);
   //console.log(biddingValue);
-  // console.log(teamBids);
+
   return (
     <Grid container spacing={3}>
       <Grid item sm>
@@ -98,10 +97,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       <Grid item sm>
         {bidDisplay
           ? bidDisplay.map((bid) => {
-              return (
-                console.log("bid:", bid),
-                (<BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />)
-              );
+              return <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />;
             })
           : console.log("No bids")}
       </Grid>
