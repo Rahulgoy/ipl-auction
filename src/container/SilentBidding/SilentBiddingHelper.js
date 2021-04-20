@@ -26,7 +26,8 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(0);
+  const [biddingValue, setbiddingValue] = useState("");
+  const [maxBid, setmaxBid] = useState(0);
   console.log(player);
   const sendBid = (e) => {
     e.preventDefault();
@@ -50,9 +51,16 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
-
+    setbiddingValue("");
     // window.location.reload(true);
   };
+  useEffect(() => {
+    db.collection("players")
+      .doc(player.name)
+      .onSnapshot((snapshot) => {
+        setmaxBid(snapshot.data().maxbid);
+      });
+  }, [player.maxbidBy]);
   useEffect(() => {
     if (player.status === "close") {
       db.collection("players").doc(player.name).update({
@@ -83,7 +91,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{player.Bowlavg}</StyledTableCell>
         <StyledTableCell>{player.economy}</StyledTableCell>
         <StyledTableCell>{player.baseprice}</StyledTableCell>
-        <StyledTableCell>{player.maxbid}</StyledTableCell>
+        <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
             <input
