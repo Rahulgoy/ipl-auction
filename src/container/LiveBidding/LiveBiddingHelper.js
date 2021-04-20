@@ -6,6 +6,8 @@ import { Grid } from "@material-ui/core";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
+  const [balance, setBalance] = useState(0);
+  console.log(teamId);
 
   const sendBid = (e) => {
     e.preventDefault();
@@ -90,7 +92,16 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         setbiddingValue(parseInt(player.maxbid) + 25);
       }
     }*/
-  }, [player.maxbid]);
+  }, [player.maxbidBy]);
+  useEffect(() => {
+    db.collection("users")
+      .doc(teamId)
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          setBalance(parseInt(snapshot.data().teamBalance));
+        }
+      });
+  }, []);
   useEffect(() => {
     //fetch bids from database
     db.collection("players")
@@ -124,9 +135,23 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         <p>Base Price: {player.baseprice} lakhs</p>
         {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
         <form>
-          <button type="submit" onClick={sendBid}>
-            <p>{biddingValue}</p>Bid
-          </button>
+          {balance >= biddingValue ? (
+            [
+              player.maxbidBy !== teamId ? (
+                <button type="submit" onClick={sendBid}>
+                  <p>{biddingValue}</p>Bid
+                </button>
+              ) : (
+                <button type="submit" disabled>
+                  <p>{biddingValue}</p>Bid
+                </button>
+              ),
+            ]
+          ) : (
+            <button disabled>
+              <p>Not Enough Balance</p>
+            </button>
+          )}
         </form>
       </Grid>
       <Grid item xs={6}>

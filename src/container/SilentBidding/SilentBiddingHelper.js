@@ -26,28 +26,25 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
-
+  const [biddingValue, setbiddingValue] = useState(0);
+  console.log(player);
   const sendBid = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     db.collection("players")
       .doc(player.name)
       .collection("Bids")
       .doc(teamId)
-      .set(
-        {
-          bid: [
-            {
-              biddingprice: biddingValue,
-              timestamp: firebase.firestore.Timestamp.now(),
-            },
-          ],
-        },
-        { merge: true }
-      );
+      .set({
+        bid: [
+          {
+            biddingprice: biddingValue,
+            timestamp: firebase.firestore.Timestamp.now(),
+          },
+        ],
+      });
     console.log("Maxbid:", player.maxbid);
     console.log("Price:", biddingValue);
-    if (player.maxbid < biddingValue) {
+    if (parseInt(player.maxbid) < parseInt(biddingValue)) {
       db.collection("players").doc(player.name).update({
         maxbid: biddingValue,
         maxbidBy: teamId,
@@ -60,6 +57,18 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
     if (player.status === "close") {
       db.collection("players").doc(player.name).update({
         team: player.maxbidBy,
+      });
+      const ref3 = db.collection("users").doc(player.maxbidBy);
+
+      ref3.onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.docs.map((doc) => {
+            ref3.update({
+              teamBalance:
+                parseInt(doc.data().teamBalance) - parseInt(player.maxbid),
+            });
+          });
+        }
       });
     }
   }, [player.status]);
