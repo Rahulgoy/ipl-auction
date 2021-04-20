@@ -88,6 +88,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           <p>Economy: {player.economy}</p>
           <p>Bowling Average: {player.Bowlavg}</p>
         </span>
+        {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")}
         <form>
           <button type="submit" onClick={sendBid}>
             <p>{biddingValue}</p>Bid

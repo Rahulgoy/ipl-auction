@@ -10,9 +10,9 @@ const BiddingHistory = ({ bid }) => {
   const fetchUser = () => {
     db.collection("users").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
-        console.log("Doc:", doc.id, "  Bid:", bid.teamId);
+        //console.log("Doc:", doc.id, "  Bid:", bid.teamId);
         if (doc.id === bid.teamId) {
-          console.log("Doc:", doc.id, "  Bid:", bid.teamId);
+          //console.log("Doc:", doc.id, "  Bid:", bid.teamId);
           //console.log(doc.data());
           //console.log(bid);
 
@@ -27,7 +27,7 @@ const BiddingHistory = ({ bid }) => {
   useLayoutEffect(() => {
     fetchUser();
   }, [bid]);
-  console.log("team:", team);
+  //console.log("team:", team);
   return (
     <table>
       <tr>
