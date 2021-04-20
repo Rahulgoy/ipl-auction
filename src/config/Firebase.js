@@ -9,7 +9,7 @@ const firebaseConfig = firebase.initializeApp({
   storageBucket: "ipl-auction-7dbdb.appspot.com",
   messagingSenderId: "180719577200",
   appId: "1:180719577200:web:7a6f948f957eb1379fecb5",
-  measurementId: "G-G8EY9C76G6",
+  measurementId: "G-G8EY9C76G6"
 });
 
 firebase.firestore().settings({ timestampsInSnapshots: true });

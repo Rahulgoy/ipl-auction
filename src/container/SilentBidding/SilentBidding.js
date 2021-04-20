@@ -3,39 +3,67 @@ import { db } from "../../config/Firebase";
 
 import { connect } from "react-redux";
 import SilentBiddingHelper from "./SilentBiddingHelper";
+import { Redirect } from "react-router";
 
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+
+import BlurredImage from "../../assets/img/BlurredImage.png";
 
 import {
+  Box,
   Container,
   Table,
   TableBody,  
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  TableCell
+  TableCell,
+  Typography
 } from "@material-ui/core";
 
 
+const useStyles = makeStyles({
+  root: {
+    background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
+    // boxShadow: '0 3px 5px 2px white',
+    
+    padding: '0 30px',
+  },
 
-import BlurredImage from "../../assets/img/BlurredImage.png";
-import { Redirect } from "react-router";
+  container: {
+    maxHeight: 440,
+    padding: 10
+  },
+
+  heading: {
+    // page heading
+    padding: '25px 0 0 20px'
+
+  },
+  table: {
+    // background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
+    color: 'white',
+    border: '2px solid white',
+    // borderRadius: '10px'
+    
+
+  },
+  row1: {
+    boxShadow:'none',
+
+  },
+  
+  tableWrapper: {
+    
+  }
+});
 
 
-// const StyledTableCell = withStyles((theme) => ({
-//   head: {
-//     backgroundColor: theme.palette.common.black,
-//     color: theme.palette.common.white,
-//   },
-//   body: {
-//     fontSize: 14,
-//   },
-// }))(TableCell);
 
 const SilentBidding = ({ auth, playerB }) => {
-  const [silentPlayers, setSilentPlayers] = useState([]);
+  const classes = useStyles();
 
+  const [silentPlayers, setSilentPlayers] = useState([]);
   const [playerId, setplayerId] = useState("");
 
   const fetchSilent = () => {
@@ -82,60 +110,59 @@ const SilentBidding = ({ auth, playerB }) => {
   }, []);
   if (!auth.uid) return <Redirect to="/signin" />;
 
+  
 
   return (
-<>
-    <h1 style={{color:'white'}}>Silent</h1>
+<>    
+  <div className={classes.root}>
+    <Typography variant='h2' className={classes.heading} color='primary' align='center'>
+      Silent Bidding
+    </Typography>
+
     <Container>
-    <div className='wrapper'>
-      <div >
+      <div className={classes.wrapper}>
           {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
-          <div className='backText'>
-       
+        <div className={classes.tableWrapper}>
+      
+          <TableContainer className={classes.container}>
+            <Table className={classes.table} style={{borderRadius:'5px'}}>
+              {/* <Box borderRadius={10} border={1} borderColor='secondary'> */}
+              <TableHead stickyHeader>
+                <TableRow className={classes.row1}>
+                  <TableCell> <Typography color='primary'>Name</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Rus</Typography>  </TableCell>
+                  <TableCell> <Typography color='primary'>Batting Avg </Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Strike Rate</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Wickets</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Bowling Avg</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Economy</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Baseprice</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Max Bid</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Place Bid</Typography> </TableCell>
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+              {silentPlayers.map((player) => {
+                      return player ? (
+                        <SilentBiddingHelper
+                          key={player.id}
+                          player={player.data}
+                          playerId={playerId}
+                          teamId={auth.uid}
+                        />
+                      ) : (
+                        console.log("No player")
+                      );
+                    })}
+              </TableBody>
+              {/* </Box> */}
+            </Table>
+          </TableContainer>
         </div>
       </div>
-
-    <TableContainer component={Paper}>
-      {/* <Table className={classes.table}> */}
-      <Table>
-        <TableHead stickyHeader>
-          <TableRow>
-            <TableCell >Name</TableCell>
-            <TableCell>Runs</TableCell>
-            <TableCell>Batting Avg</TableCell>
-            <TableCell>Strike Rate</TableCell>
-            <TableCell>Wickets</TableCell>
-            <TableCell>Bowling Avg</TableCell>
-            <TableCell>Economy</TableCell>
-            <TableCell>Baseprice</TableCell>
-            <TableCell>Max Bid</TableCell>
-            <TableCell>Place Bid</TableCell>
-          </TableRow>
-        </TableHead>
-
-
-        <TableBody>
-        {silentPlayers.map((player) => {
-                return player ? (
-                  <SilentBiddingHelper
-                    key={player.id}
-                    player={player.data}
-                    playerId={playerId}
-                    teamId={auth.uid}
-                  />
-                ) : (
-                  console.log("No player")
-                );
-              })}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-
-
-
-    </div>
     </Container>
+  </div>
 </>
   );
 };

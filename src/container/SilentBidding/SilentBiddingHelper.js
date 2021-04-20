@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 // import { Bids } from "../../store/actions/playerActions";
 import { connect } from "react-redux";
 import firebase from "firebase";
+import { db } from "../../config/Firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { TableCell, TableRow } from "@material-ui/core";
-import { db } from "../../config/Firebase";
 
 const useStyles = makeStyles({
 
