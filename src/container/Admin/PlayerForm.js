@@ -281,7 +281,7 @@ class PlayerForm extends Component {
               </Box>
             </Grid>
           </Grid>
-          <Grid item xs={4}></Grid>
+          <Grid item xs={4} />
           <Grid item xs={4}>
             <Button
               type="submit"
@@ -295,7 +295,7 @@ class PlayerForm extends Component {
               Submit
             </Button>
           </Grid>
-          <Grid item xs={4}></Grid>
+          <Grid item xs={4} />
 
           <div className="center red-text">
             {authError ? <p>{authError}</p> : null}

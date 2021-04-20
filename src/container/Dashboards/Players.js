@@ -1,7 +1,7 @@
 import React from "react";
 
 const Players = ({ players }) => {
-  console.log("length", players.length);
+  //console.log("length", players.length);
   if (players.length < 1) {
     return <p>No Players Available</p>;
   }
