@@ -4,41 +4,23 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import {
-  TableCell,
-  TableRow,
-} from "@material-ui/core";
+import { TableCell, TableRow } from "@material-ui/core";
 import { db } from "../../config/Firebase";
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    // backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    // borderTopLeftRadius: '10px',
-    // borderTopRightRadius: '10px',
-  },
-  body: {
-    fontSize: 14,
-    borderBottom: 'none',
-  },
-}))(TableCell);
+const useStyles = makeStyles({
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-      border: 'none',
-  },
-}))(TableRow);
+});
 
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
+  const [biddingValue, setbiddingValue] = useState(parseInt(0));
 
   const sendBid = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     db.collection("players")
       .doc(player.name)
       .collection("Bids")
       .doc(teamId)
-      .update(
+      .set(
         {
           bid: [
             {
@@ -67,20 +49,23 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
       });
     }
   }, [player.status]);
+
+  const classes = useStyles();
+
   return (
     <>
-      <StyledTableRow>
-        <StyledTableCell style={{color:'white'}}>{player.name}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>{player.Runs}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>{player.Batavg}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>{player.strikerate}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}></StyledTableCell>
-        <StyledTableCell style={{color:'white'}}></StyledTableCell>
-        <StyledTableCell style={{color:'white'}}></StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>₹ {player.baseprice}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>₹ {player.maxbid}</StyledTableCell>
-        <StyledTableCell style={{color:'white'}}>
-          <form onSubmit={sendBid}>
+      <TableRow>
+      <TableCell>{player.name}</TableCell>
+      <TableCell>{player.Runs}</TableCell>
+      <TableCell>{player.Batavg}</TableCell>
+      <TableCell>{player.strikerate}</TableCell>
+      <TableCell>{player.wickets}</TableCell>
+      <TableCell>{player.Bowlavg}</TableCell>
+      <TableCell>{player.economy}</TableCell>
+      <TableCell>{player.baseprice}</TableCell>
+      <TableCell>{player.maxbid}</TableCell>
+      <TableCell>
+        <form onSubmit={sendBid}>
             <input
               value={biddingValue}
               onChange={(event) => {
@@ -96,11 +81,11 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
             }} */
             >
               Bid
-            </button>
-          </form>
-        </StyledTableCell>
-      </StyledTableRow>
+          </button>
+        </form>
+      </TableCell>
 
+    </TableRow>
     </>
   );
 };
@@ -117,4 +102,5 @@ const mapStateToProps = (state) => {
     Bids: (playerId, biddingprice) => dispatch(Bids(playerId, biddingprice)),
   };
 }; */
+
 export default connect(mapStateToProps)(SilentBiddingHelper);

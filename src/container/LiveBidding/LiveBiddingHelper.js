@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
+
+
+import '../../assets/css/liveBidding.css';
+
+
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(player.maxbid);
+  const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [teamBids, setteamBids] = useState(null);
 
@@ -69,11 +74,11 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         maxbidBy: teamId,
       });
     }
-    if (biddingValue < 200 && biddingValue >= 20)
-      setbiddingValue(biddingValue + 10);
-    else if (biddingValue < 500 && biddingValue >= 200)
-      setbiddingValue(biddingValue + 20);
-    else setbiddingValue(biddingValue + 25);
+    if (parseInt(biddingValue) < 200 && parseInt(biddingValue) >= 20)
+      setbiddingValue(parseInt(biddingValue) + 10);
+    else if (parseInt(biddingValue) < 500 && parseInt(biddingValue) >= 200)
+      setbiddingValue(parseInt(biddingValue) + 20);
+    else setbiddingValue(parseInt(biddingValue) + 25);
   };
   console.log(teamBids);
   // console.log("ID:", playerId);
@@ -100,35 +105,41 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           }
         });
       });
-  }, []);
+  }, [biddingValue]);
   // console.log(bidDisplay);
   // console.log(teamBids);
   return (
-    <div>
-      <h2>
-        {player.name}({player.age})
-      </h2>
-      <img src={player.Image} alt="No Image" height="500px"></img>
-      <span>
-        <p>Runs: {player.Runs}</p>
-        <p>Batting Average: {player.Batavg}</p>
-        <p>Strike Rate: {player.strikerate}</p>
-        <p>Base Price: {player.baseprice} lakhs</p>
-      </span>
-      <form>
-        <button type="submit" onClick={sendBid}>
-          <p>{biddingValue}</p>Bid
-        </button>
-      </form>
-      {bidDisplay !== null
-        ? bidDisplay.map((bid) => {
-            return (
-              // console.log("bid:", bid),
-              <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />
-            );
-          })
-        : console.log("No bids")}
-    </div>
+
+      <div className="containerLive">
+        <h2>
+          {player.name}({player.age})
+        </h2>
+        <img src={player.Image} alt="No Image" height="500px"></img>
+        <span>
+          <p>Runs: {player.Runs}</p>
+          <p>Batting Average: {player.Batavg}</p>
+          <p>Strike Rate: {player.strikerate}</p>
+          <p>Base Price: {player.baseprice} lakhs</p>
+        </span>
+        <span>
+          <p>Wickets: {player.wickets}</p>
+          <p>Economy: {player.economy}</p>
+          <p>Bowling Average: {player.Bowlavg}</p>
+        </span>
+        <form>
+          <button type="submit" onClick={sendBid}>
+            <p>{biddingValue}</p>Bid
+          </button>
+        </form>
+        {bidDisplay !== null
+          ? bidDisplay.map((bid) => {
+              return (
+                // console.log("bid:", bid),
+                <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />
+              );
+            })
+          : console.log("No bids")}
+      </div>
   );
 };
 

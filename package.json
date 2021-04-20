@@ -22,6 +22,7 @@
     "redux-firestore": "^0.15.0",
     "redux-thunk": "^2.3.0",
     "style-it": "^2.1.4",
+    "styled-components": "^5.2.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

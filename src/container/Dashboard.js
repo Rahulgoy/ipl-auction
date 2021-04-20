@@ -9,6 +9,21 @@ import { Typography } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import PlayerSection from "./Dashboards/PlayerSection";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const theme = createMuiTheme({
   palette: {
     text: {
@@ -19,7 +34,7 @@ const theme = createMuiTheme({
 
 const Dashboard = ({ auth }) => {
   const [team, setTeam] = useState(null);
-
+  const classes = useStyles();
   const fetchTeam = () => {
     db.collection("users").onSnapshot((snapshot) => {
       const result = snapshot.docs.map((doc) => ({
@@ -42,13 +57,19 @@ const Dashboard = ({ auth }) => {
   }, []);
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
-    <div>
-      {/* {<Typography variant="h4" style={{ color: "blue" }}>
-        {" "}
-        {auth.uid}{" "}}
-      </Typography> */}
-      {team === null ? console.log("No team") : <General player={team} />}
-      <PlayerSection />
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            {team === null ? console.log("No team") : <General player={team} />}
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <Paper className={classes.paper}>
+            <PlayerSection />
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
