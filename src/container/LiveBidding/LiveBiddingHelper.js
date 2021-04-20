@@ -43,7 +43,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
-      .onSnapshot((snapshot) => {
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
         snapshot.docs.map((doc) => {
           // console.log(doc.id, "=>", doc.data());
 
@@ -53,6 +53,16 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           ) {
             console.log("equal");
             // setbiddingValue(parseInt(doc.data().baseprice));
+          } else if (
+            parseInt(doc.data().baseprice) === parseInt(doc.data().maxbid) &&
+            player.maxbidBy !== ""
+          ) {
+            if (
+              parseInt(doc.data().maxbid) < 500 &&
+              parseInt(doc.data().maxbid) >= 200
+            ) {
+              setbiddingValue(parseInt(doc.data().maxbid) + 20);
+            }
           } else {
             if (
               parseInt(doc.data().maxbid) < 500 &&
@@ -80,7 +90,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         setbiddingValue(parseInt(player.maxbid) + 25);
       }
     }*/
-  }, []);
+  }, [player.maxbid]);
   useEffect(() => {
     //fetch bids from database
     db.collection("players")
@@ -95,28 +105,23 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   console.log(biddingValue);
 
   return (
-    <Grid container spacing={3}>
-      <Grid item sm>
+    <Grid container justify="center" spacing={3}>
+      <Grid item xs={6} display="inline">
         <h2>
           {player.name}({player.age})
         </h2>
         <img src={player.Image} alt="No Image" height="500px"></img>
-        <Grid item sm={3}>
-          <span>
-            <p>Runs: {player.Runs}</p>
-            <p>Batting Average: {player.Batavg}</p>
-            <p>Strike Rate: {player.strikerate}</p>
-            <p>Base Price: {player.baseprice} lakhs</p>
-          </span>
+        <Grid item xs={3}>
+          <p>Runs: {player.Runs}</p>
+          <p>Batting Average: {player.Batavg}</p>
+          <p>Strike Rate: {player.strikerate}</p>
         </Grid>
-        <Grid item sm={3}>
-          <span>
-            <p>Wickets: {player.wickets}</p>
-            <p>Economy: {player.economy}</p>
-            <p>Bowling Average: {player.Bowlavg}</p>
-          </span>
+        <Grid item xs={3}>
+          <p>Wickets: {player.wickets}</p>
+          <p>Economy: {player.economy}</p>
+          <p>Bowling Average: {player.Bowlavg}</p>
         </Grid>
-
+        <p>Base Price: {player.baseprice} lakhs</p>
         {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
         <form>
           <button type="submit" onClick={sendBid}>
@@ -124,7 +129,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           </button>
         </form>
       </Grid>
-      <Grid item sm>
+      <Grid item xs={6}>
         {bidDisplay
           ? bidDisplay.map((bid) => {
               return <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />;
