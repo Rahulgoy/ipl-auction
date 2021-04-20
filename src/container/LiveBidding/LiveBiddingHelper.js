@@ -4,7 +4,7 @@ import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 import { Grid } from "@material-ui/core";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
+  const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
 
   const sendBid = (e) => {
@@ -47,15 +47,14 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         snapshot.docs.map((doc) => {
           // console.log(doc.id, "=>", doc.data());
 
-          if (parseInt(doc.data().baseprice) === parseInt(doc.data().maxbid)) {
-            setbiddingValue(parseInt(doc.data().baseprice));
+          if (
+            parseInt(doc.data().baseprice) === parseInt(doc.data().maxbid) &&
+            player.maxbidBy === ""
+          ) {
+            console.log("equal");
+            // setbiddingValue(parseInt(doc.data().baseprice));
           } else {
             if (
-              parseInt(doc.data().maxbid) < 200 &&
-              parseInt(doc.data().maxbid) >= 20
-            )
-              setbiddingValue(parseInt(doc.data().maxbid) + 10);
-            else if (
               parseInt(doc.data().maxbid) < 500 &&
               parseInt(doc.data().maxbid) >= 200
             ) {
@@ -66,6 +65,21 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           }
         });
       });
+
+    /*  if (parseInt(player.baseprice) === parseInt(player.maxbid)) {
+      setbiddingValue(parseInt(player.baseprice));
+    } else {
+      if (parseInt(player.maxbid) < 200 && parseInt(player.maxbid) >= 20)
+        setbiddingValue(parseInt(player.maxbid) + 10);
+      else if (
+        parseInt(player.maxbid) < 500 &&
+        parseInt(player.maxbid) >= 200
+      ) {
+        setbiddingValue(parseInt(player.maxbid) + 20);
+      } else {
+        setbiddingValue(parseInt(player.maxbid) + 25);
+      }
+    }*/
   }, []);
   useEffect(() => {
     //fetch bids from database
@@ -78,7 +92,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
   }, []);
   //console.log(bidDisplay);
-  //console.log(biddingValue);
+  console.log(biddingValue);
 
   return (
     <Grid container spacing={3}>
@@ -87,17 +101,22 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           {player.name}({player.age})
         </h2>
         <img src={player.Image} alt="No Image" height="500px"></img>
-        <span>
-          <p>Runs: {player.Runs}</p>
-          <p>Batting Average: {player.Batavg}</p>
-          <p>Strike Rate: {player.strikerate}</p>
-          <p>Base Price: {player.baseprice} lakhs</p>
-        </span>
-        <span>
-          <p>Wickets: {player.wickets}</p>
-          <p>Economy: {player.economy}</p>
-          <p>Bowling Average: {player.Bowlavg}</p>
-        </span>
+        <Grid item sm={3}>
+          <span>
+            <p>Runs: {player.Runs}</p>
+            <p>Batting Average: {player.Batavg}</p>
+            <p>Strike Rate: {player.strikerate}</p>
+            <p>Base Price: {player.baseprice} lakhs</p>
+          </span>
+        </Grid>
+        <Grid item sm={3}>
+          <span>
+            <p>Wickets: {player.wickets}</p>
+            <p>Economy: {player.economy}</p>
+            <p>Bowling Average: {player.Bowlavg}</p>
+          </span>
+        </Grid>
+
         {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
         <form>
           <button type="submit" onClick={sendBid}>
