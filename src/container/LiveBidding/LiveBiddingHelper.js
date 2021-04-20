@@ -4,7 +4,7 @@ import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 import { Grid } from "@material-ui/core";
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
+  const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
   const [bidDisplay, setbidDisplay] = useState([]);
 
   const sendBid = (e) => {
@@ -40,21 +40,32 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   // console.log("ID:", playerId);
   useEffect(() => {
     ///setting bidding value
+    db.collection("players")
+      .where("display", "==", "true")
+      .where("category", "==", "live")
+      .onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+          // console.log(doc.id, "=>", doc.data());
 
-    if (player.baseprice === player.maxbid) {
-      setbiddingValue(parseInt(player.baseprice));
-    } else {
-      if (parseInt(player.maxbid) < 200 && parseInt(player.maxbid) >= 20)
-        setbiddingValue(parseInt(player.maxbid) + 10);
-      else if (
-        parseInt(player.maxbid) < 500 &&
-        parseInt(player.maxbid) >= 200
-      ) {
-        setbiddingValue(parseInt(player.maxbid) + 20);
-      } else {
-        setbiddingValue(parseInt(player.maxbid) + 25);
-      }
-    }
+          if (parseInt(doc.data().baseprice) === parseInt(doc.data().maxbid)) {
+            setbiddingValue(parseInt(doc.data().baseprice));
+          } else {
+            if (
+              parseInt(doc.data().maxbid) < 200 &&
+              parseInt(doc.data().maxbid) >= 20
+            )
+              setbiddingValue(parseInt(doc.data().maxbid) + 10);
+            else if (
+              parseInt(doc.data().maxbid) < 500 &&
+              parseInt(doc.data().maxbid) >= 200
+            ) {
+              setbiddingValue(parseInt(doc.data().maxbid) + 20);
+            } else {
+              setbiddingValue(parseInt(doc.data().maxbid) + 25);
+            }
+          }
+        });
+      });
   }, []);
   useEffect(() => {
     //fetch bids from database
@@ -87,7 +98,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           <p>Economy: {player.economy}</p>
           <p>Bowling Average: {player.Bowlavg}</p>
         </span>
-        {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")}
+        {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
         <form>
           <button type="submit" onClick={sendBid}>
             <p>{biddingValue}</p>Bid

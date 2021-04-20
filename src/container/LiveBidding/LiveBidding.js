@@ -7,7 +7,21 @@ import LiveBiddingHelper from "./LiveBiddingHelper";
 const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
   const [playerId, setPlayerId] = useState("admin");
+
   const fetchsome = () => {
+    db.collection("players")
+      .where("display", "==", "true")
+      .where("category", "==", "live")
+      .onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+          // console.log(doc.id, "=>", doc.data());
+          setPlay(doc.data());
+          setPlayerId(doc.id);
+        });
+      });
+  };
+
+  /*  const fetchsome = () => {
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
@@ -22,13 +36,13 @@ const LiveBidding = ({ auth }) => {
       .catch((error) => {
         console.log("Could not fetch");
       });
-  };
+  }; */
   console.log(play);
 
   useEffect(() => {
     console.log("Working....");
     fetchsome();
-  }, [play.helperbid]);
+  }, []);
 
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
