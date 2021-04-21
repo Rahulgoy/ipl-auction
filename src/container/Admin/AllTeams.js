@@ -22,14 +22,12 @@ const StyledTableRow = withStyles((theme) => ({
 ///----------------------------Main Section---------------------------------------
 
 const AllTeams = ({ team }) => {
-  const [balance, setBalance] = useState({
-    balance: 0,
-  });
-
-  const sendBalance = () => {
+  const [balance, setBalance] = useState(0);
+  const sendBalance = (e) => {
+    e.preventDefault();
     db.collection("users")
       .doc(team.id)
-      .set({
+      .update({
         teamBalance: balance,
       })
       .then(console.log("Done"))
@@ -50,7 +48,7 @@ const AllTeams = ({ team }) => {
               type="number"
               onChange={(event) => {
                 event.preventDefault();
-                setBalance({ balance: event.target.value });
+                setBalance(event.target.value);
               }}
             />
             <button type="submit">Update</button>

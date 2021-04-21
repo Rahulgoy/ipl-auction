@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { forwardRef, useEffect, useLayoutEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import {
@@ -13,11 +13,11 @@ const useStyles = makeStyles({
   root: {
 
   }
-
 }); 
 
-const BiddingHistory = ({ bid }) => {
+const BiddingHistory = forwardRef(({ bid }, ref) => {
   const classes = useStyles();
+  console.log(bid);
   const [team, setTeam] = useState({
     teamName: "",
     initials: "",
@@ -44,7 +44,7 @@ const BiddingHistory = ({ bid }) => {
   }, [bid]);
   //console.log("team:", team);
   return (
-    <table className={classes.root}>
+    <table className={classes.root} ref={ref}>
       <tr>
         <td> <Typography variant='h6' style={{marginRight:'10px', color: '#D7A864'}}> {team.initials}: </Typography></td>
         <td> <Typography variant='h6'> {bid.biddingprice}</Typography></td>
@@ -52,6 +52,6 @@ const BiddingHistory = ({ bid }) => {
       </tr>
     </table>
   );
-};
+});
 
 export default BiddingHistory;

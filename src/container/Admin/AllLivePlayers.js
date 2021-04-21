@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
 
+import { MuiThemeProvider } from "@material-ui/core/styles";
+
+import adminTheme from './adminTheme';
+
 const AllLivePlayers = ({ player }) => {
   const [updatePlayer, setUpdatePlayer] = useState({
     name: "",
@@ -12,6 +16,28 @@ const AllLivePlayers = ({ player }) => {
     team: "",
     class: "",
   });
+  const assign = (e) => {
+    e.preventDefault();
+    db.collection("players").doc(player.data.name).update({
+      team: player.data.maxbidBy,
+      status: "close",
+      display: "false",
+    });
+    if (player.data.maxbidBy !== "") {
+      const ref3 = db.collection("users").doc(player.data.maxbidBy);
+
+      ref3.get().then((snapshot) => {
+        //if (snapshot.exists) {
+        ref3.update({
+          teamBalance:
+            parseInt(snapshot.data().teamBalance) -
+            parseInt(player.data.maxbid),
+        });
+        //}
+      });
+    }
+  };
+
   const handleChange = (e) => {
     e.preventDefault();
     setUpdatePlayer({
@@ -24,7 +50,8 @@ const AllLivePlayers = ({ player }) => {
   };
   console.log(updatePlayer);
   return (
-    <div>
+    <MuiThemeProvider theme={adminTheme}>
+      <div>
       <form onSubmit={handlesubmit}>
         <td>{player.data.name}</td>
         <td>
@@ -95,9 +122,11 @@ const AllLivePlayers = ({ player }) => {
           />
         </td>
         <button type="submit">Update</button>
+        <button onClick={assign}>Assign Team</button>
       </form>
     </div>
+    </MuiThemeProvider>
   );
-};
+};  
 
 export default AllLivePlayers;

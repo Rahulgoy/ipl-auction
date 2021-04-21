@@ -83,6 +83,7 @@ const SilentBidding = ({ auth, playerB }) => {
     db.collection("players")
       .where("category", "==", "silent")
       .where("status", "==", "open")
+      .where("class", "==", "show")
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
@@ -153,7 +154,7 @@ const SilentBidding = ({ auth, playerB }) => {
                         teamId={auth.uid}
                       />
                     ) : (
-                      <h1>No Player to Bid</h1>
+                      <h3>No Player to Bid</h3>
                     );
                   })}
                 </TableBody>

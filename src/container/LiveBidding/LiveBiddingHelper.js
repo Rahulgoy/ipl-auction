@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
+import FlipMove from "react-flip-move";
 
 import {
   Button,
@@ -49,7 +50,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
-  console.log(teamId);
+  //console.log(teamId);
 
   const sendBid = (e) => {
     e.preventDefault();
@@ -151,28 +152,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       .collection("Bids")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        setbidDisplay(snapshot.docs.map((doc) => doc.data()));
+        setbidDisplay(
+          snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+        );
       });
-  }, []);
+  }, [player.maxbid]);
 
-  useEffect(() => {
-    if (player.status === "close") {
-      db.collection("players").doc(player.name).update({
-        team: player.maxbidBy,
-      });
-      const ref3 = db.collection("users").doc(player.maxbidBy);
-
-      ref3.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          ref3.update({
-            teamBalance:
-              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
-          });
-        }
-      });
-    }
-  }, [player.status]);
-  //console.log(bidDisplay);
+  console.log(bidDisplay);
   // console.log(biddingValue);
 
 
@@ -258,11 +244,15 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       
         <Grid item xs={6}>
           <Container className={classes.rightGrid} style={{backgroundColor: 'white', marginTop: '100px', padding: '50px'}}>
-          {bidDisplay
-            ? bidDisplay.map((bid) => {
-                return <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />;
-              })
-            : console.log("No bids")}
+              <FlipMove>
+              {bidDisplay ? (
+                bidDisplay.map((bid) => {
+                  return <BiddingHistory key={bid.id} bid={bid.data} />;
+                })
+              ) : (
+                <h1>No bids</h1>
+              )}
+            </FlipMove>
           </Container>
         </Grid>
       
@@ -273,3 +263,32 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
 };
 
 export default LiveBiddingHelper;
+
+/*  useEffect(() => {
+    db.collection("players")
+      .where("category", "==", "live")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot)=>{
+        if(snapshot.exists){
+          snapshot.doc.for
+        }
+      })
+
+
+
+    if (player.status === "close") {
+      db.collection("players").doc(player.name).update({
+        team: player.maxbidBy,
+      });
+      const ref3 = db.collection("users").doc(player.maxbidBy);
+
+      ref3.onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
+          });
+        }
+      });
+    }
+  }, [player.status]); */

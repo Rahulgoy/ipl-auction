@@ -14,6 +14,8 @@ import { db } from "../../config/Firebase";
 import { connect } from "react-redux";
 import { AddPlayer } from "../../store/actions/authActions";
 import { Redirect } from "react-router";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import adminTheme from './adminTheme';
 
 const formAlignStyle = {
     // backgroundColor: "#010202",
@@ -84,7 +86,8 @@ class PlayerForm extends Component {
     const { authError, auth } = this.props;
     // if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
     return (
-      <Container maxWidth="md" >
+      <MuiThemeProvider theme={adminTheme}>
+        <Container maxWidth="md" >
         <CssBaseline />
         <form onSubmit={this.handleSubmit}>
           <Grid container justify="center" alignItems="center" spacing={3}>
@@ -348,6 +351,7 @@ class PlayerForm extends Component {
           </div>
         </form>
       </Container>
+      </MuiThemeProvider>
     );
   }
 }

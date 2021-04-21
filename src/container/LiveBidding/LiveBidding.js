@@ -12,10 +12,9 @@ const LiveBidding = ({ auth }) => {
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
-      .where("status", "==", "open")
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
-          // console.log(doc.id, "=>", doc.data());
+          //console.log(doc.id, "=>", doc.data());
           setPlay(doc.data());
           setPlayerId(doc.id);
         });
@@ -38,7 +37,7 @@ const LiveBidding = ({ auth }) => {
         console.log("Could not fetch");
       });
   }; */
-  console.log(play);
+  //console.log(play);
 
   useEffect(() => {
     console.log("Working....");

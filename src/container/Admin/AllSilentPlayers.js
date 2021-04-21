@@ -12,6 +12,27 @@ const AllSilentPlayers = ({ player }) => {
     team: "",
     class: "",
   });
+
+  /* const assign = (e) => {
+    e.preventDefault();
+    db.collection("players").doc(player.data.name).update({
+      team: player.data.maxbidBy,
+      status: "close",
+    });
+    const ref3 = db.collection("users").doc(player.data.maxbidBy);
+    if (player.data.maxbidBy !== "") {
+      ref3.get().then((snapshot) => {
+        if (snapshot.exists) {
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) -
+              parseInt(player.data.maxbid),
+          });
+        }
+      });
+    }
+  }; */
+
   const handleChange = (e) => {
     e.preventDefault();
     setUpdatePlayer({
@@ -95,6 +116,7 @@ const AllSilentPlayers = ({ player }) => {
           />
         </td>
         <button type="submit">Update</button>
+        {/* button onClick={assign}>Assign Team</button> */}
       </form>
     </div>
   );

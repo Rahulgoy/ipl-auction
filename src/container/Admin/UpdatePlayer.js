@@ -15,6 +15,12 @@ import {
 } from "@material-ui/core";
 import AllLivePlayers from "./AllLivePlayers";
 import AllSilentPlayers from "./AllSilentPlayers";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import adminTheme from './adminTheme';
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -25,7 +31,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const UpdatePlayer = (props) => {
+const UpdatePlayer = ({ auth }) => {
   const [silentPlayers, setSilentPlayers] = useState([]);
   const [livePlayers, setlivePlayers] = useState([]);
   const [playerId, setplayerId] = useState("");
@@ -76,8 +82,11 @@ const UpdatePlayer = (props) => {
     fetchLive();
     fetchSilent();
   }, []);
+  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
+
   return (
-    <Container>
+    <MuiThemeProvider theme={adminTheme} >
+      <Container>
       <h3>Live</h3>
 
       <div className="tableWrapper">
@@ -157,7 +166,14 @@ const UpdatePlayer = (props) => {
         </div>
       </div>
     </Container>
+    </MuiThemeProvider>
   );
 };
 
-export default UpdatePlayer;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+  };
+};
+export default connect(mapStateToProps)(UpdatePlayer);

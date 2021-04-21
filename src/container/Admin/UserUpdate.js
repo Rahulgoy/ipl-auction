@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import {
   Container,
   Table,
@@ -33,24 +34,28 @@ const StyledTableRow = withStyles((theme) => ({
 
 ///----------------------------Main Section---------------------------------------
 
-const UserUpdate = () => {
+const UserUpdate = ({ auth }) => {
   const [teams, setTeams] = useState([]);
 
   const fetchTeam = () => {
-    db.collection("users").onSnapshot((snapshot) => {
-      if (snapshot.exists) {
+    db.collection("users")
+      .get()
+      .then((snapshot) => {
+        //if (snapshot.exists) {
         snapshot.forEach((doc) => {
           //setplayerId(doc.id);
           //console.log(doc.id, "=>", doc.data());
           setTeams((teams) => [...teams, { id: doc.id, data: doc.data() }]);
         });
-      }
-    });
+        // }
+      });
   };
 
   useEffect(() => {
     fetchTeam();
   }, []);
+  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
+
   return (
     <Container>
       <h3>Live</h3>
@@ -92,4 +97,10 @@ const UserUpdate = () => {
   );
 };
 
-export default UserUpdate;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+  };
+};
+export default connect(mapStateToProps)(UserUpdate);

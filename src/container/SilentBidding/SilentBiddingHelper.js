@@ -63,51 +63,6 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
       });
   }, [player.maxbidBy]);
 
-  /// Assign Players
-  useEffect(() => {
-    db.collection("players")
-      .where("category", "==", "silent")
-      .where("status", "==", "close")
-      .onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          snapshot.docs.map((doc) => {
-            console.log(doc.data().name);
-            console.log(doc.data().maxbidBy);
-            db.collection("players").doc(doc.data().name).update({
-              team: doc.data().maxbidBy,
-            });
-            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
-
-            ref3.onSnapshot((snapshot) => {
-              if (snapshot.exists) {
-                console.log(snapshot.data().teamBalance);
-                ref3.update({
-                  teamBalance:
-                    parseInt(snapshot.data().teamBalance) -
-                    parseInt(doc.data().maxbid),
-                });
-              }
-            });
-          });
-        }
-      });
-  }, [player.status]);
-  /* if (player.status === "close") {
-      db.collection("players").doc(player.name).update({
-        team: player.maxbidBy,
-      });
-      const ref3 = db.collection("users").doc(player.maxbidBy);
-
-      ref3.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          ref3.update({
-            teamBalance:
-              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
-          });
-        }
-      });
-    } */
-
   return (
     <>
       <StyledTableRow>
@@ -136,6 +91,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
             variant='contained'
             color='secondary'
             size='small'
+            disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
               type="submit"
               /* onClick={(event) => {
               event.preventDefault();
@@ -166,5 +122,49 @@ const mapStateToProps = (state) => {
     Bids: (playerId, biddingprice) => dispatch(Bids(playerId, biddingprice)),
   };
 }; */
-
 export default connect(mapStateToProps)(SilentBiddingHelper);
+
+/// Assign Players
+/* useEffect(() => {
+    db.collection("players")
+      .where("category", "==", "silent")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.docs.map((doc) => {
+            console.log(doc.data().name);
+            console.log(doc.data().maxbidBy);
+            db.collection("players").doc(doc.data().name).update({
+              team: doc.data().maxbidBy,
+            });
+            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
+
+            ref3.onSnapshot((snapshot) => {
+              if (snapshot.exists) {
+                console.log(snapshot.data().teamBalance);
+                ref3.update({
+                  teamBalance:
+                    parseInt(snapshot.data().teamBalance) -
+                    parseInt(doc.data().maxbid),
+                });
+              }
+            });
+          });
+        }
+      });
+  }, [player.status]); */
+/* if (player.status === "close") {
+      db.collection("players").doc(player.name).update({
+        team: player.maxbidBy,
+      });
+      const ref3 = db.collection("users").doc(player.maxbidBy);
+
+      ref3.onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
+          });
+        }
+      });
+    } */
