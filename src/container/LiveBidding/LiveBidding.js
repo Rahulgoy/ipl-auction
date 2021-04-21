@@ -7,7 +7,22 @@ import LiveBiddingHelper from "./LiveBiddingHelper";
 const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
   const [playerId, setPlayerId] = useState("admin");
+
   const fetchsome = () => {
+    db.collection("players")
+      .where("display", "==", "true")
+      .where("category", "==", "live")
+      .where("status", "==", "open")
+      .onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+          // console.log(doc.id, "=>", doc.data());
+          setPlay(doc.data());
+          setPlayerId(doc.id);
+        });
+      });
+  };
+
+  /*  const fetchsome = () => {
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
@@ -22,7 +37,7 @@ const LiveBidding = ({ auth }) => {
       .catch((error) => {
         console.log("Could not fetch");
       });
-  };
+  }; */
   console.log(play);
 
   useEffect(() => {
@@ -40,7 +55,7 @@ const LiveBidding = ({ auth }) => {
           teamId={auth.uid}
         />
       ) : (
-        console.log("No play")
+        <h1>No Player to Bid</h1>
       )}
     </div>
   );
@@ -60,47 +75,3 @@ const mapStateToProps = (state) => {
 }; */
 
 export default connect(mapStateToProps)(LiveBidding);
-
-/* const [playerCard, setPlayerCard] = useState({
-    Batavg: "",
-    Image: "",
-    Runs: "",
-    age: "",
-    baseprice: "",
-    class: "",
-    display: Boolean,
-    maxbid: 0,
-    maxbidBy: "",
-    name: "",
-    strikerate: "",
-  }); */
-
-/* const fetchCard = () => {
-    db.collection("players").onSnapshot((snapshot) => {
-      const result = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
-      result.map((res) => {
-        console.log(res.data.display);
-        if (res.data.display === true) {
-          console.log(res.data);
-          console.log(res.data.name);
-          setPlayerCard({
-            Batavg: res.data.Batavg,
-            Image: res.data.Image,
-            Runs: res.data.Runs,
-            age: res.data.age,
-            baseprice: res.data.baseprice,
-            class: res.data.class,
-            display: res.data.display,
-            maxbid: res.data.maxbid,
-            maxbidBy: res.data.maxbidBy,
-            name: res.data.name,
-            strikerate: res.data.strikerate,
-          });
-        }
-      });
-      console.log(playerCard);
-    });
-  }; */

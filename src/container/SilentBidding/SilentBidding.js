@@ -83,12 +83,13 @@ const SilentBidding = ({ auth, playerB }) => {
 
     db.collection("players")
       .where("category", "==", "silent")
+      .where("status", "==", "open")
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           setplayerId(doc.id);
 
-          console.log(doc.id, "=>", doc.data());
+          //console.log(doc.id, "=>", doc.data());
           setSilentPlayers((silentPlayers) => [
             ...silentPlayers,
             { id: doc.id, data: doc.data() },
@@ -136,6 +137,7 @@ const SilentBidding = ({ auth, playerB }) => {
                   <TableCell> <Typography color='primary'>Wickets</Typography> </TableCell>
                   <TableCell> <Typography color='primary'>Bowling Avg</Typography> </TableCell>
                   <TableCell> <Typography color='primary'>Economy</Typography> </TableCell>
+                  <TableCell> <Typography color='primary'>Rating</Typography> </TableCell>
                   <TableCell> <Typography color='primary'>Baseprice</Typography> </TableCell>
                   <TableCell> <Typography color='primary'>Max Bid</Typography> </TableCell>
                   <TableCell> <Typography color='primary'>Place Bid</Typography> </TableCell>
@@ -143,19 +145,19 @@ const SilentBidding = ({ auth, playerB }) => {
               </TableHead>
 
               <TableBody>
-              {silentPlayers.map((player) => {
-                      return player ? (
-                        <SilentBiddingHelper
-                          key={player.id}
-                          player={player.data}
-                          playerId={playerId}
-                          teamId={auth.uid}
-                        />
-                      ) : (
-                        console.log("No player")
-                      );
-                    })}
-              </TableBody>
+                  {silentPlayers.map((player) => {
+                    return player ? (
+                      <SilentBiddingHelper
+                        key={player.id}
+                        player={player.data}
+                        playerId={playerId}
+                        teamId={auth.uid}
+                      />
+                    ) : (
+                      <h1>No Player to Bid</h1>
+                    );
+                  })}
+                </TableBody>
               {/* </Box> */}
             </Table>
           </TableContainer>
