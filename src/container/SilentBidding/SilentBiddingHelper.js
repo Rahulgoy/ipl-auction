@@ -5,7 +5,17 @@ import firebase from "firebase";
 import { db } from "../../config/Firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { TableCell, TableRow } from "@material-ui/core";
+import { 
+  TableCell,  
+  Button,
+  Container,
+  Grid,
+  Typography, 
+  TableRow , 
+  TextField
+} from "@material-ui/core";
+
+
 
 const StyledTableCell = withStyles((theme) => ({
 
@@ -113,22 +123,29 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
-            <input
+        <div style={{display: 'flex'}}>
+            <TextField
               value={biddingValue}
               onChange={(event) => {
                 event.preventDefault();
                 setbiddingValue(event.target.value);
               }}
             />
-            <button
+            <Button
+            style={{marginLeft: '20px'}}
+            variant='contained'
+            color='secondary'
+            size='small'
               type="submit"
               /* onClick={(event) => {
               event.preventDefault();
               Bids(playerId, nextBid);
             }} */
+
             >
               Bid
-          </button>
+          </Button>
+          </div>
         </form>
       </StyledTableCell>
 

@@ -84,7 +84,7 @@ class PlayerForm extends Component {
     const { authError, auth } = this.props;
     // if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
     return (
-      <Container>
+      <Container maxWidth="md" >
         <CssBaseline />
         <form onSubmit={this.handleSubmit}>
           <Grid container justify="center" alignItems="center" spacing={3}>
@@ -214,45 +214,72 @@ class PlayerForm extends Component {
                   type="text"
                   onChange={this.handleChange}
                 />
+
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  padding: '16.5px',
+                  justifyContent: 'space-around',
+
+                }}>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   category
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="category"
-                  name="category"
-                  label="category"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"live"}>live</MenuItem>
-                  <MenuItem value={"silent"}>silent</MenuItem>
-                </Select>
+                    <Select
+                      labelId="demo-simple-select-filled-label"
+                      id="category"
+                      name="category"
+                      label="category"
+                      onChange={this.handleChange}
+                      
+                    >
+                      <MenuItem value={"live"}>live</MenuItem>
+                      <MenuItem value={"silent"}>silent</MenuItem>
+                  </Select>
+                  </div>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   display
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="display"
-                  name="display"
-                  label="display"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"true"}>true</MenuItem>
-                  <MenuItem value={"false"}>false</MenuItem>
-                </Select>
+                  <Select
+                    labelId="demo-simple-select-filled-label"
+                    id="display"
+                    name="display"
+                    label="display"
+                    onChange={this.handleChange}
+                    
+                  >
+                      <MenuItem value={"true"}>true</MenuItem>
+                      <MenuItem value={"false"}>false</MenuItem>
+                  </Select>
+                  </div>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   Status
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="status"
-                  name="status"
-                  label="status"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"open"}>open</MenuItem>
-                  <MenuItem value={"close"}>close</MenuItem>
-                </Select>
+                  <Select
+                    labelId="demo-simple-select-filled-label"
+                    id="status"
+                    name="status"
+                    label="status"
+                    onChange={this.handleChange}
+
+                  >
+                      <MenuItem value={"open"}>open</MenuItem>
+                      <MenuItem value={"close"}>close</MenuItem>
+                  </Select>
+                  </div>
+                </div>
 
                 <TextField
                   variant="outlined"
@@ -306,7 +333,8 @@ class PlayerForm extends Component {
                 color="primary"
                 fullWidth
                 style={{
-                  margin: "24px 0px 16px",
+                  margin: "0px 0px 16px",
+
                 }}
               >
                 Submit

@@ -3,11 +3,49 @@ import { db } from "../../config/Firebase";
 import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 
-import {Grid} from '@material-ui/core';
+import {
+  Button,
+  Container,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import '../../assets/css/liveBidding.css';
+import {makeStyles} from '@material-ui/core';
+import theme from "../../assets/js/DarkTheme";
 
+const useStyles = makeStyles({
+  leftGrid: {
+    padding: '20px',
+
+  },
+  playerDetailsWrapper: {
+
+  },
+  playerDetails: {
+    color: '#1B2C89', // blue
+    color: '#D7A864', // golden
+    fontWeight: '700',
+    marginBottom: '20px',
+    fontSize: '1.5em',
+
+  },
+  bidSection: {
+      marginTop: '20px',
+      
+  },
+  bidButton: {
+    marginTop: '30px',
+    backgroud: theme.palette.primary,
+    border: '2px solid black',
+    padding: '20px',
+    borderRadius: '20px',
+  },
+
+}); 
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
+  const classes = useStyles();
+
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
@@ -137,54 +175,100 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //console.log(bidDisplay);
   // console.log(biddingValue);
 
+
   return (
-    <Grid container justify="center" spacing={3}>
+    <Container>
+
+      <Grid container justify="center" spacing={3}>
+
       <Grid item xs={6} display="inline">
-        <h2>
+      <div className={classes.leftGrid}>
+        
+        <Typography variant='h2' align='center' color='primary' style={{
+            fontWeight: 'bold',
+            fontStyle: 'normal',
+            fontSize: '3em'
+        }}> 
           {player.name}({player.age})
-        </h2>
-        <img src={player.Image} alt="No Image" height="500px"></img>
-        <Grid item xs={3}>
-          <p>Runs: {player.Runs}</p>
-          <p>Batting Average: {player.Batavg}</p>
-          <p>Strike Rate: {player.strikerate}</p>
-        </Grid>
-        <Grid item xs={3}>
-          <p>Wickets: {player.wickets}</p>
-          <p>Economy: {player.economy}</p>
-          <p>Bowling Average: {player.Bowlavg}</p>
-          <p>Rating: {player.rating}</p>
-        </Grid>
-        <p>Base Price: {player.baseprice} lakhs</p>
-        {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
-        <form>
-          {balance >= biddingValue ? (
-            [
-              player.maxbidBy !== teamId ? (
-                <button type="submit" onClick={sendBid}>
-                  <p>{biddingValue}</p>Bid
-                </button>
-              ) : (
-                <button type="submit" disabled>
-                  <p>{biddingValue}</p>Bid
-                </button>
-              ),
-            ]
-          ) : (
-            <button disabled>
-              <p>Not Enough Balance</p>
-            </button>
-          )}
-        </form>
+        </Typography>
+        <div style={{
+              marginTop: '30px', 
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',     
+        }}>
+
+          <img src={player.Image} alt="No Image" height="400px" width="300px" style={{
+              // margin: '0 auto'
+              marginLeft: '-10%'
+          }}></img> 
+
+          <div style={{
+              display: 'block',
+              justifyContent: 'space-around',
+            }} className={classes.playerDetailsWrapper}
+          >
+            {/* <Grid item xs={3}> */}
+              <div>
+                <Typography className={classes.playerDetails}> Runs: {player.Runs}</Typography>
+                <Typography className={classes.playerDetails}> Batting Average: {player.Batavg}</Typography>
+                <Typography className={classes.playerDetails}> Strike Rate: {player.strikerate}</Typography>
+              </div>
+
+            {/* </Grid> */}
+            {/* <Grid item xs={3}> */}
+            
+            <div>
+              <Typography className={classes.playerDetails}> Wickets: {player.wickets}</Typography>
+              <Typography className={classes.playerDetails}> Economy: {player.economy}</Typography>
+              <Typography className={classes.playerDetails}> Bowling Average: {player.Bowlavg}</Typography>
+              <Typography className={classes.playerDetails}> Rating: {player.rating}</Typography>
+            </div>
+          </div>
+          {/* </Grid> */}
+        </div>
+
+        <div className={classes.bidSection}>
+          <Typography color='primary' variant='h5'> Base Price: {player.baseprice} Lakhs </Typography>
+          {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
+          <form>
+            {balance >= biddingValue ? (
+              [
+                player.maxbidBy !== teamId ? (
+                  <button type="submit" onClick={sendBid} className={classes.bidButton}>
+                     <Typography variant='h6'>{biddingValue}L Bid </Typography>
+                  </button>
+                ) : (
+                  <button type="submit" disabled className={classes.bidButton}>
+                    <Typography variant='h6'>{biddingValue}L Bid </Typography>
+                  </button>
+                ),
+              ]
+            ) : (
+              <button disabled>
+                <p>Not Enough Balance</p>
+              </button>
+            )}
+          </form>
+        </div>
+      </div>
       </Grid>
-      <Grid item xs={6}>
-        {bidDisplay
-          ? bidDisplay.map((bid) => {
-              return <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />;
-            })
-          : console.log("No bids")}
-      </Grid>
+      
+
+      
+        <Grid item xs={6}>
+          <Container className={classes.rightGrid} style={{backgroundColor: 'white', marginTop: '100px', padding: '50px'}}>
+          {bidDisplay
+            ? bidDisplay.map((bid) => {
+                return <BiddingHistory key={bid.id ? bid.id : 0} bid={bid} />;
+              })
+            : console.log("No bids")}
+          </Container>
+        </Grid>
+      
+
     </Grid>
+    </Container>
   );
 };
 

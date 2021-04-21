@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 
   container: {
-    maxHeight: 440,
+
     padding: 10
   },
 
@@ -41,7 +41,6 @@ const useStyles = makeStyles({
 
   },
   table: {
-    // background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
     color: 'white',
     border: '2px solid white',
     // borderRadius: '10px'
