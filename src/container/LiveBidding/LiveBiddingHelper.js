@@ -221,12 +221,12 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             {balance >= biddingValue ? (
               [
                 player.maxbidBy !== teamId ? (
-                  <button type="submit" onClick={sendBid} className={classes.bidButton}>
-                     <Typography variant='h6'>{biddingValue}L Bid </Typography>
+                  <button type="submit" onClick={sendBid} className={classes.bidButton} style={{backgroundColor: '#f50057'}}>
+                     <Typography variant='h6' color='primary'>{biddingValue}L Bid </Typography>
                   </button>
                 ) : (
                   <button type="submit" disabled className={classes.bidButton}>
-                    <Typography variant='h6'>{biddingValue}L Bid </Typography>
+                    <Typography variant='h6'style={{color: '#000'}}>{biddingValue}L Bid </Typography>
                   </button>
                 ),
               ]
