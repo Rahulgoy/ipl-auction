@@ -1,8 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { forwardRef, useEffect, useLayoutEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
 
-const BiddingHistory = ({ bid }) => {
+const BiddingHistory = forwardRef(({ bid }, ref) => {
+  console.log(bid);
   const [team, setTeam] = useState({
     teamName: "",
     initials: "",
@@ -29,13 +30,13 @@ const BiddingHistory = ({ bid }) => {
   }, [bid]);
   //console.log("team:", team);
   return (
-    <table>
+    <table ref={ref}>
       <tr>
         <td>{team.initials}</td>
         <td>{bid.biddingprice}</td>
       </tr>
     </table>
   );
-};
+});
 
 export default BiddingHistory;

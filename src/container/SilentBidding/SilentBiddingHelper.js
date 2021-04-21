@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { TableCell, TableRow } from "@material-ui/core";
+import { Button, TableCell, TableRow, TextField } from "@material-ui/core";
 import { db } from "../../config/Firebase";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -77,14 +77,17 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
-            <input
+            <TextField
               value={biddingValue}
               onChange={(event) => {
                 event.preventDefault();
                 setbiddingValue(event.target.value);
               }}
             />
-            <button
+            <Button
+              variant="contained"
+              color="secondary"
+              disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
               type="submit"
               /* onClick={(event) => {
               event.preventDefault();
@@ -92,7 +95,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
             }} */
             >
               Bid
-            </button>
+            </Button>
           </form>
         </StyledTableCell>
       </StyledTableRow>
