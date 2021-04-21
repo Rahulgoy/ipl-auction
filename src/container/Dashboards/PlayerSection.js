@@ -25,22 +25,24 @@ const PlayerSection = () => {
     });
   };
   const fetchTeam = () => {
-    db.collection("users").onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) => {
-        if (categories === null) {
-          setCategories({ id: doc.id, data: doc.data().teamName });
-        } else {
-          setCategories((categories) => [
-            ...categories,
-            {
-              id: doc.id,
-              data: doc.data().teamName,
-            },
-          ]);
-        }
-      });
+    db.collection("users")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.map((doc) => {
+          if (categories === null) {
+            setCategories({ id: doc.id, data: doc.data().teamName });
+          } else {
+            setCategories((categories) => [
+              ...categories,
+              {
+                id: doc.id,
+                data: doc.data().teamName,
+              },
+            ]);
+          }
+        });
 
-      /* const result = snapshot.docs.map((doc) => ({
+        /* const result = snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -48,7 +50,7 @@ const PlayerSection = () => {
         console.log(res.data);
         // categories.push([res.data.teamName]);
       }); */
-    });
+      });
   };
 
   const filterPlayers = (category, id) => {

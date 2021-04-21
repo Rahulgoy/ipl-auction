@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import AllSilentPlayers from "./AllSilentPlayers";
 import PlayerSlotsHelper from "./PlayerSlotsHelper";
-
-const PlayerSlots = () => {
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+const PlayerSlots = ({ auth }) => {
   const [showPlayers, setShowPlayers] = useState([]);
   const [fetchClass, setFetchClass] = useState("show");
   const [classAndAssign, setclassAndAssign] = useState("");
@@ -69,10 +70,11 @@ const PlayerSlots = () => {
         //}
       });
   };
+  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   console.log(showPlayers);
-  console.log(fetchClass);
-  console.log(classAndAssign);
+  /* console.log(fetchClass);
+  console.log(classAndAssign); */
   return (
     <div>
       <form>
@@ -124,4 +126,10 @@ const PlayerSlots = () => {
   );
 };
 
-export default PlayerSlots;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+  };
+};
+export default connect(mapStateToProps)(PlayerSlots);

@@ -7,7 +7,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
-  console.log(teamId);
+  //console.log(teamId);
 
   const sendBid = (e) => {
     e.preventDefault();
@@ -97,9 +97,9 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("users")
       .doc(teamId)
       .onSnapshot((snapshot) => {
-        //if (snapshot.exists) {
-        setBalance(parseInt(snapshot.data().teamBalance));
-        //}
+        if (snapshot.exists) {
+          setBalance(parseInt(snapshot.data().teamBalance));
+        }
       });
   }, []);
   useEffect(() => {
@@ -111,7 +111,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       .onSnapshot((snapshot) => {
         setbidDisplay(snapshot.docs.map((doc) => doc.data()));
       });
-  }, []);
+  }, [player.maxbid]);
 
   /*  useEffect(() => {
     db.collection("players")
@@ -141,7 +141,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
     }
   }, [player.status]); */
-  //console.log(bidDisplay);
+  console.log(bidDisplay);
   // console.log(biddingValue);
 
   return (
