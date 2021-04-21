@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { TableCell, TableRow } from "@material-ui/core";
+import { Button, TableCell, TableRow, TextField } from "@material-ui/core";
 import { db } from "../../config/Firebase";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -26,43 +26,42 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
-  const [biddingValue, setbiddingValue] = useState(parseInt(player.baseprice));
-
+  const [biddingValue, setbiddingValue] = useState("");
+  const [maxBid, setmaxBid] = useState(0);
+  //console.log(player);
   const sendBid = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     db.collection("players")
       .doc(player.name)
       .collection("Bids")
       .doc(teamId)
-      .set(
-        {
-          bid: [
-            {
-              biddingprice: biddingValue,
-              timestamp: firebase.firestore.Timestamp.now(),
-            },
-          ],
-        },
-        { merge: true }
-      );
+      .set({
+        bid: [
+          {
+            biddingprice: biddingValue,
+            timestamp: firebase.firestore.Timestamp.now(),
+          },
+        ],
+      });
     console.log("Maxbid:", player.maxbid);
     console.log("Price:", biddingValue);
-    if (player.maxbid < biddingValue) {
+    if (parseInt(player.maxbid) < parseInt(biddingValue)) {
       db.collection("players").doc(player.name).update({
         maxbid: biddingValue,
         maxbidBy: teamId,
       });
     }
-
+    setbiddingValue("");
     // window.location.reload(true);
   };
   useEffect(() => {
-    if (player.status === "close") {
-      db.collection("players").doc(player.name).update({
-        team: player.maxbidBy,
+    db.collection("players")
+      .doc(player.name)
+      .onSnapshot((snapshot) => {
+        setmaxBid(snapshot.data().maxbid);
       });
-    }
-  }, [player.status]);
+  }, [player.maxbidBy]);
+
   return (
     <>
       <StyledTableRow>
@@ -73,18 +72,22 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{player.wickets}</StyledTableCell>
         <StyledTableCell>{player.Bowlavg}</StyledTableCell>
         <StyledTableCell>{player.economy}</StyledTableCell>
+        <StyledTableCell>{player.rating}</StyledTableCell>
         <StyledTableCell>{player.baseprice}</StyledTableCell>
-        <StyledTableCell>{player.maxbid}</StyledTableCell>
+        <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
-            <input
+            <TextField
               value={biddingValue}
               onChange={(event) => {
                 event.preventDefault();
                 setbiddingValue(event.target.value);
               }}
             />
-            <button
+            <Button
+              variant="contained"
+              color="secondary"
+              disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
               type="submit"
               /* onClick={(event) => {
               event.preventDefault();
@@ -92,7 +95,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
             }} */
             >
               Bid
-            </button>
+            </Button>
           </form>
         </StyledTableCell>
       </StyledTableRow>
@@ -113,3 +116,48 @@ const mapStateToProps = (state) => {
   };
 }; */
 export default connect(mapStateToProps)(SilentBiddingHelper);
+
+/// Assign Players
+/* useEffect(() => {
+    db.collection("players")
+      .where("category", "==", "silent")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          snapshot.docs.map((doc) => {
+            console.log(doc.data().name);
+            console.log(doc.data().maxbidBy);
+            db.collection("players").doc(doc.data().name).update({
+              team: doc.data().maxbidBy,
+            });
+            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
+
+            ref3.onSnapshot((snapshot) => {
+              if (snapshot.exists) {
+                console.log(snapshot.data().teamBalance);
+                ref3.update({
+                  teamBalance:
+                    parseInt(snapshot.data().teamBalance) -
+                    parseInt(doc.data().maxbid),
+                });
+              }
+            });
+          });
+        }
+      });
+  }, [player.status]); */
+/* if (player.status === "close") {
+      db.collection("players").doc(player.name).update({
+        team: player.maxbidBy,
+      });
+      const ref3 = db.collection("users").doc(player.maxbidBy);
+
+      ref3.onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          ref3.update({
+            teamBalance:
+              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
+          });
+        }
+      });
+    } */

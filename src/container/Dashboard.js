@@ -50,11 +50,12 @@ const Dashboard = ({ auth }) => {
       });
     });
   };
-  console.log(team);
+  //console.log(team);
   if (team === null) console.log("NULL");
   useEffect(() => {
     fetchTeam();
   }, []);
+
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div className={classes.root}>

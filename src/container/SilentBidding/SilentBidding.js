@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../config/Firebase";
-import { Bids } from "../../store/actions/playerActions";
+
 import { connect } from "react-redux";
 import SilentBiddingHelper from "./SilentBiddingHelper";
 
@@ -50,12 +50,14 @@ const SilentBidding = ({ auth, playerB }) => {
 
     db.collection("players")
       .where("category", "==", "silent")
+      .where("status", "==", "open")
+      .where("class", "==", "show")
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           setplayerId(doc.id);
 
-          console.log(doc.id, "=>", doc.data());
+          //console.log(doc.id, "=>", doc.data());
           setSilentPlayers((silentPlayers) => [
             ...silentPlayers,
             { id: doc.id, data: doc.data() },
@@ -95,6 +97,7 @@ const SilentBidding = ({ auth, playerB }) => {
                     <StyledTableCell>Wickets</StyledTableCell>
                     <StyledTableCell>Bowling Avg</StyledTableCell>
                     <StyledTableCell>Economy</StyledTableCell>
+                    <StyledTableCell>Rating</StyledTableCell>
                     <StyledTableCell>Baseprice</StyledTableCell>
                     <StyledTableCell>Max Bid</StyledTableCell>
                     <StyledTableCell>Place Bid</StyledTableCell>
@@ -111,7 +114,7 @@ const SilentBidding = ({ auth, playerB }) => {
                         teamId={auth.uid}
                       />
                     ) : (
-                      console.log("No player")
+                      <h3>No Player to Bid</h3>
                     );
                   })}
                 </TableBody>

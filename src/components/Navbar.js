@@ -89,14 +89,14 @@ const Navbar = (props) => {
 
   const SignedOutLinks = (
     <ul style={{ listStyle: "none", display: "flex" }}>
-      <li>
+      {/* <li>
         {" "}
         <Button color="inherit">
           <NavLink to="/signup" className={classes.linkUnderline}>
             Signup
           </NavLink>
         </Button>{" "}
-      </li>
+      </li> */}
       <li>
         {" "}
         <Button color="inherit">

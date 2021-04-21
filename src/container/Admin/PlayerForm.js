@@ -39,6 +39,7 @@ class PlayerForm extends Component {
     category: "",
     display: "",
     status: "",
+
     maxbid: 0,
     maxbidBy: "",
     team: "",
@@ -197,7 +198,16 @@ class PlayerForm extends Component {
                   type="text"
                   onChange={this.handleChange}
                 />
-
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="rating"
+                  label="rating"
+                  fullWidth
+                  id="rating"
+                  type="text"
+                  onChange={this.handleChange}
+                />
                 <InputLabel id="demo-simple-select-filled-label">
                   category
                 </InputLabel>
@@ -281,7 +291,7 @@ class PlayerForm extends Component {
               </Box>
             </Grid>
           </Grid>
-          <Grid item xs={4}></Grid>
+          <Grid item xs={4} />
           <Grid item xs={4}>
             <Button
               type="submit"
@@ -295,7 +305,7 @@ class PlayerForm extends Component {
               Submit
             </Button>
           </Grid>
-          <Grid item xs={4}></Grid>
+          <Grid item xs={4} />
 
           <div className="center red-text">
             {authError ? <p>{authError}</p> : null}
