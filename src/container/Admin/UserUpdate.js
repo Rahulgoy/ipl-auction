@@ -37,15 +37,17 @@ const UserUpdate = () => {
   const [teams, setTeams] = useState([]);
 
   const fetchTeam = () => {
-    db.collection("users").onSnapshot((snapshot) => {
-      if (snapshot.exists) {
+    db.collection("users")
+      .get()
+      .then((snapshot) => {
+        //if (snapshot.exists) {
         snapshot.forEach((doc) => {
           //setplayerId(doc.id);
           //console.log(doc.id, "=>", doc.data());
           setTeams((teams) => [...teams, { id: doc.id, data: doc.data() }]);
         });
-      }
-    });
+        // }
+      });
   };
 
   useEffect(() => {

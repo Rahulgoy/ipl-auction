@@ -97,9 +97,9 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("users")
       .doc(teamId)
       .onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          setBalance(parseInt(snapshot.data().teamBalance));
-        }
+        //if (snapshot.exists) {
+        setBalance(parseInt(snapshot.data().teamBalance));
+        //}
       });
   }, []);
   useEffect(() => {
@@ -113,7 +113,18 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
   }, []);
 
-  useEffect(() => {
+  /*  useEffect(() => {
+    db.collection("players")
+      .where("category", "==", "live")
+      .where("status", "==", "close")
+      .onSnapshot((snapshot)=>{
+        if(snapshot.exists){
+          snapshot.doc.for
+        }
+      })
+
+
+
     if (player.status === "close") {
       db.collection("players").doc(player.name).update({
         team: player.maxbidBy,
@@ -129,7 +140,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
         }
       });
     }
-  }, [player.status]);
+  }, [player.status]); */
   //console.log(bidDisplay);
   // console.log(biddingValue);
 

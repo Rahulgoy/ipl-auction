@@ -16,7 +16,7 @@ const PlayerSection = () => {
     console.log("Fetching Players");
     db.collection("players").onSnapshot((snapshot) => {
       snapshot.docs.forEach((doc) => {
-        console.log(doc.data());
+        //console.log(doc.data());
         setAllPlayers((AllPlayers) => [
           ...AllPlayers,
           { id: doc.id, data: doc.data() },
@@ -52,14 +52,14 @@ const PlayerSection = () => {
   };
 
   const filterPlayers = (category, id) => {
-    console.log("C", id);
+    //console.log("C", id);
 
     const filterPlayers = AllPlayers.filter(
       (player) => player.data.team === id
     );
     setFilteredPlayers(filterPlayers);
   };
-  console.log(AllPlayers);
+  //console.log(AllPlayers);
 
   useEffect(() => {
     fetchTeam();
