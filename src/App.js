@@ -28,7 +28,7 @@ import PlayerSlots from "./container/Admin/PlayerSlots";
 
 function App() {
   return (
-    // <MuiThemeProvider theme={theme}>
+  <MuiThemeProvider theme={theme}>
     <Provider store={store}>
       <Router>
         <Navbar />
@@ -47,7 +47,7 @@ function App() {
         </Switch>
       </Router>
     </Provider>
-    // </MuiThemeProvider>
+  </MuiThemeProvider>
   );
 }
 

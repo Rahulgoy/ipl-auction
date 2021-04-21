@@ -3,6 +3,7 @@ import {
   TextField,
   Button,
   Box,
+  Container,
   Grid,
   CssBaseline,
   InputLabel,
@@ -13,8 +14,11 @@ import { db } from "../../config/Firebase";
 import { connect } from "react-redux";
 import { AddPlayer } from "../../store/actions/authActions";
 import { Redirect } from "react-router";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import adminTheme from './adminTheme';
+
 const formAlignStyle = {
-  //   backgroundColor: "#010202",
+    // backgroundColor: "#010202",
   height: "100vh",
   paddingTop: "40px",
   display: "flex",
@@ -80,12 +84,15 @@ class PlayerForm extends Component {
   }; */
   render() {
     const { authError, auth } = this.props;
-    if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
+    // if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
     return (
-      <div>
+      <MuiThemeProvider theme={adminTheme}>
+        <Container maxWidth="md" >
         <CssBaseline />
         <form onSubmit={this.handleSubmit}>
           <Grid container justify="center" alignItems="center" spacing={3}>
+
+            {/* grid 1 */}
             <Grid item xs={6}>
               <TextField
                 variant="outlined"
@@ -176,6 +183,8 @@ class PlayerForm extends Component {
                 onChange={this.handleChange}
               />
             </Grid>
+
+            {/* grid 2 */}
             <Grid item xs={6}>
               <Box>
                 <TextField
@@ -208,45 +217,72 @@ class PlayerForm extends Component {
                   type="text"
                   onChange={this.handleChange}
                 />
+
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  padding: '16.5px',
+                  justifyContent: 'space-around',
+
+                }}>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   category
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="category"
-                  name="category"
-                  label="category"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"live"}>live</MenuItem>
-                  <MenuItem value={"silent"}>silent</MenuItem>
-                </Select>
+                    <Select
+                      labelId="demo-simple-select-filled-label"
+                      id="category"
+                      name="category"
+                      label="category"
+                      onChange={this.handleChange}
+                      
+                    >
+                      <MenuItem value={"live"}>live</MenuItem>
+                      <MenuItem value={"silent"}>silent</MenuItem>
+                  </Select>
+                  </div>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   display
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="display"
-                  name="display"
-                  label="display"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"true"}>true</MenuItem>
-                  <MenuItem value={"false"}>false</MenuItem>
-                </Select>
+                  <Select
+                    labelId="demo-simple-select-filled-label"
+                    id="display"
+                    name="display"
+                    label="display"
+                    onChange={this.handleChange}
+                    
+                  >
+                      <MenuItem value={"true"}>true</MenuItem>
+                      <MenuItem value={"false"}>false</MenuItem>
+                  </Select>
+                  </div>
+
+                  <div style={{
+
+                  }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   Status
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="status"
-                  name="status"
-                  label="status"
-                  onChange={this.handleChange}
-                >
-                  <MenuItem value={"open"}>open</MenuItem>
-                  <MenuItem value={"close"}>close</MenuItem>
-                </Select>
+                  <Select
+                    labelId="demo-simple-select-filled-label"
+                    id="status"
+                    name="status"
+                    label="status"
+                    onChange={this.handleChange}
+
+                  >
+                      <MenuItem value={"open"}>open</MenuItem>
+                      <MenuItem value={"close"}>close</MenuItem>
+                  </Select>
+                  </div>
+                </div>
 
                 <TextField
                   variant="outlined"
@@ -290,28 +326,32 @@ class PlayerForm extends Component {
                 />
               </Box>
             </Grid>
+         
+
+            {/* grid 3 */}
+            <Grid item xs={4}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                style={{
+                  margin: "0px 0px 16px",
+
+                }}
+              >
+                Submit
+              </Button>
+            </Grid>
+          
           </Grid>
-          <Grid item xs={4} />
-          <Grid item xs={4}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              style={{
-                margin: "24px 0px 16px",
-              }}
-            >
-              Submit
-            </Button>
-          </Grid>
-          <Grid item xs={4} />
 
           <div className="center red-text">
             {authError ? <p>{authError}</p> : null}
           </div>
         </form>
-      </div>
+      </Container>
+      </MuiThemeProvider>
     );
   }
 }

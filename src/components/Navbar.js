@@ -109,9 +109,10 @@ const Navbar = (props) => {
   );
 
   const links = auth.uid ? SignedInLinks : SignedOutLinks;
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color='secondary'>
         <Toolbar>
           <Link to="/" className="brand-logo" className={classes.linkUnderline}>
             <Typography variant="h6" className={classes.title}>

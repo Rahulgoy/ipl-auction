@@ -2,28 +2,29 @@ import React, { useEffect, useState } from "react";
 // import { Bids } from "../../store/actions/playerActions";
 import { connect } from "react-redux";
 import firebase from "firebase";
-
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { Button, TableCell, TableRow, TextField } from "@material-ui/core";
 import { db } from "../../config/Firebase";
 
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { 
+  TableCell,  
+  Button,
+  Container,
+  Grid,
+  Typography, 
+  TableRow , 
+  TextField
+} from "@material-ui/core";
+
+
+
 const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
+
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
+
 }))(TableRow);
+
 
 const SilentBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState("");
@@ -77,6 +78,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
+        <div style={{display: 'flex'}}>
             <TextField
               value={biddingValue}
               onChange={(event) => {
@@ -85,20 +87,25 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
               }}
             />
             <Button
-              variant="contained"
-              color="secondary"
-              disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
+            style={{marginLeft: '20px'}}
+            variant='contained'
+            color='secondary'
+            size='small'
+            disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
               type="submit"
               /* onClick={(event) => {
               event.preventDefault();
               Bids(playerId, nextBid);
             }} */
+
             >
               Bid
-            </Button>
-          </form>
-        </StyledTableCell>
-      </StyledTableRow>
+          </Button>
+          </div>
+        </form>
+      </StyledTableCell>
+
+    </StyledTableRow>
     </>
   );
 };

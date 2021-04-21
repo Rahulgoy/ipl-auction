@@ -15,6 +15,8 @@ import {
 import { Divider } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
+
+
 const formAlignStyle = {
   backgroundColor: "#010202",
   height: "100vh",
@@ -46,7 +48,7 @@ class SignIn extends Component {
     if (auth.uid) return <Redirect to="/dashboard" />;
 
     return (
-      <div style={formAlignStyle}>
+      <div style={formAlignStyle} className='base-container'>
         <CssBaseline />
 
         <Grid
@@ -78,14 +80,14 @@ class SignIn extends Component {
           </Avatar>
 
           {/* form header */}
-          <Typography component="h1" variant="h4" style={{ fontWeight: "600" }}>
+          <Typography component="h1" variant="h4" style={{ fontWeight: "600" }} className='header'>
             Sign In
           </Typography>
 
           {/* signin form */}
-          <Grid item xs={10} md={6} lg={12}>
+          <Grid item xs={10} md={6} lg={12} className='content'>
             <Box>
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} className='form'>
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -121,6 +123,7 @@ class SignIn extends Component {
                   style={{
                     margin: "24px 0px 16px",
                   }}
+                  className='footer'
                 >
                   Sign In
                 </Button>

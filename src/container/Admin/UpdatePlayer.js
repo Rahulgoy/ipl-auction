@@ -17,6 +17,10 @@ import AllLivePlayers from "./AllLivePlayers";
 import AllSilentPlayers from "./AllSilentPlayers";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import adminTheme from './adminTheme';
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -81,7 +85,8 @@ const UpdatePlayer = ({ auth }) => {
   if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   return (
-    <Container>
+    <MuiThemeProvider theme={adminTheme} >
+      <Container>
       <h3>Live</h3>
 
       <div className="tableWrapper">
@@ -161,6 +166,7 @@ const UpdatePlayer = ({ auth }) => {
         </div>
       </div>
     </Container>
+    </MuiThemeProvider>
   );
 };
 

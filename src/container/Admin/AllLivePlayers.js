@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
 
+import { MuiThemeProvider } from "@material-ui/core/styles";
+
+import adminTheme from './adminTheme';
+
 const AllLivePlayers = ({ player }) => {
   const [updatePlayer, setUpdatePlayer] = useState({
     name: "",
@@ -46,7 +50,8 @@ const AllLivePlayers = ({ player }) => {
   };
   console.log(updatePlayer);
   return (
-    <div>
+    <MuiThemeProvider theme={adminTheme}>
+      <div>
       <form onSubmit={handlesubmit}>
         <td>{player.data.name}</td>
         <td>
@@ -120,7 +125,8 @@ const AllLivePlayers = ({ player }) => {
         <button onClick={assign}>Assign Team</button>
       </form>
     </div>
+    </MuiThemeProvider>
   );
-};
+};  
 
 export default AllLivePlayers;
