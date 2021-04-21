@@ -24,7 +24,7 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
+    
     // boxShadow: '0 3px 5px 2px white',
     
     padding: '0 30px',
@@ -41,6 +41,7 @@ const useStyles = makeStyles({
 
   },
   table: {
+    background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
     color: 'white',
     border: '2px solid white',
     // borderRadius: '10px'

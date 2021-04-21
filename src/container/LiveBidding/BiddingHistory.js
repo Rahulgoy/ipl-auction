@@ -46,9 +46,10 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
   return (
     <table className={classes.root} ref={ref}>
       <tr>
-        <td> <Typography variant='h6' style={{marginRight:'10px', color: '#D7A864'}}> {team.initials}: </Typography></td>
-        <td> <Typography variant='h6'> {bid.biddingprice}</Typography></td>
-
+        <div>
+          <td> <Typography variant='h6' style={{marginRight:'10px', color: '#D7A864'}}> {team.teamName}: </Typography></td>
+          <td> <Typography variant='h6' > {bid.biddingprice}</Typography></td>
+        </div>
       </tr>
     </table>
   );
