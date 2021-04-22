@@ -7,8 +7,18 @@ import LiveBiddingHelper from "./LiveBiddingHelper";
 const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
   const [playerId, setPlayerId] = useState("admin");
-
-  const fetchsome = () => {
+  db.collection("refresh")
+    .doc("button")
+    .onSnapshot((snapshot) => {
+      if (snapshot.data().value === "true") {
+        db.collection("refresh").doc("button").update({
+          value: "false",
+        });
+        setTimeout("window.location.reload();", 4000);
+      }
+    });
+  useEffect(() => {
+    console.log("Working....");
     db.collection("players")
       .where("display", "==", "true")
       .where("category", "==", "live")
@@ -19,32 +29,12 @@ const LiveBidding = ({ auth }) => {
           setPlayerId(doc.id);
         });
       });
-  };
-
-  /*  const fetchsome = () => {
-    db.collection("players")
-      .where("display", "==", "true")
-      .where("category", "==", "live")
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          // console.log(doc.id, "=>", doc.data());
-          setPlay(doc.data());
-          setPlayerId(doc.id);
-        });
-      })
-      .catch((error) => {
-        console.log("Could not fetch");
-      });
-  }; */
-  //console.log(play);
-
-  useEffect(() => {
-    console.log("Working....");
-    fetchsome();
   }, []);
-
+  useState(() => {}, []);
   if (!auth.uid) return <Redirect to="/signin" />;
+  /* if (Status === "false") {
+    window.location.reload();
+  } */
   return (
     <div>
       {play !== null && playerId !== "admin" ? (
@@ -74,3 +64,23 @@ const mapStateToProps = (state) => {
 }; */
 
 export default connect(mapStateToProps)(LiveBidding);
+
+/* const fetchsome = () => {};
+
+ const fetchsome = () => {
+  db.collection("players")
+    .where("display", "==", "true")
+    .where("category", "==", "live")
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        // console.log(doc.id, "=>", doc.data());
+        setPlay(doc.data());
+        setPlayerId(doc.id);
+      });
+    })
+    .catch((error) => {
+      console.log("Could not fetch");
+    });
+}; */
+//console.log(play);

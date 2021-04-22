@@ -67,7 +67,7 @@ const Dashboard = ({ auth }) => {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            <PlayerSection />
+            <PlayerSection teamId={auth.uid} />
           </Paper>
         </Grid>
       </Grid>

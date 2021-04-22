@@ -5,30 +5,24 @@ import firebase from "firebase";
 import { db } from "../../config/Firebase";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { 
-  TableCell,  
+import {
+  TableCell,
   Button,
   Container,
   Grid,
-  Typography, 
-  TableRow , 
-  TextField
+  Typography,
+  TableRow,
+  TextField,
 } from "@material-ui/core";
 
+const StyledTableCell = withStyles((theme) => ({}))(TableCell);
 
+const StyledTableRow = withStyles((theme) => ({}))(TableRow);
 
-const StyledTableCell = withStyles((theme) => ({
-
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-
-}))(TableRow);
-
-
-const SilentBiddingHelper = ({ player, playerId, teamId }) => {
+const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
   const [biddingValue, setbiddingValue] = useState("");
   const [maxBid, setmaxBid] = useState(0);
+  const [maxBidBy, setmaxBidBy] = useState("");
   //console.log(player);
   const sendBid = (e) => {
     e.preventDefault();
@@ -60,6 +54,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
       .doc(player.name)
       .onSnapshot((snapshot) => {
         setmaxBid(snapshot.data().maxbid);
+        setmaxBidBy(snapshot.data().maxbidBy);
       });
   }, [player.maxbidBy]);
 
@@ -78,34 +73,35 @@ const SilentBiddingHelper = ({ player, playerId, teamId }) => {
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>
           <form onSubmit={sendBid}>
-        <div style={{display: 'flex'}}>
-            <TextField
-              value={biddingValue}
-              onChange={(event) => {
-                event.preventDefault();
-                setbiddingValue(event.target.value);
-              }}
-            />
-            <Button
-            style={{marginLeft: '20px'}}
-            variant='contained'
-            color='secondary'
-            size='small'
-            disabled={parseInt(biddingValue) <= parseInt(player.maxbid)}
-              type="submit"
-              /* onClick={(event) => {
+            <div style={{ display: "flex" }}>
+              <TextField
+                value={biddingValue}
+                onChange={(event) => {
+                  event.preventDefault();
+                  setbiddingValue(event.target.value);
+                }}
+              />
+              <Button
+                style={{ marginLeft: "20px" }}
+                variant="contained"
+                color="secondary"
+                size="small"
+                disabled={
+                  parseInt(biddingValue) <= parseInt(maxBid) ||
+                  maxBidBy === auth.uid
+                }
+                type="submit"
+                /* onClick={(event) => {
               event.preventDefault();
               Bids(playerId, nextBid);
             }} */
-
-            >
-              Bid
-          </Button>
-          </div>
-        </form>
-      </StyledTableCell>
-
-    </StyledTableRow>
+              >
+                Bid
+              </Button>
+            </div>
+          </form>
+        </StyledTableCell>
+      </StyledTableRow>
     </>
   );
 };
