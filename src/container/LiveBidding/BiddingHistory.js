@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   root: {},
 });
 
+
 const BiddingHistory = forwardRef(({ bid }, ref) => {
   const classes = useStyles();
   // console.log(bid);
@@ -41,19 +42,18 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
   return (
     <table className='historyTable' ref={ref}>
       <tr>
+
         <div className='biddingHistorySection'>
             {" "}
-            <Typography
-              variant="h5"
-              style={{marginRight:'10px', color: '#fff', fontWeight: '700'}}
-              className='teamNameOnLeft'
-            >
+             <Typography variant='h5' style={{marginRight:'10px', color: '#fff', fontWeight: '700'}} className='teamNameOnLeft'> 
               {" "}
               {team.teamName}:{" "}
             </Typography>
 
             {" "}
-            <Typography variant="h5" className='bidOnRight'> {bid.biddingprice} Lakhs</Typography>
+            <Typography variant="h6" className='bidOnRight'> {bid.biddingprice}</Typography>
+
+
         </div>
       </tr>
     </table>
