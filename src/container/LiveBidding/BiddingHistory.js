@@ -14,9 +14,15 @@ const useStyles = makeStyles({
 
 }); 
 
+import { Button, Container, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  root: {},
+});
 const BiddingHistory = forwardRef(({ bid }, ref) => {
   const classes = useStyles();
-  console.log(bid);
+  // console.log(bid);
   const [team, setTeam] = useState({
     teamName: "",
     initials: "",
@@ -45,9 +51,27 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
   return (
     <table className='historyTable' ref={ref}>
       <tr>
+
         <div className='biddingHistorySection'>
           <Typography variant='h5' style={{marginRight:'10px', color: '#fff', fontWeight: '700'}} className='teamNameOnLeft'> {team.teamName}: </Typography>
           <Typography variant='h5' className='bidOnRight'> {bid.biddingprice} Lakhs</Typography>
+
+        <div>
+          <td>
+            {" "}
+            <Typography
+              variant="h6"
+              style={{ marginRight: "10px", color: "#D7A864" }}
+            >
+              {" "}
+              {team.teamName}:{" "}
+            </Typography>
+          </td>
+          <td>
+            {" "}
+            <Typography variant="h6"> {bid.biddingprice}</Typography>
+          </td>
+
         </div>
       </tr>
     </table>

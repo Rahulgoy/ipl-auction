@@ -6,7 +6,7 @@ import Players from "./Players";
 ///
 import "../../assets/css/dashboard.css";
 
-const PlayerSection = () => {
+const PlayerSection = ({ teamId }) => {
   const [categories, setCategories] = useState([]);
   // let categories = [];
   const [team, setTeam] = useState([]);
@@ -52,6 +52,19 @@ const PlayerSection = () => {
       }); */
       });
   };
+  const fetchDefault = () => {
+    console.log("Fetching Players");
+    db.collection("players").onSnapshot((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        //console.log(doc.data());
+        if (doc.data().team === teamId)
+          setFilteredPlayers((filteredPlayers) => [
+            ...filteredPlayers,
+            { id: doc.id, data: doc.data() },
+          ]);
+      });
+    });
+  };
 
   const filterPlayers = (category, id) => {
     //console.log("C", id);
@@ -66,8 +79,10 @@ const PlayerSection = () => {
   useEffect(() => {
     fetchTeam();
     fetchPlayers();
+    fetchDefault();
   }, []);
 
+  console.log(filteredPlayers);
   return (
     <div>
       {categories === null ? (

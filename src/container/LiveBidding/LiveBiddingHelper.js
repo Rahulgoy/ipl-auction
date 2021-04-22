@@ -4,46 +4,35 @@ import firebase from "firebase";
 import BiddingHistory from "./BiddingHistory";
 import FlipMove from "react-flip-move";
 
-import {
-  Button,
-  Container,
-  Grid,
-  Typography,
-} from '@material-ui/core';
-import '../../assets/css/liveBidding.css';
-import {makeStyles} from '@material-ui/core';
+import { Button, Container, Grid, Typography } from "@material-ui/core";
+import "../../assets/css/liveBidding.css";
+import { makeStyles } from "@material-ui/core";
 import theme from "../../assets/js/DarkTheme";
-import '../../assets/css/liveBidding.css';
+import "../../assets/css/liveBidding.css";
 
 const useStyles = makeStyles({
   leftGrid: {
-    padding: '20px',
-
+    padding: "20px",
   },
-  playerDetailsWrapper: {
-
-  },
+  playerDetailsWrapper: {},
   playerDetails: {
-    color: '#1B2C89', // blue
-    color: '#D7A864', // golden
-    color: '#fff', // golden
-    fontWeight: '700',
-    marginBottom: '10px',
-    fontSize: '1.5em',
-
+    color: "#1B2C89", // blue
+    color: "#D7A864", // golden
+    color: "#fff", // golden
+    fontWeight: "700",
+    marginBottom: "10px",
+    fontSize: "1.5em",
   },
   bidSection: {
-      marginTop: '40px',
-      
+    marginTop: "40px",
   },
   bidButton: {
-    border: '2px solid black',
-    padding: '5px 20px',
-    borderRadius: '20px',
-    margin: '10px 0 30px 0',
+    border: "2px solid black",
+    padding: "5px 20px",
+    borderRadius: "20px",
+    margin: "10px 0 30px 0",
   },
-
-}); 
+});
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const classes = useStyles();
@@ -51,6 +40,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
+  const [Display, setDisplay] = useState("false");
   //console.log(teamId);
 
   const sendBid = (e) => {
@@ -160,124 +150,175 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
   }, [player.maxbid]);
 
-  console.log(bidDisplay);
+  //console.log(bidDisplay);
   // console.log(biddingValue);
-
+  //console.log(Display);
+  //useEffect(() => {}, [Status]);
 
   return (
+
     <Container style={{marginTop: '50px'}}>
-
       <Grid container justify="center" spacing={3}>
+        <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
+          <div className={classes.leftGrid}>
+            <div className="leftGridStyle">
+              <div className="leftGridBack"></div>
 
-      <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
-       <div className={classes.leftGrid}>
-        <div className='leftGridStyle'>
-          <div className='leftGridBack'></div>
-
-          <div className='leftGridTop'>
-              <Typography variant='h2' align='center' color='primary' style={{
-                  fontWeight: 'bold',
-                  fontSize: '3em',
-                  textTransform: 'uppercase',
-                  marginTop: '10px',
-              }}
-              className='playername'
-              >
-                  {player.name}({player.age})
-              </Typography>
-              <div style={{
-                    marginTop: '30px', 
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',     
-              }}>
-
-                <img src={player.Image} alt="No Image" height="350px" width="250px" style={{
-                    // margin: '0 auto'
-                    // marginLeft: '-10%',
-                    borderRadius: '10px'
-                }}></img> 
-
-                <div style={{
-                    display: 'block',
-                    justifyContent: 'space-around',
-                  }} className={classes.playerDetailsWrapper}
+              <div className="leftGridTop">
+                <Typography
+                  variant="h2"
+                  align="center"
+                  color="primary"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "3em",
+                    textTransform: "uppercase",
+                    marginTop: "10px",
+                  }}
+                  className="playername"
                 >
-                  {/* <Grid item xs={3}> */}
+                  {player.name}({player.age})
+                </Typography>
+                <div
+                  style={{
+                    marginTop: "30px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <img
+                    src={player.Image}
+                    alt="No Image"
+                    height="350px"
+                    width="250px"
+                    style={{
+                      // margin: '0 auto'
+                      // marginLeft: '-10%',
+                      borderRadius: "10px",
+                    }}
+                  ></img>
+
+                  <div
+                    style={{
+                      display: "block",
+                      justifyContent: "space-around",
+                    }}
+                    className={classes.playerDetailsWrapper}
+                  >
+                    {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography className={classes.playerDetails}> Runs: {player.Runs}</Typography>
-                      <Typography className={classes.playerDetails}> Batting Average: {player.Batavg}</Typography>
-                      <Typography className={classes.playerDetails}> Strike Rate: {player.strikerate}</Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Runs: {player.Runs}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Batting Average: {player.Batavg}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Strike Rate: {player.strikerate}
+                      </Typography>
                     </div>
 
+                    {/* </Grid> */}
+                    {/* <Grid item xs={3}> */}
+
+                    <div>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Wickets: {player.wickets}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Economy: {player.economy}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Bowling Average: {player.Bowlavg}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Rating: {player.rating}
+                      </Typography>
+                    </div>
+                  </div>
                   {/* </Grid> */}
-                  {/* <Grid item xs={3}> */}
-                  
-                  <div>
-                    <Typography className={classes.playerDetails}> Wickets: {player.wickets}</Typography>
-                    <Typography className={classes.playerDetails}> Economy: {player.economy}</Typography>
-                    <Typography className={classes.playerDetails}> Bowling Average: {player.Bowlavg}</Typography>
-                    <Typography className={classes.playerDetails}> Rating: {player.rating}</Typography>
+                </div>
+
+                <div className={classes.bidSection}>
+                  <div className="bidButtonStyle">
+                    <Typography color="primary" variant="h5">
+                      {" "}
+                      Base Price: {player.baseprice} Lakhs{" "}
+                    </Typography>
+                    {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
+                    <form>
+                      {balance >= biddingValue ? (
+                        [
+                          player.maxbidBy !== teamId ? (
+                            <button
+                              type="submit"
+                              onClick={sendBid}
+                              className={classes.bidButton}
+                              style={{ backgroundColor: "#3160fd" }}
+                            >
+                              <Typography variant="h6" color="primary">
+                                {biddingValue}L Bid{" "}
+                              </Typography>
+                            </button>
+                          ) : (
+                            <button
+                              type="submit"
+                              disabled
+                              className={classes.bidButton}
+                              style={{ backgroundColor: "#0255c25b" }}
+                            >
+                              <Typography
+                                variant="h6"
+                                style={{ color: "#fff" }}
+                              >
+                                {biddingValue}L Bid{" "}
+                              </Typography>
+                            </button>
+                          ),
+                        ]
+                      ) : (
+                        <button disabled>
+                          <p>Not Enough Balance</p>
+                        </button>
+                      )}
+                    </form>
                   </div>
                 </div>
-                {/* </Grid> */}
               </div>
-
-              <div className={classes.bidSection}>
-              <div className='bidButtonStyle'>
-                <Typography color='primary' variant='h5'> Base Price: {player.baseprice} Lakhs </Typography>
-                {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
-                <form>
-                  {balance >= biddingValue ? (
-                    [
-                      player.maxbidBy !== teamId ? (
-                        <button type="submit" onClick={sendBid} className={classes.bidButton} style={{backgroundColor: '#3160fd'}}>
-                          <Typography variant='h6' color='primary'>{biddingValue}L Bid </Typography>
-                        </button>
-                      ) : (
-                        <button type="submit" disabled className={classes.bidButton} style={{backgroundColor: '#0255c25b'}}>
-                          <Typography variant='h6'style={{color: '#fff'}}>{biddingValue}L Bid </Typography>
-                        </button>
-                      ),
-                    ]
-                  ) : (
-                    <button disabled>
-                      <p>Not Enough Balance</p>
-                    </button>
-                  )}
-                </form>
-
-              </div>
-              </div>
+            </div>
           </div>
-       
-       </div>
-      </div>
-      </Grid>
-      
+        </Grid>
 
-      
-      <Grid item xs={11} sm={10} md={6} lg={6} >
-        <div className='rightGridStyle'>
-          <div className='rightGridBack'></div>
-          <div className='rightGridTop'>
-            <Container className={classes.rightGrid} style={{marginTop: '30px', padding: '30px 0 50px 50px'}}>
+        <Grid item xs={11} sm={10} md={6} lg={6}>
+          <div className="rightGridStyle">
+            <div className="rightGridBack"></div>
+            <div className="rightGridTop">
+              <Container
+                className={classes.rightGrid}
+                style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
+              >
                 <FlipMove>
-                {bidDisplay ? (
-                  bidDisplay.map((bid) => {
-                    return <BiddingHistory key={bid.id} bid={bid.data} />;
-                  })
-                ) : (
-                  <h1>No bids</h1>
-                )}
-              </FlipMove>
-            </Container>
-        </div>
-        </div>
+                  {bidDisplay ? (
+                    bidDisplay.map((bid) => {
+                      return <BiddingHistory key={bid.id} bid={bid.data} />;
+                    })
+                  ) : (
+                    <h1>No bids</h1>
+                  )}
+                </FlipMove>
+              </Container>
+            </div>
+          </div>
+        </Grid>
       </Grid>
-      
-
-    </Grid>
     </Container>
   );
 };

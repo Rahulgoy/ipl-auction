@@ -70,7 +70,8 @@ const PlayerSlots = ({ auth }) => {
         //}
       });
   };
-  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
+  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1")
+    return <Redirect to="/login" />;
 
   console.log(showPlayers);
   /* console.log(fetchClass);
