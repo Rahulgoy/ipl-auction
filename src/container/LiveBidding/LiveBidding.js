@@ -8,18 +8,7 @@ const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
   const [playerId, setPlayerId] = useState("admin");
 
-  const fetchsome = () => {
-    db.collection("players")
-      .where("display", "==", "true")
-      .where("category", "==", "live")
-      .onSnapshot((snapshot) => {
-        snapshot.docs.map((doc) => {
-          //console.log(doc.id, "=>", doc.data());
-          setPlay(doc.data());
-          setPlayerId(doc.id);
-        });
-      });
-  };
+  const fetchsome = () => {};
 
   /*  const fetchsome = () => {
     db.collection("players")
@@ -41,10 +30,22 @@ const LiveBidding = ({ auth }) => {
 
   useEffect(() => {
     console.log("Working....");
-    fetchsome();
+    db.collection("players")
+      .where("display", "==", "true")
+      .where("category", "==", "live")
+      .onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+          //console.log(doc.id, "=>", doc.data());
+          setPlay(doc.data());
+          setPlayerId(doc.id);
+        });
+      });
   }, []);
 
   if (!auth.uid) return <Redirect to="/signin" />;
+  /* if (Status === "false") {
+    window.location.reload();
+  } */
   return (
     <div>
       {play !== null && playerId !== "admin" ? (

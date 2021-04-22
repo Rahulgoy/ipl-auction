@@ -1,23 +1,16 @@
 import React, { forwardRef, useEffect, useLayoutEffect, useState } from "react";
 import { db } from "../../config/Firebase";
 import firebase from "firebase";
-import {
-  Button,
-  Container,
-  Grid,
-  Typography,
-} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core';
+import { Button, Container, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  root: {
-
-  }
-}); 
+  root: {},
+});
 
 const BiddingHistory = forwardRef(({ bid }, ref) => {
   const classes = useStyles();
-  console.log(bid);
+  // console.log(bid);
   const [team, setTeam] = useState({
     teamName: "",
     initials: "",
@@ -47,8 +40,20 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
     <table className={classes.root} ref={ref}>
       <tr>
         <div>
-          <td> <Typography variant='h6' style={{marginRight:'10px', color: '#D7A864'}}> {team.teamName}: </Typography></td>
-          <td> <Typography variant='h6' > {bid.biddingprice}</Typography></td>
+          <td>
+            {" "}
+            <Typography
+              variant="h6"
+              style={{ marginRight: "10px", color: "#D7A864" }}
+            >
+              {" "}
+              {team.teamName}:{" "}
+            </Typography>
+          </td>
+          <td>
+            {" "}
+            <Typography variant="h6"> {bid.biddingprice}</Typography>
+          </td>
         </div>
       </tr>
     </table>
