@@ -13,6 +13,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
+import '../assets/css/dashboard.css';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -58,6 +61,7 @@ const Dashboard = ({ auth }) => {
 
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
+    
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item xs={3}>
