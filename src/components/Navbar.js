@@ -6,23 +6,24 @@ import { signOut } from "../store/actions/authActions";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 
+import "../assets/css/navbar1.css";
+
 // style here
 const useStyle = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-  rightToolbar: {
-    marginLeft: "auto",
-  },
-
-  linkUnderline: {
-    textDecoration: "none",
-    color: "whitesmoke",
-    cursor: "pointer",
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // title: {
+  //   flexGrow: 1,
+  // },
+  // rightToolbar: {
+  //   marginLeft: "auto",
+  // },
+  // linkUnderline: {
+  //   textDecoration: "none",
+  //   color: "whitesmoke",
+  //   cursor: "pointer",
+  // },
 }));
 
 const Navbar = (props) => {
@@ -30,65 +31,53 @@ const Navbar = (props) => {
   const { auth } = props;
 
   const SignedInLinks = (
-    <ul style={{ listStyle: "none", display: "flex" }}>
+    <ul className="navMenu">
       {auth.uid === "zZfVKoYwMWURII0q8tmvK6rvXvi1" ? (
-        <li>
+        <li className="li">
           {" "}
-          <Button color="inherit">
-            <NavLink to="/admin" className={classes.linkUnderline}>
-              Admin
-            </NavLink>
-          </Button>{" "}
+          <NavLink to="/admin" className={classes.linkUnderline}>
+            <a className="hover-line">Admin</a>
+          </NavLink>{" "}
         </li>
       ) : (
         console.log("Not Admin")
       )}
 
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <NavLink to="/" className={classes.linkUnderline}>
-            Home
-          </NavLink>
-        </Button>{" "}
+        <NavLink to="/" className={classes.linkUnderline}>
+          <a className="hover-line">Home</a>
+        </NavLink>{" "}
       </li>
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <NavLink to="/live" className={classes.linkUnderline}>
-            Live Bidding
-          </NavLink>
-        </Button>{" "}
+        <NavLink to="/live" className={classes.linkUnderline}>
+          <a className="hover-line">Live Bidding</a>
+        </NavLink>{" "}
       </li>
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <NavLink to="/silent" className={classes.linkUnderline}>
-            Silent Bidding
-          </NavLink>
-        </Button>{" "}
+        <NavLink to="/silent" className={classes.linkUnderline}>
+          <a className="hover-line">Silent Bidding</a>
+        </NavLink>{" "}
       </li>
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <NavLink to="/dashboard" className={classes.linkUnderline}>
-            Dashboard
-          </NavLink>
-        </Button>{" "}
+        <NavLink to="/dashboard" className={classes.linkUnderline}>
+          <a className="hover-line">Dashboard</a>
+        </NavLink>{" "}
       </li>
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <a onClick={props.signOut} className={classes.linkUnderline}>
-            Log Out
-          </a>
-        </Button>{" "}
+        <a onClick={props.signOut} className={classes.linkUnderline}>
+          <a className="hover-line">Log Out</a>
+        </a>{" "}
       </li>
     </ul>
   );
 
   const SignedOutLinks = (
-    <ul style={{ listStyle: "none", display: "flex" }}>
+    <ul style={{ listStyle: "none", display: "flex" }} className="navMenu">
       {/* <li>
         {" "}
         <Button color="inherit">
@@ -97,13 +86,11 @@ const Navbar = (props) => {
           </NavLink>
         </Button>{" "}
       </li> */}
-      <li>
+      <li className="li">
         {" "}
-        <Button color="inherit">
-          <NavLink to="/signin" className={classes.linkUnderline}>
-            Login
-          </NavLink>
-        </Button>{" "}
+        <NavLink to="/signin" className={classes.linkUnderline}>
+          <a className="hover-line">Login</a>
+        </NavLink>{" "}
       </li>
     </ul>
   );
@@ -111,19 +98,40 @@ const Navbar = (props) => {
   const links = auth.uid ? SignedInLinks : SignedOutLinks;
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color='secondary'>
-        <Toolbar>
-          <Link to="/" className="brand-logo" className={classes.linkUnderline}>
-            <Typography variant="h6" className={classes.title}>
-              IPL-AUCTION
-            </Typography>
-          </Link>
-
-          <div className={classes.rightToolbar}>{links}</div>
-        </Toolbar>
+    <div>
+      <AppBar position="static" color="secondary" className="nav">
+        <div className="navItems">
+          <img
+            className="econ"
+            src="https://firebasestorage.googleapis.com/v0/b/ipl-auction-7dbdb.appspot.com/o/logos%2FEconwhite.png?alt=media&token=5c3f837f-8909-4b9d-9c20-7bb53e3718dc"
+            alt="ECON"
+            width="6%"
+          />
+          <div className="alllinks"> {links} </div>
+          <img
+            className="iplLogo"
+            src="https://firebasestorage.googleapis.com/v0/b/ipl-auction-7dbdb.appspot.com/o/logos%2Fiplfinal.png?alt=media&token=30c5ac1b-4304-48c0-b53b-8c0ac06e9d81"
+            alt="IPL"
+            width="6%"
+            height="12%"
+          />
+        </div>
       </AppBar>
     </div>
+
+    // <div className={classes.root}>
+    //   <AppBar position="static" color='secondary'>
+    //     <Toolbar>
+    //       <Link to="/" className="brand-logo" className={classes.linkUnderline}>
+    //         <Typography variant="h6" className={classes.title}>
+    //           IPL-AUCTION
+    //         </Typography>
+    //       </Link>
+
+    //       <div className={classes.rightToolbar}>{links}</div>
+    //     </Toolbar>
+    //   </AppBar>
+    // </div>
   );
 };
 
