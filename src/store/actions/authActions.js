@@ -86,3 +86,16 @@ export const AddPlayer = (player) => {
       });
   };
 };
+
+export const refresh = () => {
+  return (dispatch, getState) => {
+    window.location
+      .reload()
+      .then(() => {
+        dispatch({ type: "REFRESH_SUCCESS" });
+      })
+      .catch((err) => {
+        dispatch({ type: "REFRESH_ERROR", err });
+      });
+  };
+};
