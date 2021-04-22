@@ -1,6 +1,8 @@
+
 .leftGridStyle{
     position: relative;
     border-radius: 30px;
+    height: 75vh;
 }
 
 .leftGridBack::before{
@@ -11,10 +13,11 @@
     background-size: cover;
     border-radius: 30px;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     z-index: -1;
     filter: blur(5px);
     box-shadow: none;
+    height: 75vh;
 }
 
 .leftGridTop{
@@ -24,6 +27,7 @@
     /* box-shadow: 10px 10px 30px #444444, 
                 -3px -3px 30px #444444;    */
     border: 1px solid #858585;
+    height: 75vh;
 }
 
 
@@ -38,7 +42,7 @@
     margin: 20px;
     position: relative;
     border-radius: 30px;
-    height: 77vh;
+    height: 75vh;
     width: 90%;
 }
 
@@ -56,18 +60,10 @@
     box-shadow: none;
 }
 
-.rightGridTop{
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    scroll-snap-type: proximity;
+.rightGridTop {
     border: 1px solid #858585;
     border-radius: 30px;
     z-index: 10;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.405);
 }
-
-
-
-
-
-@media(max)

@@ -142,6 +142,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       .doc(playerId)
       .collection("Bids")
       .orderBy("timestamp", "desc")
+      .limit(15)
       .onSnapshot((snapshot) => {
         setbidDisplay(
           snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
@@ -155,7 +156,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //useEffect(() => {}, [Status]);
 
   return (
-    <Container>
+
+    <Container style={{marginTop: '50px'}}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
