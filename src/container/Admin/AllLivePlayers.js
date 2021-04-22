@@ -18,6 +18,9 @@ const AllLivePlayers = ({ player }) => {
   });
   const assign = (e) => {
     e.preventDefault();
+    db.collection("refresh").doc("button").update({
+      value: "true",
+    });
     db.collection("players").doc(player.data.name).update({
       team: player.data.maxbidBy,
       status: "close",
