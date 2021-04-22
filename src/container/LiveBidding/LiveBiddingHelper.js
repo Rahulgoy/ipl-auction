@@ -142,6 +142,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       .doc(playerId)
       .collection("Bids")
       .orderBy("timestamp", "desc")
+      .limit(10)
       .onSnapshot((snapshot) => {
         setbidDisplay(
           snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
