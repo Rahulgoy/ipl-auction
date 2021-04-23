@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Collapse } from "@material-ui/core";
-
+import { Link, NavLink } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 800,
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ImageCard({ Image, checked, title }) {
+export default function ImageCard({ Image, checked, title, link }) {
   const classes = useStyles();
 
   return (
@@ -79,23 +79,50 @@ export default function ImageCard({ Image, checked, title }) {
           </Typography>
         </CardContent> */}
         <CardActions className={classes.buttonsection}>
-          <Button
-            variant="contained"
-            size="medium"
-            color="primary"
-            className={classes.button}
-          >
-            Enter {title} Auction
-          </Button>
-          <Button
-            href="/login"
-            variant="contained"
-            size="medium"
-            color="primary"
-            className={classes.button}
-          >
-            Rulebook
-          </Button>
+          {title === "IPL" ? (
+            <>
+              <Link to="/dashboard">
+                <Button
+                  variant="contained"
+                  size="medium"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Enter {title} Auction
+                </Button>
+              </Link>
+              <Button
+                href=""
+                variant="contained"
+                size="medium"
+                color="primary"
+                className={classes.button}
+              >
+                Rulebook
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                href="https://www.google.com/"
+                variant="contained"
+                size="medium"
+                color="primary"
+                className={classes.button}
+              >
+                Enter {title} Auction
+              </Button>
+              <Button
+                href=""
+                variant="contained"
+                size="medium"
+                color="primary"
+                className={classes.button}
+              >
+                Rulebook
+              </Button>
+            </>
+          )}
         </CardActions>
       </Card>
     </Collapse>

@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     fontSize: "2.5rem",
     margin: "0 5px",
+    color: "white",
     [theme.breakpoints.down("md")]: {
       fontSize: "1.1rem",
       margin: "0 2px",
@@ -88,23 +89,29 @@ const Footer = () => {
           <Grid item xs={12} spacing={3} style={{ display: "flex" }}>
             <Grid item xs={4}>
               <Typography variant="h5" className={classes.text}>
-                Gaurab:6549873212
+                Gaurab:74249-47745
               </Typography>
             </Grid>
             <Grid item xs={4} className={classes.icons}>
-              <FacebookIcon className={classes.links} />
-              <a href="#" className={classes.links}>
-                <YouTubeIcon
-                  style={{ color: "white" }}
-                  className={classes.links}
-                />
+              <a href="https://www.facebook.com/econthapar">
+                <FacebookIcon className={classes.links} />
               </a>
-              <InstagramIcon className={classes.links} />
-              <LinkedInIcon className={classes.links} />
+              <a
+                href="https://www.youtube.com/channel/UCnyVX3sGVJEno_WwLouHXtA"
+                className={classes.links}
+              >
+                <YouTubeIcon style={{}} className={classes.links} />
+              </a>
+              <a href="https://www.instagram.com/econ_tiet/">
+                <InstagramIcon className={classes.links} />
+              </a>
+              <a href="https://in.linkedin.com/company/econclub">
+                <LinkedInIcon className={classes.links} />
+              </a>
             </Grid>
             <Grid item xs={4}>
               <Typography variant="h5" className={classes.text}>
-                Gaurab:6549873212
+                Jatin:98739-01591
               </Typography>
             </Grid>
           </Grid>
