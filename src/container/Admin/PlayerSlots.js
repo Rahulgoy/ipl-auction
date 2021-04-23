@@ -11,6 +11,10 @@ const PlayerSlots = ({ auth }) => {
   const changeslot = (e) => {
     e.preventDefault();
     setShowPlayers([]);
+    db.collection("refresh").doc("silent").update({
+      value: "true",
+    });
+
     db.collection("players")
       .where("category", "==", "silent")
       .where("class", "==", fetchClass)
@@ -36,6 +40,9 @@ const PlayerSlots = ({ auth }) => {
   const changeslot_assignteam = (e) => {
     e.preventDefault();
     setShowPlayers([]);
+    db.collection("refresh").doc("silent").update({
+      value: "true",
+    });
     db.collection("players")
       .where("category", "==", "silent")
       .where("class", "==", "show")

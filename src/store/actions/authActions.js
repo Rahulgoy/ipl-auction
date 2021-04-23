@@ -40,7 +40,6 @@ export const signUp = (newUser) => {
           teamName: newUser.teamName,
           teamBalance: 8000,
           initials: newUser.initials,
-          players: [],
         });
       })
       .then(() => {

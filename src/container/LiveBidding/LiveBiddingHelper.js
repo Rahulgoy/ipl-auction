@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   bidButton: {
     border: "2px solid black",
     padding: "5px 20px",
-    borderRadius: "20px",
+    borderRadius: "5px",
     margin: "10px 0 30px 0",
   },
 });
@@ -156,8 +156,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //useEffect(() => {}, [Status]);
 
   return (
-
-    <Container style={{marginTop: '50px'}}>
+    <Container style={{ marginTop: "50px" }}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>

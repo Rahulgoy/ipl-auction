@@ -8,13 +8,13 @@ const LiveBidding = ({ auth }) => {
   const [play, setPlay] = useState({});
   const [playerId, setPlayerId] = useState("admin");
   db.collection("refresh")
-    .doc("button")
+    .doc("live")
     .onSnapshot((snapshot) => {
       if (snapshot.data().value === "true") {
         db.collection("refresh").doc("live").update({
           value: "false",
         });
-        setTimeout("window.location.reload();", 4000);
+        setTimeout("window.location.reload();", 3000);
       }
     });
   useEffect(() => {

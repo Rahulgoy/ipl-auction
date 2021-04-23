@@ -22,6 +22,7 @@ const StyledTableRow = withStyles((theme) => ({}))(TableRow);
 const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
   const [biddingValue, setbiddingValue] = useState("");
   const [maxBid, setmaxBid] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [maxBidBy, setmaxBidBy] = useState("");
   //console.log(player);
   const sendBid = (e) => {
@@ -57,7 +58,15 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
         setmaxBidBy(snapshot.data().maxbidBy);
       });
   }, [player.maxbidBy]);
-
+  useEffect(() => {
+    db.collection("users")
+      .doc(teamId)
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          setBalance(parseInt(snapshot.data().teamBalance));
+        }
+      });
+  }, []);
   return (
     <>
       <StyledTableRow>
@@ -88,7 +97,8 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
                 size="small"
                 disabled={
                   parseInt(biddingValue) <= parseInt(maxBid) ||
-                  maxBidBy === auth.uid
+                  maxBidBy === auth.uid ||
+                  balance < biddingValue
                 }
                 type="submit"
                 /* onClick={(event) => {

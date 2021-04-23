@@ -24,27 +24,16 @@ const Players = ({ players }) => {
 
 
         return (
-          <div key={player.id} className='item-info'> 
+          // <div key={player.id} className='item-info'> 
 
 
-      <StyledTableRow>
+      <StyledTableRow key={player.id}>
             <StyledTableCell>{player.data.name}</StyledTableCell>
             <StyledTableCell>{player.data.maxbid}</StyledTableCell>
             <StyledTableCell>{player.data.baseprice}</StyledTableCell>
       </StyledTableRow>   
           
-          </div>
-
-
-
-          // <table key={player.id} className="menu-item">
-          //   <tr className="item-info">
-          //     <th>Name</th>
-          //     <th>Highest Bid</th>
-          //     <th>Base Price</th>
-          //   </tr>
-
-          // </table>
+          // </div>
         );
       })}
     </div>

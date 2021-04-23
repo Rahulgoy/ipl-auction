@@ -158,6 +158,7 @@ const PlayerSection = ({ teamId }) => {
                 <TableBody style={{background: 'red'}} >
                     <Players players ={ filteredPlayers  ? filteredPlayers  : console.log("No player Available")} />
                 </TableBody>
+                
                 </Box>
               </Table>
             </TableContainer>

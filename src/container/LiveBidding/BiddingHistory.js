@@ -10,7 +10,6 @@ const useStyles = makeStyles({
   root: {},
 });
 
-
 const BiddingHistory = forwardRef(({ bid }, ref) => {
   const classes = useStyles();
   // console.log(bid);
@@ -40,7 +39,7 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
   }, [bid]);
   //console.log("team:", team);
   return (
-    <table className='historyTable' ref={ref}>
+    <table className={classes.root} ref={ref}>
       <tr>
 
         <div className='biddingHistorySection'>

@@ -1,6 +1,7 @@
 /* @import "./assets/css/SilentBidding.css";
 @import "./assets/css/liveBidding.css"; */
 
-body{
-    background-color: black;
+body {
+  background-color: black;
+  font-family: "Times New Roman", Times, serif;
 }
