@@ -61,7 +61,7 @@ li {
   outline: black;
 }
 
-a:after {
+.hover-line:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 13px;
   content: "";
@@ -72,11 +72,6 @@ a:after {
   background: #d7a864;
   transition: width 0.5s ease 0s, left 0.5s ease 0s;
   width: 0;
-}
-
-.navMenu li .hover-line:hover {
-  color: #d7a864;
-  transition: 0.3s;
 }
 
 a:hover:after {
