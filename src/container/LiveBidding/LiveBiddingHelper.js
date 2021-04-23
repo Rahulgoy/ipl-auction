@@ -304,6 +304,9 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
               >
+                <Typography variant='h3'> 
+                      Bidding History
+                </Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {

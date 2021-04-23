@@ -1,4 +1,17 @@
 import React from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  TableCell,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  TableRow,
+  TextField,
+} from "@material-ui/core";
+const StyledTableCell = withStyles((theme) => ({}))(TableCell);
+const StyledTableRow = withStyles((theme) => ({}))(TableRow);
+
 
 const Players = ({ players }) => {
   //console.log("length", players.length);
@@ -6,22 +19,21 @@ const Players = ({ players }) => {
     return <p>No Players Available</p>;
   }
   return (
-    <div className="section-center">
+    <div className="">
       {players.map((player) => {
-        return (
-          <table key={player.id} className="menu-item">
-            <tr className="item-info">
-              <th>Name</th>
-              <th>Highest Bid</th>
-              <th>Base Price</th>
-            </tr>
-            <tr>
-              <td>{player.data.name}</td>
-              <td className="price">{player.data.maxbid}</td>
 
-              <td className="item-text">{player.data.baseprice}</td>
-            </tr>
-          </table>
+
+        return (
+          // <div key={player.id} className='item-info'> 
+
+
+      <StyledTableRow key={player.id}>
+            <StyledTableCell>{player.data.name}</StyledTableCell>
+            <StyledTableCell>{player.data.maxbid}</StyledTableCell>
+            <StyledTableCell>{player.data.baseprice}</StyledTableCell>
+      </StyledTableRow>   
+          
+          // </div>
         );
       })}
     </div>
