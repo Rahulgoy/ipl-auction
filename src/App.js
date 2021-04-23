@@ -13,6 +13,7 @@ import Home from "./container/Home";
 import SignIn from "./container/SignIn";
 import SignUp from "./container/SignUp";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Dashboard from "./container/Dashboard";
 import LiveBidding from "./container/LiveBidding/LiveBidding";
 import SilentBidding from "./container/SilentBidding/SilentBidding";
@@ -49,6 +50,7 @@ function App() {
             <Route exact path="/playerslot" component={PlayerSlots} />
             <Route component={RedirectToNotFound} />
           </Switch>
+          <Footer />
         </Router>
       </Provider>
     </MuiThemeProvider>
