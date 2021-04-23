@@ -27,27 +27,31 @@ import UserUpdate from "./container/Admin/UserUpdate";
 import PlayerSlots from "./container/Admin/PlayerSlots";
 
 function App() {
+  const RedirectToNotFound = () => {
+    return <h1>Page Not Found</h1>;
+  };
   return (
-  <MuiThemeProvider theme={theme}>
-    <Provider store={store}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/live" component={LiveBidding} />
-          <Route exact path="/silent" component={SilentBidding} />
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/playerform" component={PlayerForm} />
-          <Route exact path="/updateplayer" component={UpdatePlayer} />
-          <Route exact path="/updateuser" component={UserUpdate} />
-          <Route exact path="/playerslot" component={PlayerSlots} />
-        </Switch>
-      </Router>
-    </Provider>
-  </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/live" component={LiveBidding} />
+            <Route exact path="/silent" component={SilentBidding} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/playerform" component={PlayerForm} />
+            <Route exact path="/updateplayer" component={UpdatePlayer} />
+            <Route exact path="/updateuser" component={UserUpdate} />
+            <Route exact path="/playerslot" component={PlayerSlots} />
+            <Route component={RedirectToNotFound} />
+          </Switch>
+        </Router>
+      </Provider>
+    </MuiThemeProvider>
   );
 }
 

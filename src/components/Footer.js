@@ -24,6 +24,7 @@ const useStyles = makeStyles({
     borderColor: "grey",
     color: "white",
     bottom: "0",
+    fontFamily: "",
   },
   designed: {
     padding: 10,
@@ -36,7 +37,18 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
 });
-const footerTheme = createMuiTheme({});
+const footerTheme = createMuiTheme({
+  /* overrides: {
+    MuiTypography: {
+      h5: {
+        fontSize: "1rem",
+        [footerTheme.breakpoints.down("xs")]: {
+          fontSize: "0.6rem",
+        },
+      },
+    },
+  }, */
+});
 const Footer = () => {
   const classes = useStyles();
   return (
