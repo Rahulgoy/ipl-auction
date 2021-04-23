@@ -11,7 +11,7 @@ const LiveBidding = ({ auth }) => {
     .doc("button")
     .onSnapshot((snapshot) => {
       if (snapshot.data().value === "true") {
-        db.collection("refresh").doc("button").update({
+        db.collection("refresh").doc("live").update({
           value: "false",
         });
         setTimeout("window.location.reload();", 4000);

@@ -3,10 +3,57 @@ import { db } from "../../config/Firebase";
 import Categories from "./Categories";
 import Players from "./Players";
 
+import {
+  Box,
+  Container,
+  Grid,
+  Table,
+  TableBody,  
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+
+
 ///
 import "../../assets/css/dashboard.css";
 
+
+
+// const theme = createMuiTheme({
+//   palette: {
+
+//     text: {
+//       primary: "#000000",
+//     },
+//   },
+// });
+
+
+const useStyles = makeStyles((theme) => ({
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // paper: {
+  //   padding: theme.spacing(2),
+  //   textAlign: "center",
+  //   color: theme.palette.primary,
+  //   background: '#555555'
+  // },
+
+
+}));
+
+
+
 const PlayerSection = ({ teamId }) => {
+  const classes = useStyles();
+
+
   const [categories, setCategories] = useState([]);
   // let categories = [];
   const [team, setTeam] = useState([]);
@@ -90,11 +137,36 @@ const PlayerSection = ({ teamId }) => {
       ) : (
         <Categories filterPlayers={filterPlayers} categories={categories} />
       )}
-      <Players
-        players={
-          filteredPlayers ? filteredPlayers : console.log("No player Available")
-        }
-      />
+      
+
+      <Container>
+        <div className={classes.wrapper}>
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
+          <div className={classes.tableWrapper}>
+        
+            <TableContainer className={classes.container}>
+              <Table className={classes.table} style={{borderRadius:'5px'}}>
+                <Box borderRadius={10} border={1} borderColor='secondary'>
+                <TableHead>
+
+                    <TableCell> <Typography color='primary'>Name </Typography> </TableCell>
+                    <TableCell> <Typography color='primary'>Highest Bid</Typography>  </TableCell>
+                    <TableCell> <Typography color='primary'>Base Price </Typography> </TableCell>
+
+                </TableHead>
+
+                <TableBody style={{background: 'red'}} >
+                    <Players players ={ filteredPlayers  ? filteredPlayers  : console.log("No player Available")} />
+                </TableBody>
+                </Box>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
+    </Container>
+
+
+   
     </div>
   );
 };

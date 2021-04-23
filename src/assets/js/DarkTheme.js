@@ -11,13 +11,13 @@ const theme = createMuiTheme({
         dark: '#3949ab',
         
       },
-      // secondary: {
-      //   main: '#0c7ef7',
-      //   light: '#00ff22'
-      // },
-      // cyan:{
-      //   main: '#3ee4fe'
-      // }
+      secondary: {
+        main: '#555555',
+        light: '#00ff22'
+      },
+      cyan:{
+        main: '#3ee4fe'
+      }
     }
     // palette: {
     //   primary: {
