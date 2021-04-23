@@ -15,10 +15,10 @@ import { connect } from "react-redux";
 import { AddPlayer } from "../../store/actions/authActions";
 import { Redirect } from "react-router";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import adminTheme from './adminTheme';
+import adminTheme from "./adminTheme";
 
 const formAlignStyle = {
-    // backgroundColor: "#010202",
+  // backgroundColor: "#010202",
   height: "100vh",
   paddingTop: "40px",
   display: "flex",
@@ -40,6 +40,7 @@ class PlayerForm extends Component {
     Bowlavg: "",
     wickets: "",
     economy: "",
+    rating: "",
     category: "",
     display: "",
     status: "",
@@ -87,270 +88,257 @@ class PlayerForm extends Component {
     // if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
     return (
       <MuiThemeProvider theme={adminTheme}>
-        <Container maxWidth="md" >
-        <CssBaseline />
-        <form onSubmit={this.handleSubmit}>
-          <Grid container justify="center" alignItems="center" spacing={3}>
-
-            {/* grid 1 */}
-            <Grid item xs={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                label="name"
-                name="name"
-                autoComplete="name"
-                autoFocus
-                required
-                fullWidth
-                type="text"
-                id="name"
-                onChange={this.handleChange}
-              />
-
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="age"
-                label="Age"
-                fullWidth
-                id="age"
-                type="text"
-                onChange={this.handleChange}
-              />
-
-              {/* First Name */}
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="baseprice"
-                label="Base Price"
-                required
-                fullWidth
-                id="baseprice"
-                type="number"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="Batavg"
-                label="Bat Avg"
-                fullWidth
-                id="Batavg"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="Image"
-                label="Image"
-                fullWidth
-                id="Image"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="Runs"
-                label="Runs"
-                fullWidth
-                id="Runs"
-                type="text"
-                onChange={this.handleChange}
-              />
-
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="strikerate"
-                label="strikerate"
-                fullWidth
-                id="strikerate"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                name="Bowlavg"
-                label="Bowlavg"
-                fullWidth
-                id="Bowlavg"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </Grid>
-
-            {/* grid 2 */}
-            <Grid item xs={6}>
-              <Box>
+        <Container maxWidth="md">
+          <CssBaseline />
+          <form onSubmit={this.handleSubmit}>
+            <Grid container justify="center" alignItems="center" spacing={3}>
+              {/* grid 1 */}
+              <Grid item xs={6}>
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="wickets"
-                  label="Wickets"
+                  label="name"
+                  name="name"
+                  autoComplete="name"
+                  autoFocus
+                  required
                   fullWidth
-                  id="wickets"
                   type="text"
+                  id="name"
                   onChange={this.handleChange}
                 />
+
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="economy"
-                  label="economy"
+                  name="age"
+                  label="Age"
                   fullWidth
-                  id="economy"
-                  type="text"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  name="rating"
-                  label="rating"
-                  fullWidth
-                  id="rating"
+                  id="age"
                   type="text"
                   onChange={this.handleChange}
                 />
 
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  padding: '16.5px',
-                  justifyContent: 'space-around',
-
-                }}>
-
-                  <div style={{
-
-                  }}>
-                <InputLabel id="demo-simple-select-filled-label">
-                  category
-                </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-filled-label"
-                      id="category"
-                      name="category"
-                      label="category"
-                      onChange={this.handleChange}
-                      
-                    >
-                      <MenuItem value={"live"}>live</MenuItem>
-                      <MenuItem value={"silent"}>silent</MenuItem>
-                  </Select>
-                  </div>
-
-                  <div style={{
-
-                  }}>
-                <InputLabel id="demo-simple-select-filled-label">
-                  display
-                </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="display"
-                    name="display"
-                    label="display"
-                    onChange={this.handleChange}
-                    
-                  >
-                      <MenuItem value={"true"}>true</MenuItem>
-                      <MenuItem value={"false"}>false</MenuItem>
-                  </Select>
-                  </div>
-
-                  <div style={{
-
-                  }}>
-                <InputLabel id="demo-simple-select-filled-label">
-                  Status
-                </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="status"
-                    name="status"
-                    label="status"
-                    onChange={this.handleChange}
-
-                  >
-                      <MenuItem value={"open"}>open</MenuItem>
-                      <MenuItem value={"close"}>close</MenuItem>
-                  </Select>
-                  </div>
-                </div>
-
+                {/* First Name */}
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="maxbid"
-                  label="maxbid"
+                  name="baseprice"
+                  label="Base Price"
+                  required
                   fullWidth
-                  id="maxbid"
+                  id="baseprice"
                   type="number"
                   onChange={this.handleChange}
                 />
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="maxbidBy"
-                  label="maxbidBy"
+                  name="Batavg"
+                  label="Bat Avg"
                   fullWidth
-                  id="maxbidBy"
+                  id="Batavg"
                   type="text"
                   onChange={this.handleChange}
                 />
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="team"
-                  label="team"
+                  name="Image"
+                  label="Image"
                   fullWidth
-                  id="team"
+                  id="Image"
                   type="text"
                   onChange={this.handleChange}
                 />
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  name="class"
-                  label="class"
+                  name="Runs"
+                  label="Runs"
                   fullWidth
-                  id="class"
+                  id="Runs"
                   type="text"
                   onChange={this.handleChange}
                 />
-              </Box>
+
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="strikerate"
+                  label="strikerate"
+                  fullWidth
+                  id="strikerate"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  name="Bowlavg"
+                  label="Bowlavg"
+                  fullWidth
+                  id="Bowlavg"
+                  type="text"
+                  onChange={this.handleChange}
+                />
+              </Grid>
+
+              {/* grid 2 */}
+              <Grid item xs={6}>
+                <Box>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="wickets"
+                    label="Wickets"
+                    fullWidth
+                    id="wickets"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="economy"
+                    label="economy"
+                    fullWidth
+                    id="economy"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="rating"
+                    label="rating"
+                    fullWidth
+                    id="rating"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      padding: "16.5px",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <div style={{}}>
+                      <InputLabel id="demo-simple-select-filled-label">
+                        category
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="category"
+                        name="category"
+                        label="category"
+                        onChange={this.handleChange}
+                      >
+                        <MenuItem value={"live"}>live</MenuItem>
+                        <MenuItem value={"silent"}>silent</MenuItem>
+                      </Select>
+                    </div>
+
+                    <div style={{}}>
+                      <InputLabel id="demo-simple-select-filled-label">
+                        display
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="display"
+                        name="display"
+                        label="display"
+                        onChange={this.handleChange}
+                      >
+                        <MenuItem value={"true"}>true</MenuItem>
+                        <MenuItem value={"false"}>false</MenuItem>
+                      </Select>
+                    </div>
+
+                    <div style={{}}>
+                      <InputLabel id="demo-simple-select-filled-label">
+                        Status
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="status"
+                        name="status"
+                        label="status"
+                        onChange={this.handleChange}
+                      >
+                        <MenuItem value={"open"}>open</MenuItem>
+                        <MenuItem value={"close"}>close</MenuItem>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="maxbid"
+                    label="maxbid"
+                    fullWidth
+                    id="maxbid"
+                    type="number"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="maxbidBy"
+                    label="maxbidBy"
+                    fullWidth
+                    id="maxbidBy"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="team"
+                    label="team"
+                    fullWidth
+                    id="team"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    name="class"
+                    label="class"
+                    fullWidth
+                    id="class"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </Box>
+              </Grid>
+
+              {/* grid 3 */}
+              <Grid item xs={4}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  style={{
+                    margin: "0px 0px 16px",
+                  }}
+                >
+                  Submit
+                </Button>
+              </Grid>
             </Grid>
-         
 
-            {/* grid 3 */}
-            <Grid item xs={4}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                style={{
-                  margin: "0px 0px 16px",
-
-                }}
-              >
-                Submit
-              </Button>
-            </Grid>
-          
-          </Grid>
-
-          <div className="center red-text">
-            {authError ? <p>{authError}</p> : null}
-          </div>
-        </form>
-      </Container>
+            <div className="center red-text">
+              {authError ? <p>{authError}</p> : null}
+            </div>
+          </form>
+        </Container>
       </MuiThemeProvider>
     );
   }
