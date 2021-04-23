@@ -163,16 +163,10 @@ p {
   justify-content: center;
   
 }
-.filter-btn {
-  background: white;
-  border-color: transparent;
-  text-transform: capitalize;
-  margin: 0 0.5rem;
-  padding: 0rem 0.75rem;
-  color: black;
-  cursor: pointer;
-  transition: 0.2s ease;
-  border-radius: var(--radius);
+.filter-btn:active {
+  background: goldenrod;
+  color: white;
+
 }
 
 .filter-btn:hover {
@@ -206,21 +200,16 @@ p {
 .userTeamDetails{
   background-color: black;
   padding: 1.2rem;
-  height: 75vh;
+  height: 50vh;
   border: none;
-  border-radius: 25px;
-  box-shadow: 3px 4px 10px 5px rgba(92, 92, 92, 0.699),
-            -7px -4px 10px 5px rgba(0, 0, 0, 0.665);
+  border-radius: 20px;
+  /* box-shadow: 3px 4px 10px 5px rgba(92, 92, 92, 0.699),
+            -7px -4px 10px 5px rgba(0, 0, 0, 0.665); */
 }
-
 
 .userTeamName{
+  text-transform: uppercase;
   
-
-}
-
-.item-info{
-  padding: 0 3rem;
 }
 
 
