@@ -19,7 +19,7 @@ const Home = () => {
       <CssBaseline />
       <Header />
       <EnterAuction />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
