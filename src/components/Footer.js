@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     color: "white",
     bottom: "0",
     fontFamily: "",
+    position: "relative",
   },
   designed: {
     padding: 10,

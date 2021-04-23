@@ -5,3 +5,11 @@ body {
   background-color: black;
   font-family: "Times New Roman", Times, serif;
 }
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content-wrap {
+  flex: 1;
+}

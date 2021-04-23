@@ -15,8 +15,7 @@ const useStyles = makeStyles({
     margin: "20px",
   },
   media: {
-    height: 440,
-    width: 440,
+    height: 580,
   },
   title: {
     fontFamily: "Nunito",

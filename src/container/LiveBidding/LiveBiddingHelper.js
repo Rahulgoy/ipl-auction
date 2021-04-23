@@ -40,7 +40,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
-  const [Display, setDisplay] = useState("false");
+
   //console.log(teamId);
 
   const sendBid = (e) => {
