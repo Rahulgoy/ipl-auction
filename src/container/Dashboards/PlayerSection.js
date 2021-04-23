@@ -121,18 +121,21 @@ const PlayerSection = ({ teamId }) => {
 
   console.log(filteredPlayers);
   return (
-    <div>
-      {categories === null ? (
-        console.log("No category")
-      ) : (
-        <Categories filterPlayers={filterPlayers} categories={categories} />
-      )}
-      <Players
-        players={
-          filteredPlayers ? filteredPlayers : console.log("No player Available")
-        }
-      />
-    </div>
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          {categories === null ? (
+            console.log("No category")
+            ) : (
+              <Categories filterPlayers={filterPlayers} categories={categories} /> 
+            )}
+          </Grid>
+
+          <Grid item xs={12}>
+            <Players players={ filteredPlayers ? filteredPlayers : console.log("No player Available") }/>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

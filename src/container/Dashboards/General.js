@@ -12,7 +12,7 @@ const General = ({ player }) => {
     // team details on left 
     <div className='userTeamDetails'>
       
-      <Typography style={{ color:'goldenrod' }} className='userTeamName' variant='h3'>{player.teamName}</Typography>
+      <Typography color='primary' className='userTeamName' variant='h3'>{player.teamName}</Typography>
 
       <Typography >{player.initials}</Typography>
 
