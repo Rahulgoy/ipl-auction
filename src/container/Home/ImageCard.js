@@ -8,14 +8,27 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Collapse } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 800,
     background: "rgba(0,0,0,0.5)",
-    margin: "20px",
+    margin: "50px",
+    flexGrow: 1,
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      marginBottom: "50px",
+    },
   },
   media: {
-    height: 580,
+    height: 600,
+    width: 350,
+    transition: ".4s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: 360,
+    },
   },
   title: {
     fontFamily: "Nunito",
@@ -34,7 +47,7 @@ const useStyles = makeStyles({
   buttonsection: {
     justifyContent: "center",
   },
-});
+}));
 
 export default function ImageCard({ Image, checked, title }) {
   const classes = useStyles();

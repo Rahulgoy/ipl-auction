@@ -2,8 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import ImageCard from "./ImageCard";
 import useWindowPosition from "../../assets/hook/useWindowPosition";
-import ipl from "../../assets/img/iplwebsite.png";
-import uefa from "../../assets/img/websiteuefa.png";
+import ipl from "../../assets/img/iplweb.png";
+import uefa from "../../assets/img/uefaweb.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
