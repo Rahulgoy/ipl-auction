@@ -29,6 +29,8 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: '30px',
+    padding: '1.2rem',
   },
   paper: {
     padding: theme.spacing(2),

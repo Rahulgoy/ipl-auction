@@ -45,8 +45,13 @@ const LiveBidding = ({ auth }) => {
           teamId={auth.uid}
         />
       ) : (
-        <Typography variant="h2" style={{ color: "yellow" }}>
-          NO PLAYER TO BID
+        <Typography
+          variant="h2"
+          color="primary"
+          align="center"
+          style={{ marginTop: "5%" }}
+        >
+          No Player to Bid
         </Typography>
       )}
     </div>

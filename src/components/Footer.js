@@ -67,18 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const footerTheme = createMuiTheme({
-  /* overrides: {
-    MuiTypography: {
-      h5: {
-        fontSize: "1rem",
-        [footerTheme.breakpoints.down("xs")]: {
-          fontSize: "0.6rem",
-        },
-      },
-    },
-  }, */
-});
+const footerTheme = createMuiTheme({});
 
 const Footer = () => {
   const classes = useStyles();

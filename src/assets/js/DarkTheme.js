@@ -30,6 +30,12 @@ const theme = createMuiTheme({
   //     light: '#00ff22'
   //   },
   // }
+
+  typography: {
+    fontFamily: [
+          'Nunito'
+    ].join(','),
+  },
 });
 
 export default theme;
