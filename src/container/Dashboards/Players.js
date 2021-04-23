@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayPlayer from "./DisplayPlayer";
 
 const Players = ({ players }) => {
   //console.log("length", players.length);
@@ -7,23 +8,17 @@ const Players = ({ players }) => {
   }
   return (
     <div className="section-center">
-      {players.map((player) => {
-        return (
-          <table key={player.id} className="menu-item">
-            <tr className="item-info">
-              <th>Name</th>
-              <th>Highest Bid</th>
-              <th>Base Price</th>
-            </tr>
-            <tr>
-              <td>{player.data.name}</td>
-              <td className="price">{player.data.maxbid}</td>
-
-              <td className="item-text">{player.data.baseprice}</td>
-            </tr>
-          </table>
-        );
-      })}
+      <table className="menu-item">
+        <tr className="item-info">
+          <th>Name</th>
+          <th>Rating</th>
+          <th>Highest Bid</th>
+          <th>Base Price</th>
+        </tr>
+        {players.map((player) => {
+          return <DisplayPlayer key={player.id} player={player} />;
+        })}
+      </table>
     </div>
   );
 };
