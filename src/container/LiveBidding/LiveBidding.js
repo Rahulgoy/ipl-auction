@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
@@ -44,7 +45,9 @@ const LiveBidding = ({ auth }) => {
           teamId={auth.uid}
         />
       ) : (
-        <h1>No Player to Bid</h1>
+        <Typography variant="h2" style={{ color: "yellow" }}>
+          NO PLAYER TO BID
+        </Typography>
       )}
     </div>
   );
