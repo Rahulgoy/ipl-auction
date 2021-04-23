@@ -1,14 +1,15 @@
+import { TableCell, TableRow } from "@material-ui/core";
 import React from "react";
 
 const DisplayPlayer = ({ player }) => {
   return (
     <>
-      <tr>
-        <td>{player.data.name}</td>
-        <td>{player.data.rating}</td>
-        <td className="price">{player.data.maxbid}</td>
-        <td className="item-text">{player.data.baseprice}</td>
-      </tr>
+      <TableRow>
+        <TableCell>{player.data.name}</TableCell>
+        <TableCell>{player.data.rating}</TableCell>
+        <TableCell className="price">{player.data.maxbid}</TableCell>
+        <TableCell className="item-text">{player.data.baseprice}</TableCell>
+      </TableRow>
     </>
   );
 };

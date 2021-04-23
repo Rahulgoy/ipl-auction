@@ -1,5 +1,8 @@
 import React from "react";
 
+import "../../assets/css/dashboard.css";
+
+
 const Categories = ({ filterPlayers, categories }) => {
   return (
     <div className="btn-container">

@@ -14,9 +14,13 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { ImportantDevices } from "@material-ui/icons";
+
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    position: 'relative',
+  },
   container: {
+    position: 'absolute',
     padding: 10,
     backgroundColor: "#202020",
     borderStyle: "solid",
@@ -38,6 +42,8 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
 });
+
+
 const footerTheme = createMuiTheme({
   /* overrides: {
     MuiTypography: {
@@ -50,10 +56,13 @@ const footerTheme = createMuiTheme({
     },
   }, */
 });
+
+
 const Footer = () => {
   const classes = useStyles();
   return (
     <MuiThemeProvider theme={footerTheme}>
+      <div className='root'>
       <Container maxWidth="false" className={classes.container}>
         <Grid container justify="center" align="center">
           <Grid item xs={12} spacing={3} style={{ display: "flex" }}>
@@ -79,6 +88,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Container>
+      </div>
     </MuiThemeProvider>
   );
 };
