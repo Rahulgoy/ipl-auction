@@ -11,25 +11,10 @@ const theme = createMuiTheme({
       dark: "#3949ab",
     },
     // secondary: {
-    //   main: '#0c7ef7',
-    //   light: '#00ff22'
-    // },
-    // cyan:{
-    //   main: '#3ee4fe'
+    //   main: '1B2C11',
+    //   light: 'd7a864'
     // }
   },
-  // palette: {
-  //   primary: {
-  //     main: '#D7A864',
-  //     light: '#e8eaf6',
-  //     dark: '#3949ab',
-
-  //   },
-  //   secondary: {
-  //     main: '#0c7ef7',
-  //     light: '#00ff22'
-  //   },
-  // }
 
   typography: {
     fontFamily: [

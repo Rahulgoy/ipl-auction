@@ -41,28 +41,31 @@ const useStyles = makeStyles((theme) => ({
   },
   designedText: {
     [theme.breakpoints.down("md")]: {
-      fontSize: "1rem",
+      fontSize: "0.8rem",
     },
   },
   icons: {
-    fontSize: "2rem",
+    fontSize: "1.5rem",
     [theme.breakpoints.down("md")]: {
       fontSize: "0.8rem",
     },
   },
   links: {
     textDecoration: "none",
-    fontSize: "2.5rem",
+    fontSize: "1.5rem",
     margin: "0 5px",
     color: "white",
     [theme.breakpoints.down("md")]: {
-      fontSize: "1.1rem",
+      fontSize: "1rem",
       margin: "0 2px",
     },
+    '&:hover' :{
+      color: 'goldenrod'
+    }
   },
   text: {
     [theme.breakpoints.down("md")]: {
-      fontSize: "0.9rem",
+      fontSize: "0.6rem",
     },
   },
 }));
@@ -72,12 +75,12 @@ const footerTheme = createMuiTheme({});
 const Footer = () => {
   const classes = useStyles();
   return (
-    <div className="root">
+    <div className="root" style={{marginTop: '50px'}}>
       <Container maxWidth="false" className={classes.container}>
         <Grid container justify="center" align="center">
           <Grid item xs={12} spacing={3} style={{ display: "flex" }}>
             <Grid item xs={4}>
-              <Typography variant="h5" className={classes.text}>
+              <Typography variant="h6" className={classes.text}>
                 Gaurab:74249-47745
               </Typography>
             </Grid>
@@ -99,7 +102,7 @@ const Footer = () => {
               </a>
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="h5" className={classes.text}>
+              <Typography variant="h6" className={classes.text}>
                 Jatin:98739-01591
               </Typography>
             </Grid>

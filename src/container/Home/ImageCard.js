@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
       transform: "scale(1.1)",
     },
     [theme.breakpoints.down("md")]: {
-      height: 360,
+      height: 320,
+      
     },
   },
   title: {
@@ -48,13 +49,17 @@ const useStyles = makeStyles((theme) => ({
   buttonsection: {
     justifyContent: "center",
   },
+  homeWrapper: {
+    paddingBottom: '0px'
+  }
 }));
 
 export default function ImageCard({ Image, checked, title, link }) {
   const classes = useStyles();
 
   return (
-    <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
+    <div className={classes.homeWrapper}>
+         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
       <Card className={classes.root}>
         <CardMedia
           className={classes.media}
@@ -123,5 +128,6 @@ export default function ImageCard({ Image, checked, title, link }) {
         </CardActions>
       </Card>
     </Collapse>
+    </div>
   );
 }

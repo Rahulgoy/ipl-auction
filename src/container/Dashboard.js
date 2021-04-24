@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "1.2rem",
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.primary,
     background: "#555555",
@@ -60,8 +60,6 @@ const Dashboard = ({ auth }) => {
       }));
       result.map((res) => {
         if (res.id === auth.uid) {
-          // console.log(res.data.teamBalance);
-          // console.log(typeof res.data.teamBalance);
           setTeam(res.data);
         }
       });

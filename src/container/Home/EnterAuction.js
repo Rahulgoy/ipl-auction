@@ -8,10 +8,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     display: "flex",
+    flexDirection: 'row',
+
     justifyContent: "center",
     alignItems: "center",
     [theme.breakpoints.down("md")]: {
+      flexDirection: "row",
+    },
+    [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
+      padding: 0.5
     },
   },
 }));
