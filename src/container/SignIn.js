@@ -63,7 +63,7 @@ class SignIn extends Component {
             transform: "translateX(-50%)",
             left: "50%",
             top: "12%",
-            // background: "rgba(255,255,255)",
+            background: "rgba(255,255,255)",
             // backgroundColor: "goldenrod",
             borderRadius: "10px",
             padding: "20px",
