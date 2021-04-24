@@ -252,7 +252,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                               type="submit"
                               disabled
                               className={classes.bidButton}
-                              style={{ backgroundColor: "#0255c25b" }}
+                              style={{ backgroundColor: "#555" }}
                             >
                               <Typography
                                 variant="h6"
@@ -284,12 +284,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "10px", padding: "30px 0 50px 30px" }}
               >
-                <Typography variant="h3" color='primary'                  
+                <Typography variant="h3" color='primary' align='center'                 
                     style={{
                     fontWeight: "bold",
                     fontSize: "2em",
                     textTransform: "uppercase",
                     // marginTop: "10px",
+                    marginBottom: '10px'
                   }}>
                     Bidding History</Typography>
                 <FlipMove>

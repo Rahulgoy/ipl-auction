@@ -43,11 +43,11 @@ const General = ({ player }) => {
           {player.teamName}
         </Typography>
 
-        <Typography color="secondary" variant="h5">
+        <Typography style={{color: "goldenrod"}} variant="h5">
           {player.initials}
         </Typography>
 
-        <Typography color="secondary" variant="h5">
+        <Typography style={{color: "goldenrod"}} variant="h5">
           {player.teamBalance ? player.teamBalance / 100 : "No Balance"}Cr
         </Typography>
       </div>

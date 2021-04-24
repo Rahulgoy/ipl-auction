@@ -16,7 +16,7 @@ import { Divider } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const formAlignStyle = {
-  backgroundColor: "#010202",
+  // backgroundColor: "#010202",
   height: "100vh",
   paddingTop: "40px",
   display: "flex",
@@ -63,8 +63,8 @@ class SignIn extends Component {
             transform: "translateX(-50%)",
             left: "50%",
             top: "12%",
-            backgroundColor: "white",
-            background: "rgba(255,255,255)",
+            // background: "rgba(255,255,255)",
+            // backgroundColor: "goldenrod",
             borderRadius: "10px",
             padding: "20px",
           }}
@@ -78,7 +78,7 @@ class SignIn extends Component {
           </Avatar>
 
           {/* form header */}
-          <Typography component="h1" variant="h4" style={{ fontWeight: "600" }}>
+          <Typography component="h1" variant="h4" style={{ fontWeight: "600", color: 'goldenrod' }}>
             Log In
           </Typography>
 
@@ -113,11 +113,7 @@ class SignIn extends Component {
                   onChange={this.handleChange}
                 />
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  fullWidth
+                <Button type="submit" variant="contained" color="secondary" fullWidth
                   style={{
                     margin: "24px 0px 16px",
                   }}

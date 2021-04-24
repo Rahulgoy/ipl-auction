@@ -5,14 +5,14 @@ import React from "react";
 import {makeStyles} from '@material-ui/core';
 import "../../assets/css/dashboard.css";
 
-const theme = createMuiTheme({
-  typography: {
-    button: {
-      fontSize: '1rem',
+// const theme = createMuiTheme({
+//   typography: {
+//     button: {
+//       fontSize: '1rem',
 
-    },
-  },
-});
+//     },
+//   },
+// });
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,7 +46,7 @@ const Categories = ({ filterPlayers, categories }) => {
 
   const classes = useStyles();
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
     <div className={classes.root}>
       {categories.map((category) => {
         // console.log(category);
@@ -55,9 +55,9 @@ const Categories = ({ filterPlayers, categories }) => {
               <Button 
                 variant='contained' 
                 
+                className={classes.buttonStyle}
                 color="primary"  
                 type="button"
-                className={classes.buttonStyle}
                 style={{marginLeft: '5px', padding: '5px 0px'}}
                 key={category.id}
                 onClick={() => filterPlayers(category.data, category.id)}
@@ -69,7 +69,7 @@ const Categories = ({ filterPlayers, categories }) => {
         );
       })}
     </div>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 
