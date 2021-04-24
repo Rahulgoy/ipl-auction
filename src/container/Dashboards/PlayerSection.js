@@ -4,14 +4,7 @@ import Categories from "./Categories";
 import Players from "./Players";
 
 import {
-  Box,
-  Container,
   Grid,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TableRow,
   TableCell,
   Typography,
 } from "@material-ui/core";

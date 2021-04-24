@@ -200,7 +200,7 @@ p {
 .userTeamDetails{
   background-color: black;
   padding: 1.2rem;
-  height: 50hw;
+  /* height: 50; */
   border: none;
   border-radius: 10px;
   /* box-shadow: 3px 4px 10px 5px rgba(92, 92, 92, 0.699),
