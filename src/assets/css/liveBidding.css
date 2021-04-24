@@ -2,8 +2,8 @@
 .leftGridStyle{
     position: relative;
     border-radius: 30px;
-    width: 505;
-    height: 75vh;
+    /* width: 505; */
+    /* height: 75vh; */
 }
 
 .leftGridBack::before{
@@ -32,15 +32,11 @@
     height: inherit;
     padding: 1.2rem 0.8rem 0.4rem 0.8rem;
 }
+.playername{
+    padding: 10px 20px;
+}
 .playerDetails{
-    /* color: "#1B2C89", // blue */
-    /* color: "#D7A864", // golden */
     color: #fff;
-    font-weight: 700;
-    margin-bottom: 10px;
-    margin-left: 2rem;
-    font-size: 1.2rem;
-    
 }
 .playerCard{
     /* height="350px" width="250px" */
@@ -49,7 +45,6 @@
 }
 
 .bidSection{
-
     margin-top: 40px;
 
 }
@@ -101,8 +96,8 @@
         font-size: 0.8rem;
     }
     .playerCard{
-        height: 270px;
-        width: 200px;
+        height: 300px;
+        width: 210px;
     }
     .bidSection{
         

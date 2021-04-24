@@ -75,7 +75,7 @@ const footerTheme = createMuiTheme({});
 const Footer = () => {
   const classes = useStyles();
   return (
-    <div className="root">
+    <div className="root" style={{marginTop: '50px'}}>
       <Container maxWidth="false" className={classes.container}>
         <Grid container justify="center" align="center">
           <Grid item xs={12} spacing={3} style={{ display: "flex" }}>

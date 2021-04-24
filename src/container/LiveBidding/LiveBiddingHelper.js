@@ -199,13 +199,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   >
                     {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography className='playerDetails'>
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Runs: {player.Runs}
                       </Typography>
-                      <Typography className='playerDetails'>
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Batting Average: {player.Batavg}
                       </Typography>
-                      <Typography  className='playerDetails'>
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Strike Rate: {player.strikerate}
                       </Typography>
                     </div>
@@ -214,13 +214,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     {/* <Grid item xs={3}> */}
 
                     <div>
-                      <Typography className='playerDetails'>
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Wickets: {player.wickets}
                       </Typography>
-                      <Typography  className='playerDetails'>
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Economy: {player.economy}
                       </Typography>
-                      <Typography  className='playerDetails'>
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
                         Bowling Average: {player.Bowlavg}
                       </Typography>
                     </div>
@@ -229,7 +229,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
 
                 <div className='bidSection'>
                   <div className="bidButtonStyle">
-                    <Typography color="primary" variant="h5">
+                    <Typography color="primary" variant="h4"  style={{fontWeight: '600'}}>
                       {" "}
                       Base Price: {player.baseprice} Lakhs{" "}
                     </Typography>
@@ -283,16 +283,23 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             <div className="rightGridTop">
               <Container
                 className={classes.rightGrid}
-                style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
+                style={{ marginTop: "10px", padding: "30px 0 50px 30px" }}
               >
-                <Typography variant="h3">Bidding History</Typography>
+                <Typography variant="h3" color='primary'                  
+                    style={{
+                    fontWeight: "bold",
+                    fontSize: "3em",
+                    textTransform: "uppercase",
+                    // marginTop: "10px",
+                  }}>
+                    Bidding History</Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {
                       return <BiddingHistory key={bid.id} bid={bid.data} />;
                     })
                   ) : (
-                    <h1>No bids</h1>
+                    <Typography variant="h3" color='primary'>No Bids</Typography>
                   )}
                 </FlipMove>
               </Container>

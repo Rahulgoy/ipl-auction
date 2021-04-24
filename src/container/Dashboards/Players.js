@@ -18,15 +18,19 @@ import DisplayPlayer from "./DisplayPlayer";
 const StyledTableCell = withStyles((theme) => ({}))(TableCell);
 const StyledTableRow = withStyles((theme) => ({}))(TableRow);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // boxShadow: '0 3px 5px 2px white',
 
     padding: "0 30px",
+    [theme.breakpoints.down('md')]: {
+      padding: 0
+  }
   },
 
   container: {
     padding: 10,
+
   },
 
   // heading: {
@@ -38,6 +42,7 @@ const useStyles = makeStyles({
     color: "white",
     // border: "2px solid white",
     // borderRadius: '10px'
+
   },
   row1: {
     boxShadow: "none",
@@ -46,7 +51,7 @@ const useStyles = makeStyles({
   tableWrapper: {
     width: "100%",
   },
-});
+}));
 
 const Players = ({ players }) => {
   const classes = useStyles();

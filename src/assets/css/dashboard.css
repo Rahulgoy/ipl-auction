@@ -200,9 +200,9 @@ p {
 .userTeamDetails{
   background-color: black;
   padding: 1.2rem;
-  height: 50vh;
+  height: 50hw;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   /* box-shadow: 3px 4px 10px 5px rgba(92, 92, 92, 0.699),
             -7px -4px 10px 5px rgba(0, 0, 0, 0.665); */
 }
@@ -210,10 +210,20 @@ p {
 .userTeamName{
   text-transform: uppercase;
   
+  
 }
-
-
-
+.teamDisplayButton{
+  display: flex;
+  justify-content: space-evenly;
+}
+.containerButton{
+    margin: 0 auto;
+}
+@media (max-width: 720px){
+  .userTeamDetails{
+    padding: 0rem;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .menu-item {

@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
   //   background: '#555555'
   // },
 
-  teamDisplayButton: {
-      
+  containerButton: {
+      display: 'none'
   }
 
 
@@ -129,12 +129,12 @@ const PlayerSection = ({ teamId }) => {
   return (
     <Container>
       <Grid container spacing={2}>
-        <Grid item xs={12} container>
-          <div classes={classes.containerButton}>
+        <Grid item xs={12}>
+          <div classes={classes.containerButton} style={{display: 'flex', justifyContent: 'space-between'}}>
           {categories === null ? (
             console.log("No category")
             ) : (
-              <Categories filterPlayers={filterPlayers} className={classes.teamDisplayButton} categories={categories} /> 
+              <Categories filterPlayers={filterPlayers} className='teamDisplayButton' categories={categories} /> 
             )}
            </div>
           </Grid>

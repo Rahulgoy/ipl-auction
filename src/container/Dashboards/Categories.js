@@ -10,17 +10,20 @@ const useStyles = makeStyles((theme) => ({
       padding: 1,
       display: 'flex',
       justifyContent: 'center',
-      maxWidth: '50hw',
-      [theme.breakpoints.down("xs")]: {
-        fontSize: '0.3em',
-        display: 'block'
+      margin: '0 auto',
+
+      [theme.breakpoints.down("md")]: {
+        fontSize: '0.6em',
+        display: 'block',
       }
     },
     
     buttonStyle: {
-          fontSize: '0.5em',
-          
-        }
+      fontSize: '1em',
+      [theme.breakpoints.down("md")]: {
+        marginBottom: '10px'
+      }
+    }
 }));
 
 
