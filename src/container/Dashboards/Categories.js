@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     buttonStyle: {
       fontSize: '1em',
       [theme.breakpoints.down("md")]: {
-        marginBottom: '10px'
+        marginBottom: '10px',
+        fontSize: '1em'
       }
     }
 }));
@@ -42,7 +43,7 @@ const Categories = ({ filterPlayers, categories }) => {
                 color="primary"  
                 type="button"
                 className={classes.buttonStyle}
-                style={{marginLeft: '5px', padding: '5px 0px'}}
+                style={{marginLeft: '5px', padding: '4px 0px'}}
                 key={category.id}
                 onClick={() => filterPlayers(category.data, category.id)}
               > 

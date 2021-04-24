@@ -18,16 +18,9 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 ///
-import "../../assets/css/dashboard.css";
+// import "../../assets/css/dashboard.css";
 
-// const theme = createMuiTheme({
-//   palette: {
 
-//     text: {
-//       primary: "#000000",
-//     },
-//   },
-// });
 
 const useStyles = makeStyles((theme) => ({
   // root: {
@@ -39,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
   //   color: theme.palette.primary,
   //   background: '#555555'
   // },
-
-  containerButton: {
-      display: 'none'
+  playerSectionWrapper: {
+    [theme.breakpoints.down('md')]: {
+      padding: 0
+    }
   }
 
 
@@ -127,8 +121,8 @@ const PlayerSection = ({ teamId }) => {
 
   console.log(filteredPlayers);
   return (
-    <Container>
-      <Grid container spacing={2}>
+
+      <Grid className={classes.playerSectionWrapper}>
         <Grid item xs={12}>
           <div classes={classes.containerButton} style={{display: 'flex', justifyContent: 'space-between'}}>
           {categories === null ? (
@@ -149,7 +143,6 @@ const PlayerSection = ({ teamId }) => {
           />
         </Grid>
       </Grid>
-    </Container>
   );
 };
 
