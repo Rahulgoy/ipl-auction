@@ -3,17 +3,11 @@ import { db } from "../../config/Firebase";
 import Categories from "./Categories";
 import Players from "./Players";
 
-import {
-  Grid,
-  TableCell,
-  Typography,
-} from "@material-ui/core";
+import { Grid, TableCell, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 ///
 // import "../../assets/css/dashboard.css";
-
-
 
 const useStyles = makeStyles((theme) => ({
   // root: {
@@ -26,12 +20,10 @@ const useStyles = makeStyles((theme) => ({
   //   background: '#555555'
   // },
   playerSectionWrapper: {
-    [theme.breakpoints.down('md')]: {
-      padding: 0
-    }
-  }
-
-
+    [theme.breakpoints.down("md")]: {
+      padding: 0,
+    },
+  },
 }));
 
 const PlayerSection = ({ teamId }) => {
@@ -114,28 +106,34 @@ const PlayerSection = ({ teamId }) => {
 
   console.log(filteredPlayers);
   return (
-
-      <Grid className={classes.playerSectionWrapper}>
-        <Grid item xs={12}>
-          <div classes={classes.containerButton} style={{display: 'flex', justifyContent: 'space-between'}}>
+    <Grid className={classes.playerSectionWrapper}>
+      <Grid item xs={12}>
+        <div
+          classes={classes.containerButton}
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           {categories === null ? (
             console.log("No category")
-            ) : (
-              <Categories filterPlayers={filterPlayers} className='teamDisplayButton' categories={categories} /> 
-            )}
-           </div>
-          </Grid>
-
-        <Grid item xs={12}>
-          <Players
-            players={
-              filteredPlayers
-                ? filteredPlayers
-                : console.log("No player Available")
-            }
-          />
-        </Grid>
+          ) : (
+            <Categories
+              filterPlayers={filterPlayers}
+              className="teamDisplayButton"
+              categories={categories}
+            />
+          )}
+        </div>
       </Grid>
+
+      <Grid item xs={12}>
+        <Players
+          players={
+            filteredPlayers
+              ? filteredPlayers
+              : console.log("No player Available")
+          }
+        />
+      </Grid>
+    </Grid>
   );
 };
 

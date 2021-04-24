@@ -23,15 +23,14 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: '0 3px 5px 2px white',
 
     padding: "0 30px",
-    [theme.breakpoints.down('md')]: {
-      padding: 0
-    }
+    [theme.breakpoints.down("md")]: {
+      padding: 0,
+    },
   },
 
   table: {
     background: "linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)",
     color: "white",
-
   },
   row1: {
     boxShadow: "none",
@@ -46,7 +45,11 @@ const Players = ({ players }) => {
   const classes = useStyles();
   //console.log("length", players.length);
   if (players.length < 1) {
-    return <Typography variant='h5' color='primary' align='center'>No Players Available</Typography>;
+    return (
+      <Typography variant="h5" color="primary" align="center">
+        No Players Available
+      </Typography>
+    );
   }
   return (
     <Container>

@@ -44,8 +44,8 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
         <div className="biddingHistorySection">
           {" "}
           <Typography
-            variant="h5"
-            style={{ marginRight: "10px", color: "#fff", fontWeight: "700" }}
+            variant="h6"
+            style={{ marginRight: "10px", color: "goldenrod", fontWeight: "500" }}
             className="teamNameOnLeft"
           >
             {" "}
@@ -54,7 +54,7 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
             {team.initials}
             {")"}:{" "}
           </Typography>{" "}
-          <Typography variant="h6" className="bidOnRight">
+          <Typography variant="h6" style={{color: 'white'}}className="bidOnRight">
             {" "}
             {bid.biddingprice}
           </Typography>

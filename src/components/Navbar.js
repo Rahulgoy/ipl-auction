@@ -58,7 +58,9 @@ const Navbar = (props) => {
       <li className="li">
         {" "}
         <NavLink to="/silent" className={classes.linkUnderline}>
-          <a className="hover-line">Closed Auction</a>
+
+          <a className="hover-line">Closed Bidding</a>
+
         </NavLink>{" "}
       </li>
       <li className="li">

@@ -11,31 +11,22 @@ import theme from "../../assets/js/DarkTheme";
 import "../../assets/css/liveBidding.css";
 
 const useStyles = makeStyles((theme) => ({
+  heading: {
+    color: 'goldenrod'
+  },
+
   leftGrid: {
     padding: "20px",
   },
-  playerDetailsWrapper: {},
-  playerDetails: {
-    // color: "#1B2C89", // blue
-    // color: "#D7A864", // golden
-    // color: "#fff", // golden
-    // fontWeight: "700",
-    // marginBottom: "10px",
-    // marginLeft: '2rem',
-    // fontSize: "1.5em",
-  },
-  // bidSection: {
-  //   marginTop: "40px",
-  //   [theme.breakpoints.down('md')]: {
-  //     marginBottom: '50px'
-  //   }
-  // },
+  
+ 
   bidButton: {
     border: "2px solid black",
     padding: "5px 20px",
     borderRadius: "5px",
     margin: "10px 0 30px 0",
   },
+
 }));
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
@@ -53,7 +44,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("players").doc(playerId).collection("Bids").add({
       teamId: teamId,
       biddingprice: biddingValue,
-      timestamp: firebase.firestore.Timestamp.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
     //console.log("Maxbid:", player.maxbid);
@@ -161,6 +152,15 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
 
   return (
     <Container style={{ marginTop: "50px", width: "100%" }}>
+        <Typography
+          variant="h3"
+          className={classes.heading}
+          color="primary"
+          align="center"
+        >
+          LIVE AUCTION
+        </Typography>
+
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
@@ -183,18 +183,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   {player.name}({player.age})
                 </Typography>
 
-                <div
-                  style={{
-                    marginTop: "30px",
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                  }}
-                >
-                  <img
-                    src={player.Image}
-                    className="playerCard"
-                    alt="No Image"
+                <div style={{ marginTop: "30px", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                  <img src={player.Image} className="playerCard" alt="No Image" 
                     style={{
                       // margin: '0 auto'
                       // marginLeft: '-10%',
@@ -208,25 +198,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   >
                     {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Runs: {player.Runs}
                       </Typography>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Batting Average: {player.Batavg}
                       </Typography>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Strike Rate: {player.strikerate}
                       </Typography>
                     </div>
@@ -235,38 +213,22 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     {/* <Grid item xs={3}> */}
 
                     <div>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Wickets: {player.wickets}
                       </Typography>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Economy: {player.economy}
                       </Typography>
-                      <Typography
-                        className="playerDetails"
-                        variant="h6"
-                        style={{ fontWeight: "600" }}
-                      >
+                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600', color: 'goldenrod'}}>
                         Bowling Average: {player.Bowlavg}
                       </Typography>
                     </div>
                   </div>
                 </div>
 
-                <div className="bidSection">
+                <div className='bidSection'>
                   <div className="bidButtonStyle">
-                    <Typography
-                      color="primary"
-                      variant="h4"
-                      style={{ fontWeight: "600" }}
-                    >
+                    <Typography color="primary" variant="h4"  style={{fontWeight: '600', color: 'goldenrod'}}>
                       {" "}
                       Base Price: {player.baseprice} Lakhs{" "}
                     </Typography>
@@ -302,13 +264,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                           ),
                         ]
                       ) : (
-                        <button
-                          type="submit"
-                          disabled
-                          className={classes.bidButton}
-                          style={{ backgroundColor: "#0255c25b" }}
-                        >
-                          Not Enough Balance
+                        <button disabled>
+                          <p>Not Enough Balance</p>
                         </button>
                       )}
                     </form>
@@ -327,27 +284,21 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "10px", padding: "30px 0 50px 30px" }}
               >
-                <Typography
-                  variant="h3"
-                  color="primary"
-                  style={{
+                <Typography variant="h3" color='primary'                  
+                    style={{
                     fontWeight: "bold",
-                    fontSize: "3em",
+                    fontSize: "2em",
                     textTransform: "uppercase",
                     // marginTop: "10px",
-                  }}
-                >
-                  Bidding History
-                </Typography>
+                  }}>
+                    Bidding History</Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {
                       return <BiddingHistory key={bid.id} bid={bid.data} />;
                     })
                   ) : (
-                    <Typography variant="h3" color="primary">
-                      No Bids
-                    </Typography>
+                    <Typography variant="h3" color='primary'>No Bids</Typography>
                   )}
                 </FlipMove>
               </Container>
