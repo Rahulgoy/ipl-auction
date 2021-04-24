@@ -14,11 +14,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     [theme.breakpoints.down("md")]: {
       flexDirection: "row",
+      
     },
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
-      padding: 0.5
+      // padding: 0.5,
+      marginBottom: '0px'
+      
     },
+
   },
 }));
 const EnterAuction = () => {
