@@ -73,7 +73,7 @@ const PlayerSection = ({ teamId }) => {
               ...categories,
               {
                 id: doc.id,
-                data: doc.data().teamName,
+                data: doc.data().initials,
               },
             ]);
           }
@@ -126,13 +126,19 @@ const PlayerSection = ({ teamId }) => {
         <Grid item xs={12}>
           {categories === null ? (
             console.log("No category")
-            ) : (
-              <Categories filterPlayers={filterPlayers} categories={categories} /> 
-            )}
-          </Grid>
+          ) : (
+            <Categories filterPlayers={filterPlayers} categories={categories} />
+          )}
+        </Grid>
 
-          <Grid item xs={12}>
-            <Players players={ filteredPlayers ? filteredPlayers : console.log("No player Available") }/>
+        <Grid item xs={12}>
+          <Players
+            players={
+              filteredPlayers
+                ? filteredPlayers
+                : console.log("No player Available")
+            }
+          />
         </Grid>
       </Grid>
     </Container>
