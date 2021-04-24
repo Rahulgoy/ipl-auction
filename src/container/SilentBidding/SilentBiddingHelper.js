@@ -15,11 +15,24 @@ import {
   TextField,
 } from "@material-ui/core";
 
-const StyledTableCell = withStyles((theme) => ({}))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({}))(TableRow);
+const useStyle = makeStyles((theme)=> ({
+      bidForm: {
+        [theme.breakpoints.down('md')]: {
+          marginLeft: '100px'
+        }
+      },
+      bidInputField: {
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '-150px',
+            paddingLeft: '10px'
+        }
+      }
+}));
 
 const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
+  const classes = useStyle();
+
   const [biddingValue, setbiddingValue] = useState("");
   const [maxBid, setmaxBid] = useState(0);
   const [balance, setBalance] = useState(0);
@@ -69,21 +82,21 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
   }, []);
   return (
     <>
-      <StyledTableRow>
-        <StyledTableCell>{player.name}</StyledTableCell>
-        <StyledTableCell>{player.Runs}</StyledTableCell>
-        <StyledTableCell>{player.Batavg}</StyledTableCell>
-        <StyledTableCell>{player.strikerate}</StyledTableCell>
-        <StyledTableCell>{player.wickets}</StyledTableCell>
-        <StyledTableCell>{player.Bowlavg}</StyledTableCell>
-        <StyledTableCell>{player.economy}</StyledTableCell>
-
-        <StyledTableCell>{player.baseprice}</StyledTableCell>
-        <StyledTableCell>{maxBid}</StyledTableCell>
-        <StyledTableCell>
-          <form onSubmit={sendBid}>
+      <TableRow>
+        <TableCell><Typography style={{color:'#000', fontWeight: '700'}}>{player.name}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.Runs}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.Batavg}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.strikerate}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.wickets}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.Bowlavg}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.economy}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{player.baseprice}</Typography></TableCell>
+        <TableCell><Typography style={{color:'#000', fontWeight: '500'}}>{maxBid}</Typography></TableCell>
+        <TableCell>
+          <form onSubmit={sendBid} className={classes.bidForm}>
             <div style={{ display: "flex" }}>
               <TextField
+              className={classes.bidInputField}
                 value={biddingValue}
                 onChange={(event) => {
                   event.preventDefault();
@@ -110,8 +123,8 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
               </Button>
             </div>
           </form>
-        </StyledTableCell>
-      </StyledTableRow>
+        </TableCell>
+      </TableRow>
     </>
   );
 };
