@@ -4,6 +4,7 @@ import AllSilentPlayers from "./AllSilentPlayers";
 import PlayerSlotsHelper from "./PlayerSlotsHelper";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { Typography } from "@material-ui/core";
 const PlayerSlots = ({ auth }) => {
   const [showPlayers, setShowPlayers] = useState([]);
   const [fetchClass, setFetchClass] = useState("show");
@@ -127,7 +128,9 @@ const PlayerSlots = ({ auth }) => {
         return player ? (
           <PlayerSlotsHelper key={player.id} player={player} />
         ) : (
-          <h2>"No Silent player with class Given"</h2>
+          <Typography variant="h2">
+            "No Silent player with class Given"
+          </Typography>
         );
       })}
     </div>

@@ -77,7 +77,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
         <StyledTableCell>{player.wickets}</StyledTableCell>
         <StyledTableCell>{player.Bowlavg}</StyledTableCell>
         <StyledTableCell>{player.economy}</StyledTableCell>
-        <StyledTableCell>{player.rating}</StyledTableCell>
+
         <StyledTableCell>{player.baseprice}</StyledTableCell>
         <StyledTableCell>{maxBid}</StyledTableCell>
         <StyledTableCell>

@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   },
 
   tableWrapper: {
-    width: '100%'
+    width: "100%",
   },
 });
 
@@ -56,28 +56,37 @@ const Players = ({ players }) => {
   }
   return (
     <Container>
-        <div className={classes.root}>
-          <TableContainer  className={classes.container}>
-            <Table  className={classes.table} >
-              {/* <Box borderRadius={10} border={1} borderColor="secondary"> */}
-                <TableHead>
-                < TableRow className={classes.row1}>
-                    <TableCell> <Typography color="primary">Name </Typography></TableCell>
-                    <TableCell> <Typography color="primary">Rating </Typography> </TableCell>
-                    <TableCell> <Typography color="primary">Highest Bid</Typography> </TableCell>
-                    <TableCell> <Typography color="primary">Base Price </Typography> </TableCell>
-                  </TableRow>
-                </TableHead>
+      <div className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table className={classes.table}>
+            {/* <Box borderRadius={10} border={1} borderColor="secondary"> */}
+            <TableHead>
+              <TableRow className={classes.row1}>
+                <TableCell>
+                  {" "}
+                  <Typography color="primary">Name </Typography>
+                </TableCell>
 
-                <TableBody>
-                  {players.map((player) => {
-                    return <DisplayPlayer key={player.id} player={player} />;
-                  })}
-                </TableBody>
-              {/* </Box> */}
-            </Table>
-          </TableContainer>
-        </div>
+                <TableCell>
+                  {" "}
+                  <Typography color="primary">Highest Bid</Typography>{" "}
+                </TableCell>
+                <TableCell>
+                  {" "}
+                  <Typography color="primary">Base Price </Typography>{" "}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+
+            <TableBody>
+              {players.map((player) => {
+                return <DisplayPlayer key={player.id} player={player} />;
+              })}
+            </TableBody>
+            {/* </Box> */}
+          </Table>
+        </TableContainer>
+      </div>
     </Container>
   );
 };

@@ -6,7 +6,7 @@ const DisplayPlayer = ({ player }) => {
     <>
       <TableRow>
         <TableCell>{player.data.name}</TableCell>
-        <TableCell>{player.data.rating}</TableCell>
+
         <TableCell className="price">{player.data.maxbid}</TableCell>
         <TableCell className="item-text">{player.data.baseprice}</TableCell>
       </TableRow>

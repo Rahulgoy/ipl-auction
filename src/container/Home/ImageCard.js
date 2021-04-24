@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     maxWidth: 800,
+    backgroundColor: "#5AFF3D",
   },
   buttonsection: {
     justifyContent: "center",
@@ -71,7 +72,7 @@ export default function ImageCard({ Image, checked, title, link }) {
           </Typography>
           <Typography
             variant="body2"
-            color="textSecondary"
+            color="text#5AFF3D"
             component="p"
             className={classes.desc}
           >
@@ -85,7 +86,6 @@ export default function ImageCard({ Image, checked, title, link }) {
                 <Button
                   variant="contained"
                   size="medium"
-                  color="primary"
                   className={classes.button}
                 >
                   Enter {title} Auction
@@ -95,7 +95,6 @@ export default function ImageCard({ Image, checked, title, link }) {
                 href=""
                 variant="contained"
                 size="medium"
-                color="primary"
                 className={classes.button}
               >
                 Rulebook
@@ -107,7 +106,6 @@ export default function ImageCard({ Image, checked, title, link }) {
                 href="https://www.google.com/"
                 variant="contained"
                 size="medium"
-                color="primary"
                 className={classes.button}
               >
                 Enter {title} Auction
@@ -116,7 +114,6 @@ export default function ImageCard({ Image, checked, title, link }) {
                 href=""
                 variant="contained"
                 size="medium"
-                color="primary"
                 className={classes.button}
               >
                 Rulebook

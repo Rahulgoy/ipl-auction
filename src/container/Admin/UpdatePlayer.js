@@ -19,7 +19,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import adminTheme from './adminTheme';
+import adminTheme from "./adminTheme";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -54,7 +54,7 @@ const UpdatePlayer = ({ auth }) => {
         console.log("Could not fetch");
       });
   };
-  const fetchSilent = () => {
+  /*  const fetchSilent = () => {
     db.collection("players")
       .where("category", "==", "silent")
       .get()
@@ -72,7 +72,7 @@ const UpdatePlayer = ({ auth }) => {
       .catch((error) => {
         console.log("Could not fetch");
       });
-  };
+  }; */
 
   console.log(silentPlayers);
   /* let arr = Object.entries(silentPlayers);
@@ -80,57 +80,56 @@ const UpdatePlayer = ({ auth }) => {
   useEffect(() => {
     console.log("Working....");
     fetchLive();
-    fetchSilent();
+    // fetchSilent();
   }, []);
   if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   return (
-    <MuiThemeProvider theme={adminTheme} >
+    <MuiThemeProvider theme={adminTheme}>
       <Container>
-      <h3>Live</h3>
+        <h3>Live</h3>
 
-      <div className="tableWrapper">
-        <div className="black">
-          {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
-          <div className="backText">
-            <TableContainer>
-              <Table className="table" aria-label="customized table">
-                <TableHead stickyHeader>
-                  <TableRow>
-                    <StyledTableCell>Name</StyledTableCell>
-                    <StyledTableCell>Category</StyledTableCell>
-                    <StyledTableCell>Display</StyledTableCell>
-                    <StyledTableCell>Status</StyledTableCell>
-                    <StyledTableCell>Maxbid</StyledTableCell>
-                    <StyledTableCell>Max Bid by</StyledTableCell>
-                    <StyledTableCell>team</StyledTableCell>
-                    <StyledTableCell>class</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+        <div className="tableWrapper">
+          <div className="black">
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
+            <div className="backText">
+              <TableContainer>
+                <Table className="table" aria-label="customized table">
+                  <TableHead stickyHeader>
+                    <TableRow>
+                      <StyledTableCell>Name</StyledTableCell>
+                      <StyledTableCell>Category</StyledTableCell>
+                      <StyledTableCell>Display</StyledTableCell>
+                      <StyledTableCell>Status</StyledTableCell>
+                      <StyledTableCell>Maxbid</StyledTableCell>
+                      <StyledTableCell>Max Bid by</StyledTableCell>
+                      <StyledTableCell>team</StyledTableCell>
+                      <StyledTableCell>class</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
 
-                <TableBody>
-                  {livePlayers.map((player) => {
-                    return player ? (
-                      <AllLivePlayers
-                        key={player.id}
-                        player={player}
-                        //playerId={playerId}
-                      />
-                    ) : (
-                      console.log("No Live player")
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  <TableBody>
+                    {livePlayers.map((player) => {
+                      return player ? (
+                        <AllLivePlayers
+                          key={player.id}
+                          player={player}
+                          //playerId={playerId}
+                        />
+                      ) : (
+                        console.log("No Live player")
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </div>
         </div>
-      </div>
-      <h3>Silent</h3>
+        {/* <h3>Silent</h3>
 
       <div className="tableWrapper">
         <div className="black">
-          {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
           <div className="backText">
             <TableContainer>
               <Table className="table" aria-label="customized table">
@@ -162,10 +161,10 @@ const UpdatePlayer = ({ auth }) => {
                 </TableBody>
               </Table>
             </TableContainer>
-          </div>
+          </div> 
         </div>
-      </div>
-    </Container>
+      </div>*/}
+      </Container>
     </MuiThemeProvider>
   );
 };

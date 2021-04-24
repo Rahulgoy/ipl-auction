@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     color: "#fff", // golden
     fontWeight: "700",
     marginBottom: "10px",
-    marginLeft: '2rem',
+    marginLeft: "2rem",
     fontSize: "1.5em",
   },
   bidSection: {
@@ -157,7 +157,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //useEffect(() => {}, [Status]);
 
   return (
-    <Container style={{ marginTop: "50px", width: '100%' }}>
+    <Container style={{ marginTop: "50px", width: "100%" }}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
@@ -165,7 +165,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
               <div className="leftGridBack"></div>
 
               <div className="leftGridTop">
-                <Typography variant="h2" align="center" color="primary"
+                <Typography
+                  variant="h2"
+                  align="center"
+                  color="primary"
                   style={{
                     fontWeight: "bold",
                     fontSize: "3em",
@@ -177,8 +180,19 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   {player.name}({player.age})
                 </Typography>
 
-                <div style={{ marginTop: "30px", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                  <img src={player.Image} alt="No Image" height="350px" width="250px"
+                <div
+                  style={{
+                    marginTop: "30px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <img
+                    src={player.Image}
+                    alt="No Image"
+                    height="350px"
+                    width="250px"
                     style={{
                       // margin: '0 auto'
                       // marginLeft: '-10%',
@@ -186,8 +200,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     }}
                   ></img>
 
-                  <div style={{ display: "block", justifyContent: "space-around"}}
-                    className={classes.playerDetailsWrapper} >
+                  <div
+                    style={{ display: "block", justifyContent: "space-around" }}
+                    className={classes.playerDetailsWrapper}
+                  >
                     {/* <Grid item xs={3}> */}
                     <div>
                       <Typography className={classes.playerDetails}>
@@ -214,12 +230,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography className={classes.playerDetails}>
                         Bowling Average: {player.Bowlavg}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
-                        Rating: {player.rating}
-                      </Typography>
                     </div>
-
-
                   </div>
                 </div>
 
@@ -281,9 +292,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
               >
-                <Typography variant='h3'> 
-                      Bidding History
-                </Typography>
+                <Typography variant="h3">Bidding History</Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {

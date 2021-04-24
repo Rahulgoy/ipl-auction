@@ -4,7 +4,7 @@ import firebase from "firebase";
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 
-import '../../assets/css/biddingHistory.css'
+import "../../assets/css/biddingHistory.css";
 
 const useStyles = makeStyles({
   root: {},
@@ -41,18 +41,23 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
   return (
     <table className={classes.root} ref={ref}>
       <tr>
-
-        <div className='biddingHistorySection'>
+        <div className="biddingHistorySection">
+          {" "}
+          <Typography
+            variant="h5"
+            style={{ marginRight: "10px", color: "#fff", fontWeight: "700" }}
+            className="teamNameOnLeft"
+          >
             {" "}
-             <Typography variant='h5' style={{marginRight:'10px', color: '#fff', fontWeight: '700'}} className='teamNameOnLeft'> 
-              {" "}
-              {team.teamName}:{" "}
-            </Typography>
-
+            {team.teamName}
+            {"("}
+            {team.initials}
+            {")"}:{" "}
+          </Typography>{" "}
+          <Typography variant="h6" className="bidOnRight">
             {" "}
-            <Typography variant="h6" className='bidOnRight'> {bid.biddingprice}</Typography>
-
-
+            {bid.biddingprice}
+          </Typography>
         </div>
       </tr>
     </table>

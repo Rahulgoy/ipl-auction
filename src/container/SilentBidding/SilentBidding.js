@@ -119,7 +119,7 @@ const SilentBidding = ({ auth, playerB }) => {
           color="primary"
           align="center"
         >
-          Silent Bidding
+          CLOSED AUCTION
         </Typography>
 
         <Container>
@@ -140,12 +140,12 @@ const SilentBidding = ({ auth, playerB }) => {
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Rus</Typography>{" "}
+                        <Typography color="primary">Runs</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
                         <Typography color="primary">
-                          Batting Avg{" "}
+                          Batting Average{" "}
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
@@ -161,24 +161,23 @@ const SilentBidding = ({ auth, playerB }) => {
                       <TableCell>
                         {" "}
                         <Typography color="primary">
-                          Bowling Avg
+                          Bowling Average
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
                         <Typography color="primary">Economy</Typography>{" "}
                       </TableCell>
-                      <TableCell>
-                        {" "}
-                        <Typography color="primary">Rating</Typography>{" "}
-                      </TableCell>
+
                       <TableCell>
                         {" "}
                         <Typography color="primary">Baseprice</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Max Bid</Typography>{" "}
+                        <Typography color="primary">
+                          Current Bid
+                        </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
