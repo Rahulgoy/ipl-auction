@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
   },
   title: {
-    fontSize: "3rem",
+    fontSize: "4rem",
     color: "#fff",
   },
   goDown: {
