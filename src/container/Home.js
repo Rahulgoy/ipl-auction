@@ -8,6 +8,7 @@ const useStyles = makeStyles({
   root: {
     height: '100vh',
     zIndex: 1,
+    
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },

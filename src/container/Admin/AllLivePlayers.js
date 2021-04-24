@@ -4,6 +4,7 @@ import { db } from "../../config/Firebase";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
 import adminTheme from "./adminTheme";
+import { Button, TableCell, Typography } from "@material-ui/core";
 
 const AllLivePlayers = ({ player }) => {
   const [updatePlayer, setUpdatePlayer] = useState({
@@ -63,11 +64,11 @@ const AllLivePlayers = ({ player }) => {
   };
   //console.log(updatePlayer);
   return (
-    <MuiThemeProvider theme={adminTheme}>
-      <div>
+    
+      <div style={{backgroundColor: '#F7C486'}}>
         <form onSubmit={handlesubmit}>
-          <td>{player.data.name}</td>
-          <td>
+          <TableCell><Typography variatant='h6' style={{color: '#330505'}}>{player.data.name}</Typography></TableCell>
+          <TableCell>
             <select
               name="category"
               onChange={handleChange}
@@ -76,8 +77,8 @@ const AllLivePlayers = ({ player }) => {
               <option value="live">live</option>
               <option value="silent">silent</option>
             </select>{" "}
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <select
               name="display"
               onChange={handleChange}
@@ -86,8 +87,8 @@ const AllLivePlayers = ({ player }) => {
               <option value="true">true</option>
               <option value="false">false</option>
             </select>{" "}
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <select
               name="status"
               onChange={handleChange}
@@ -96,8 +97,8 @@ const AllLivePlayers = ({ player }) => {
               <option value="open">open</option>
               <option value="close">close</option>
             </select>{" "}
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <select
               name="class"
               onChange={handleChange}
@@ -109,37 +110,39 @@ const AllLivePlayers = ({ player }) => {
               <option value="D">D</option>
               <option value="Z">Z</option>
             </select>{" "}
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <input
               name="maxbid"
               onChange={handleChange}
               type="number"
               defaultValue={player.data.maxbid}
             />
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <input
               name="maxbidBy"
               type="text"
               defaultValue={player.data.maxbidBy}
               onChange={handleChange}
+              style={{padding:'0 20px'}}
             />
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <input
               name="team"
               type="text"
               defaultValue={player.data.team}
               onChange={handleChange}
+              style={{padding:'0 20px'}}
             />
-          </td>
-          <button type="submit">Update</button>
-          <button onClick={refresh}>Refresh</button>
-          <button onClick={assign}>Assign Team</button>
+          </TableCell>
+          <Button style={{ border:"1px solid black", background: 'gray' ,marginRight: '10px' }} type="submit">Update</Button>
+          <Button style={{ border:"1px solid black", background: 'gray' ,marginRight: '10px'}} onClick={refresh}>Refresh</Button>
+          <Button  style={{ border:"1px solid black", background: 'gray' ,marginRight: '10px'}}onClick={assign}>Assign Team</Button>
         </form>
       </div>
-    </MuiThemeProvider>
+    
   );
 };
 

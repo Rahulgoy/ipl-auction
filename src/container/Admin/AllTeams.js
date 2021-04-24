@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import { TableCell, TableRow, withStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
@@ -38,7 +39,8 @@ const AllTeams = ({ team }) => {
   console.log(balance);
   return (
     <div>
-      <StyledTableRow>
+      <Container>
+      <TableRow style={{background: '#F19D56'}}>
         <StyledTableCell>{team.data.teamName}</StyledTableCell>
         <StyledTableCell>{team.id}</StyledTableCell>
         <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
@@ -54,7 +56,8 @@ const AllTeams = ({ team }) => {
             <button type="submit">Update</button>
           </form>
         </StyledTableCell>
-      </StyledTableRow>
+      </TableRow>
+      </Container>
     </div>
   );
 };

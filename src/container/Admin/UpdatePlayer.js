@@ -86,7 +86,7 @@ const UpdatePlayer = ({ auth }) => {
   if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   return (
-    <MuiThemeProvider theme={adminTheme}>
+    <div style={{backgroundColor: 'white', height: '100vh'}}>
       <Container>
         <h3>Live</h3>
 
@@ -127,7 +127,7 @@ const UpdatePlayer = ({ auth }) => {
             </div>
           </div>
         </div>
-        {/* <h3>Silent</h3>
+        <h3>Silent</h3>
 
       <div className="tableWrapper">
         <div className="black">
@@ -164,9 +164,9 @@ const UpdatePlayer = ({ auth }) => {
             </TableContainer>
           </div> 
         </div>
-      </div>*/}
+      </div>
       </Container>
-    </MuiThemeProvider>
+    </div>
   );
 };
 
