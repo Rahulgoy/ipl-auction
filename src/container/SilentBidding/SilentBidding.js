@@ -35,9 +35,12 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     // page heading
     padding: "25px 0 0 20px",
+
+    color: 'goldenrod'
     [theme.breakpoints.down("sm")]: {
       fontSize: "2rem",
     },
+
   },
   table: {
     background: "linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)",
@@ -135,56 +138,56 @@ const SilentBidding = ({ auth, playerB }) => {
                   style={{ borderRadius: "5px" }}
                 >
                   {/* <Box borderRadius={10} border={1} borderColor='secondary'> */}
-                  <TableHead stickyHeader>
+                  <TableHead stickyHeader >
                     <TableRow className={classes.row1}>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Name</Typography>{" "}
+                        <Typography style={{color: 'black', fontWeight: '700'}}>Name</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Runs</Typography>{" "}
+                        <Typography style={{color: 'black', fontWeight: '700'}}>Runs</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">
+                        <Typography style={{color: 'black', fontWeight: '700'}}>
                           Batting Average{" "}
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">
+                        <Typography style={{color: 'black', fontWeight: '700'}}>
                           Strike Rate
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Wickets</Typography>{" "}
+                        <Typography  style={{color: 'black', fontWeight: '700'}}>Wickets</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">
+                        <Typography style={{color: 'black', fontWeight: '700'}}>
                           Bowling Average
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Economy</Typography>{" "}
+                        <Typography  style={{color: 'black', fontWeight: '700'}}>Economy</Typography>{" "}
                       </TableCell>
 
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Baseprice</Typography>{" "}
+                        <Typography style={{color: 'black', fontWeight: '700'}}>Baseprice</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">
+                        <Typography style={{color: 'black', fontWeight: '700'}}>
                           Current Bid
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Place Bid</Typography>{" "}
+                        <Typography style={{color: 'black', fontWeight: '700'}}>Place Bid</Typography>{" "}
                       </TableCell>
                     </TableRow>
                   </TableHead>
