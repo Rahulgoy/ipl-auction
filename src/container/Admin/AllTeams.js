@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { TableCell, TableRow, withStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
@@ -40,23 +40,33 @@ const AllTeams = ({ team }) => {
   return (
     <div>
       <Container>
-      <TableRow style={{background: '#F19D56'}}>
-        <StyledTableCell>{team.data.teamName}</StyledTableCell>
-        <StyledTableCell>{team.id}</StyledTableCell>
-        <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
-        <StyledTableCell>
-          <form onSubmit={sendBalance}>
-            <input
-              type="number"
-              onChange={(event) => {
-                event.preventDefault();
-                setBalance(event.target.value);
-              }}
-            />
-            <button type="submit">Update</button>
-          </form>
-        </StyledTableCell>
-      </TableRow>
+        <TableRow style={{ background: "#F19D56" }}>
+          <StyledTableCell>{team.data.teamName}</StyledTableCell>
+          <StyledTableCell>{team.id}</StyledTableCell>
+          <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
+          <StyledTableCell>
+            <form onSubmit={sendBalance}>
+              <input
+                type="number"
+                onChange={(event) => {
+                  event.preventDefault();
+                  setBalance(event.target.value);
+                }}
+              />
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                style={{
+                  border: "1px solid black",
+                }}
+                type="submit"
+              >
+                Update
+              </Button>
+            </form>
+          </StyledTableCell>
+        </TableRow>
       </Container>
     </div>
   );

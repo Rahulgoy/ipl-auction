@@ -52,13 +52,13 @@ const Navbar = (props) => {
       <li className="li">
         {" "}
         <NavLink to="/live" className={classes.linkUnderline}>
-          <a className="hover-line">Live Bidding</a>
+          <a className="hover-line">Live Auction</a>
         </NavLink>{" "}
       </li>
       <li className="li">
         {" "}
         <NavLink to="/silent" className={classes.linkUnderline}>
-          <a className="hover-line">Silent Bidding</a>
+          <a className="hover-line">Closed Auction</a>
         </NavLink>{" "}
       </li>
       <li className="li">
@@ -86,6 +86,12 @@ const Navbar = (props) => {
           </NavLink>
         </Button>{" "}
       </li> */}
+      <li className="li">
+        {" "}
+        <NavLink to="/signin" className={classes.linkUnderline}>
+          <a className="hover-line">Home</a>
+        </NavLink>{" "}
+      </li>
       <li className="li">
         {" "}
         <NavLink to="/signin" className={classes.linkUnderline}>

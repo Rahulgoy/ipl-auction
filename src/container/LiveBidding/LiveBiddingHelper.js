@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     margin: "10px 0 30px 0",
   },
-
 }));
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
@@ -54,7 +53,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("players").doc(playerId).collection("Bids").add({
       teamId: teamId,
       biddingprice: biddingValue,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      timestamp: firebase.firestore.Timestamp.now(),
     });
 
     //console.log("Maxbid:", player.maxbid);
@@ -184,8 +183,18 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   {player.name}({player.age})
                 </Typography>
 
-                <div style={{ marginTop: "30px", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                  <img src={player.Image} className="playerCard" alt="No Image" 
+                <div
+                  style={{
+                    marginTop: "30px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <img
+                    src={player.Image}
+                    className="playerCard"
+                    alt="No Image"
                     style={{
                       // margin: '0 auto'
                       // marginLeft: '-10%',
@@ -199,13 +208,25 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   >
                     {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Runs: {player.Runs}
                       </Typography>
-                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Batting Average: {player.Batavg}
                       </Typography>
-                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Strike Rate: {player.strikerate}
                       </Typography>
                     </div>
@@ -214,22 +235,38 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     {/* <Grid item xs={3}> */}
 
                     <div>
-                      <Typography className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Wickets: {player.wickets}
                       </Typography>
-                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Economy: {player.economy}
                       </Typography>
-                      <Typography  className='playerDetails' variant='h6' style={{fontWeight: '600'}}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         Bowling Average: {player.Bowlavg}
                       </Typography>
                     </div>
                   </div>
                 </div>
 
-                <div className='bidSection'>
+                <div className="bidSection">
                   <div className="bidButtonStyle">
-                    <Typography color="primary" variant="h4"  style={{fontWeight: '600'}}>
+                    <Typography
+                      color="primary"
+                      variant="h4"
+                      style={{ fontWeight: "600" }}
+                    >
                       {" "}
                       Base Price: {player.baseprice} Lakhs{" "}
                     </Typography>
@@ -265,8 +302,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                           ),
                         ]
                       ) : (
-                        <button disabled>
-                          <p>Not Enough Balance</p>
+                        <button
+                          type="submit"
+                          disabled
+                          className={classes.bidButton}
+                          style={{ backgroundColor: "#0255c25b" }}
+                        >
+                          Not Enough Balance
                         </button>
                       )}
                     </form>
@@ -285,21 +327,27 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "10px", padding: "30px 0 50px 30px" }}
               >
-                <Typography variant="h3" color='primary'                  
-                    style={{
+                <Typography
+                  variant="h3"
+                  color="primary"
+                  style={{
                     fontWeight: "bold",
                     fontSize: "3em",
                     textTransform: "uppercase",
                     // marginTop: "10px",
-                  }}>
-                    Bidding History</Typography>
+                  }}
+                >
+                  Bidding History
+                </Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {
                       return <BiddingHistory key={bid.id} bid={bid.data} />;
                     })
                   ) : (
-                    <Typography variant="h3" color='primary'>No Bids</Typography>
+                    <Typography variant="h3" color="primary">
+                      No Bids
+                    </Typography>
                   )}
                 </FlipMove>
               </Container>
