@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   root: {
     // boxShadow: '0 3px 5px 2px white',
 
-    padding: "0 30px",
+    padding: "1.2rem",
   },
 
   container: {
@@ -117,7 +117,6 @@ const SilentBidding = ({ auth, playerB }) => {
         <Typography
           variant="h2"
           className={classes.heading}
-          color="primary"
           align="center"
         >
           CLOSED AUCTION

@@ -106,7 +106,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
               <Button
                 style={{ marginLeft: "20px" }}
                 variant="contained"
-                color="secondary"
+                color="primary"
                 size="small"
                 disabled={
                   parseInt(biddingValue) <= parseInt(maxBid) ||
