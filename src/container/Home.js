@@ -6,7 +6,7 @@ import Header from "./Home/Header";
 
 const useStyles = makeStyles({
   root: {
-    minHeight: "100vh",
+    height: '100vh',
     zIndex: 1,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
