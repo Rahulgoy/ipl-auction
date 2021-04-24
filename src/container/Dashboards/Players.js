@@ -25,23 +25,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 30px",
     [theme.breakpoints.down('md')]: {
       padding: 0
-  }
+    }
   },
 
-  container: {
-    padding: 10,
-
-  },
-
-  // heading: {
-  //   // page heading
-  //   padding: "25px 0 0 20px",
-  // },
   table: {
     background: "linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)",
     color: "white",
-    // border: "2px solid white",
-    // borderRadius: '10px'
 
   },
   row1: {
@@ -57,7 +46,7 @@ const Players = ({ players }) => {
   const classes = useStyles();
   //console.log("length", players.length);
   if (players.length < 1) {
-    return <p>No Players Available</p>;
+    return <Typography variant='h5' color='primary' align='center'>No Players Available</Typography>;
   }
   return (
     <Container>

@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
-      marginBottom: "50px",
     },
   },
   media: {

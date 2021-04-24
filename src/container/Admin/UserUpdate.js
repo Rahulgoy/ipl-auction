@@ -57,6 +57,7 @@ const UserUpdate = ({ auth }) => {
   if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   return (
+    <div style={{backgroundColor: 'white', height: '100vh'}}>
     <Container>
       <h3>Live</h3>
 
@@ -94,6 +95,7 @@ const UserUpdate = ({ auth }) => {
         </div>
       </div>
     </Container>
+    </div>
   );
 };
 
