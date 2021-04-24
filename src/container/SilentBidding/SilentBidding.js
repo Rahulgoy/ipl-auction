@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // boxShadow: '0 3px 5px 2px white',
 
@@ -35,7 +35,12 @@ const useStyles = makeStyles({
   heading: {
     // page heading
     padding: "25px 0 0 20px",
+
     color: 'goldenrod'
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem",
+    },
+
   },
   table: {
     background: "linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)",
@@ -48,7 +53,7 @@ const useStyles = makeStyles({
   },
 
   tableWrapper: {},
-});
+}));
 
 const SilentBidding = ({ auth, playerB }) => {
   const classes = useStyles();

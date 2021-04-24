@@ -52,8 +52,8 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
           },
         ],
       });
-    console.log("Maxbid:", player.maxbid);
-    console.log("Price:", biddingValue);
+    // console.log("Maxbid:", player.maxbid);
+    // console.log("Price:", biddingValue);
     if (parseInt(player.maxbid) < parseInt(biddingValue)) {
       db.collection("players").doc(player.name).update({
         maxbid: biddingValue,

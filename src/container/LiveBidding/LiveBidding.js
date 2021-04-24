@@ -51,7 +51,7 @@ const LiveBidding = ({ auth }) => {
           align="center"
           style={{ marginTop: "5%" }}
         >
-          No Player to Bid
+          NO PLAYER TO BID
         </Typography>
       )}
     </div>

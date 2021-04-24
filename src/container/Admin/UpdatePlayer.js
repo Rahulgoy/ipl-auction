@@ -12,9 +12,10 @@ import {
   TableRow,
   Paper,
   withStyles,
+  Typography,
 } from "@material-ui/core";
 import AllLivePlayers from "./AllLivePlayers";
-import AllSilentPlayers from "./AllSilentPlayers";
+//import AllSilentPlayers from "./AllSilentPlayers";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
@@ -28,7 +29,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     color: theme.palette.common.white,
-    font: adminTheme.palette.common.white
+    font: adminTheme.palette.common.white,
   },
 }))(TableCell);
 
@@ -75,7 +76,7 @@ const UpdatePlayer = ({ auth }) => {
       });
   }; */
 
-  console.log(silentPlayers);
+  //console.log(silentPlayers);
   /* let arr = Object.entries(silentPlayers);
   console.log("Arr:", arr); */
   useEffect(() => {
@@ -86,7 +87,7 @@ const UpdatePlayer = ({ auth }) => {
   if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
 
   return (
-    <div style={{backgroundColor: 'white', height: '100vh'}}>
+    <div style={{ backgroundColor: "white", height: "100vh" }}>
       <Container>
         <h3>Live</h3>
 
@@ -118,7 +119,7 @@ const UpdatePlayer = ({ auth }) => {
                           //playerId={playerId}
                         />
                       ) : (
-                        console.log("No Live player")
+                        <Typography variant="h3">No Live Player</Typography>
                       );
                     })}
                   </TableBody>
@@ -127,44 +128,44 @@ const UpdatePlayer = ({ auth }) => {
             </div>
           </div>
         </div>
-        <h3>Silent</h3>
+        {/* <h3>Silent</h3>
 
-      <div className="tableWrapper">
-        <div className="black">
-          <div className="backText">
-            <TableContainer>
-              <Table className="table" aria-label="customized table">
-                <TableHead stickyHeader>
-                  <TableRow>
-                    <StyledTableCell>Name</StyledTableCell>
-                    <StyledTableCell>Category</StyledTableCell>
-                    <StyledTableCell>Display</StyledTableCell>
-                    <StyledTableCell>Status</StyledTableCell>
-                    <StyledTableCell>Maxbid</StyledTableCell>
-                    <StyledTableCell>Max Bid by</StyledTableCell>
-                    <StyledTableCell>team</StyledTableCell>
-                    <StyledTableCell>class</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+        <div className="tableWrapper">
+          <div className="black">
+            <div className="backText">
+              <TableContainer>
+                <Table className="table" aria-label="customized table">
+                  <TableHead stickyHeader>
+                    <TableRow>
+                      <StyledTableCell>Name</StyledTableCell>
+                      <StyledTableCell>Category</StyledTableCell>
+                      <StyledTableCell>Display</StyledTableCell>
+                      <StyledTableCell>Status</StyledTableCell>
+                      <StyledTableCell>Maxbid</StyledTableCell>
+                      <StyledTableCell>Max Bid by</StyledTableCell>
+                      <StyledTableCell>team</StyledTableCell>
+                      <StyledTableCell>class</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
 
-                <TableBody>
-                  {silentPlayers.map((player) => {
-                    return player ? (
-                      <AllSilentPlayers
-                        key={player.id}
-                        player={player}
-                        //playerId={playerId}
-                      />
-                    ) : (
-                      console.log("No player")
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div> 
-        </div>
-      </div>
+                  <TableBody>
+                    {silentPlayers.map((player) => {
+                      return player ? (
+                        <AllSilentPlayers
+                          key={player.id}
+                          player={player}
+                          //playerId={playerId}
+                        />
+                      ) : (
+                        console.log("No player")
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </div>
+        </div> */}
       </Container>
     </div>
   );

@@ -56,15 +56,27 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 5px",
     color: "white",
     [theme.breakpoints.down("md")]: {
-      fontSize: "1rem",
+      fontSize: "1.4rem",
       margin: "0 2px",
     },
-    '&:hover' :{
-      color: 'goldenrod'
-    }
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
+    "&:hover": {
+      color: "goldenrod",
+    },
   },
   text: {
     [theme.breakpoints.down("md")]: {
+      fontSize: "1rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+    },
+    [theme.breakpoints.down("xs")]: {
       fontSize: "0.6rem",
     },
   },
@@ -75,7 +87,7 @@ const footerTheme = createMuiTheme({});
 const Footer = () => {
   const classes = useStyles();
   return (
-    <div className="root" style={{marginTop: '50px'}}>
+    <div className="root" style={{ marginTop: "50px" }}>
       <Container maxWidth="false" className={classes.container}>
         <Grid container justify="center" align="center">
           <Grid item xs={12} spacing={3} style={{ display: "flex" }}>

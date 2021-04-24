@@ -46,7 +46,7 @@ const AllSilentPlayers = ({ player }) => {
   };
   //console.log(updatePlayer);
   return (
-    <div style={{backgroundColor: '#F7C486'}}>
+    <div style={{ backgroundColor: "#F7C486" }}>
       <form onSubmit={handlesubmit}>
         <TableCell>{player.data.name}</TableCell>
         <TableCell>
@@ -89,7 +89,7 @@ const AllSilentPlayers = ({ player }) => {
             <option value="B">B</option>
             <option value="C">C</option>
             <option value="D">D</option>
-            <option value="no">no</option>
+            <option value="show">show</option>
           </select>{" "}
         </TableCell>
         <TableCell>
@@ -116,7 +116,12 @@ const AllSilentPlayers = ({ player }) => {
             onChange={handleChange}
           />
         </TableCell>
-        <Button type="submit" style={{ border:"1px solid black", background: 'gray' }}>Update</Button>
+        <Button
+          type="submit"
+          style={{ border: "1px solid black", background: "gray" }}
+        >
+          Update
+        </Button>
         {/* button onClick={assign}>Assign Team</button> */}
       </form>
     </div>
