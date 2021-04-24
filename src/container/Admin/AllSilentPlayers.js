@@ -43,7 +43,7 @@ const AllSilentPlayers = ({ player }) => {
     e.preventDefault();
     db.collection("players").doc(player.data.name).update(updatePlayer);
   };
-  console.log(updatePlayer);
+  //console.log(updatePlayer);
   return (
     <div>
       <form onSubmit={handlesubmit}>

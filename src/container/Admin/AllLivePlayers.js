@@ -47,10 +47,12 @@ const AllLivePlayers = ({ player }) => {
         //}
       });
     }
+    setTimeout("window.location.reload();", 3000);
   };
 
   const handleChange = (e) => {
     e.preventDefault();
+    console.log(e.target.value);
     setUpdatePlayer({
       [e.target.name]: e.target.value,
     });
@@ -59,7 +61,7 @@ const AllLivePlayers = ({ player }) => {
     e.preventDefault();
     db.collection("players").doc(player.data.name).update(updatePlayer);
   };
-  console.log(updatePlayer);
+  //console.log(updatePlayer);
   return (
     <MuiThemeProvider theme={adminTheme}>
       <div>
@@ -105,7 +107,7 @@ const AllLivePlayers = ({ player }) => {
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
-              <option value="no">no</option>
+              <option value="Z">Z</option>
             </select>{" "}
           </td>
           <td>

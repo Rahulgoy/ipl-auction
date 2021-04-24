@@ -119,7 +119,7 @@ const SilentBidding = ({ auth, playerB }) => {
           color="primary"
           align="center"
         >
-          Close Auction
+          CLOSED AUCTION
         </Typography>
 
         <Container>
@@ -145,7 +145,7 @@ const SilentBidding = ({ auth, playerB }) => {
                       <TableCell>
                         {" "}
                         <Typography color="primary">
-                          Batting Avgerage{" "}
+                          Batting Average{" "}
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
@@ -161,24 +161,23 @@ const SilentBidding = ({ auth, playerB }) => {
                       <TableCell>
                         {" "}
                         <Typography color="primary">
-                          Bowling Avgerage
+                          Bowling Average
                         </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
                         <Typography color="primary">Economy</Typography>{" "}
                       </TableCell>
-                      <TableCell>
-                        {" "}
-                        <Typography color="primary">Rating</Typography>{" "}
-                      </TableCell>
+
                       <TableCell>
                         {" "}
                         <Typography color="primary">Baseprice</Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Current Bid</Typography>{" "}
+                        <Typography color="primary">
+                          Current Bid
+                        </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}

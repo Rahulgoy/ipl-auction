@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //styles
@@ -31,24 +31,35 @@ function App() {
   const RedirectToNotFound = () => {
     return <h1>Page Not Found</h1>;
   };
+
+  const WithNavbar = ({ component }) => {
+    return (
+      <>
+        <Navbar />
+        <Route component={component} />
+      </>
+    );
+  };
+  const WithoutNavbar = ({ component }) => {
+    return <Route component={component} />;
+  };
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <Router>
-          <Navbar />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/live" component={LiveBidding} />
-            <Route exact path="/silent" component={SilentBidding} />
-            <Route exact path="/admin" component={Admin} />
-            <Route exact path="/playerform" component={PlayerForm} />
-            <Route exact path="/updateplayer" component={UpdatePlayer} />
-            <Route exact path="/updateuser" component={UserUpdate} />
-            <Route exact path="/playerslot" component={PlayerSlots} />
-            <Route component={RedirectToNotFound} />
+            <WithoutNavbar exact path="/" component={Home} />
+            <WithNavbar exact path="/signin" component={SignIn} />
+            <WithNavbar exact path="/signup" component={SignUp} />
+            <WithNavbar exact path="/dashboard" component={Dashboard} />
+            <WithNavbar exact path="/live" component={LiveBidding} />
+            <WithNavbar exact path="/silent" component={SilentBidding} />
+            <WithNavbar exact path="/admin" component={Admin} />
+            <WithNavbar exact path="/playerform" component={PlayerForm} />
+            <WithNavbar exact path="/updateplayer" component={UpdatePlayer} />
+            <WithNavbar exact path="/updateuser" component={UserUpdate} />
+            <WithNavbar exact path="/playerslot" component={PlayerSlots} />
+            <WithoutNavbar component={RedirectToNotFound} />
           </Switch>
         </Router>
       </Provider>

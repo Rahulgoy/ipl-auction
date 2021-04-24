@@ -79,7 +79,7 @@ const PlayerSection = ({ teamId }) => {
               ...categories,
               {
                 id: doc.id,
-                data: doc.data().teamName,
+                data: doc.data().initials,
               },
             ]);
           }
@@ -139,8 +139,14 @@ const PlayerSection = ({ teamId }) => {
            </div>
           </Grid>
 
-          <Grid item xs={12}>
-            <Players players={ filteredPlayers ? filteredPlayers : console.log("No player Available") }/>
+        <Grid item xs={12}>
+          <Players
+            players={
+              filteredPlayers
+                ? filteredPlayers
+                : console.log("No player Available")
+            }
+          />
         </Grid>
       </Grid>
     </Container>

@@ -161,7 +161,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //useEffect(() => {}, [Status]);
 
   return (
-    <Container style={{ marginTop: "50px", width: '100%' }}>
+    <Container style={{ marginTop: "50px", width: "100%" }}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
@@ -169,7 +169,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
               <div className="leftGridBack"></div>
 
               <div className="leftGridTop">
-                <Typography variant="h2" align="center" color="primary"
+                <Typography
+                  variant="h2"
+                  align="center"
+                  color="primary"
                   style={{
                     fontWeight: "bold",
                     fontSize: "3em",
@@ -190,8 +193,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     }}
                   ></img>
 
-                  <div style={{ display: "block", justifyContent: "space-around"}}
-                    className={classes.playerDetailsWrapper} >
+                  <div
+                    style={{ display: "block", justifyContent: "space-around" }}
+                    className={classes.playerDetailsWrapper}
+                  >
                     {/* <Grid item xs={3}> */}
                     <div>
                       <Typography className='playerDetails'>
@@ -218,12 +223,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography  className='playerDetails'>
                         Bowling Average: {player.Bowlavg}
                       </Typography>
-                      <Typography className='playerDetails'>
-                        Rating: {player.rating}
-                      </Typography>
                     </div>
-
-
                   </div>
                 </div>
 
@@ -285,9 +285,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 className={classes.rightGrid}
                 style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
               >
-                <Typography variant='h3'> 
-                      Bidding History
-                </Typography>
+                <Typography variant="h3">Bidding History</Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {
