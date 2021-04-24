@@ -33,10 +33,6 @@ const General = ({ player }) => {
   return (
     // team details on left
     <div className="userTeamDetails">
-      <Typography color="primary" className="userTeamName" variant="h5">
-        {player.teamName}
-      </Typography>
-
       {/* team details on left  */}
       <div className="userTeamDetails">
         <Typography
