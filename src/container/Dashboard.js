@@ -29,8 +29,6 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: '30px',
-    padding: '1.2rem',
   },
   paper: {
     padding: theme.spacing(2),
@@ -52,8 +50,6 @@ const Dashboard = ({ auth }) => {
       }));
       result.map((res) => {
         if (res.id === auth.uid) {
-          // console.log(res.data.teamBalance);
-          // console.log(typeof res.data.teamBalance);
           setTeam(res.data);
         }
       });

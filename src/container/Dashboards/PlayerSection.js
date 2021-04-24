@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
   //   color: theme.palette.primary,
   //   background: '#555555'
   // },
+
+  teamDisplayButton: {
+      
+  }
+
+
 }));
 
 const PlayerSection = ({ teamId }) => {
@@ -67,7 +73,7 @@ const PlayerSection = ({ teamId }) => {
       .then((snapshot) => {
         snapshot.docs.map((doc) => {
           if (categories === null) {
-            setCategories({ id: doc.id, data: doc.data().teamName });
+            setCategories({ id: doc.id, data: doc.data().initials });
           } else {
             setCategories((categories) => [
               ...categories,
@@ -123,12 +129,14 @@ const PlayerSection = ({ teamId }) => {
   return (
     <Container>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} container>
+          <div classes={classes.containerButton}>
           {categories === null ? (
             console.log("No category")
             ) : (
-              <Categories filterPlayers={filterPlayers} categories={categories} /> 
+              <Categories filterPlayers={filterPlayers} className={classes.teamDisplayButton} categories={categories} /> 
             )}
+           </div>
           </Grid>
 
           <Grid item xs={12}>

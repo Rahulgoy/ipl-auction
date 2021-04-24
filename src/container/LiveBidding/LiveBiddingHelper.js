@@ -10,30 +10,34 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../assets/js/DarkTheme";
 import "../../assets/css/liveBidding.css";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   leftGrid: {
     padding: "20px",
   },
   playerDetailsWrapper: {},
   playerDetails: {
-    color: "#1B2C89", // blue
-    color: "#D7A864", // golden
-    color: "#fff", // golden
-    fontWeight: "700",
-    marginBottom: "10px",
-    marginLeft: '2rem',
-    fontSize: "1.5em",
+    // color: "#1B2C89", // blue
+    // color: "#D7A864", // golden
+    // color: "#fff", // golden
+    // fontWeight: "700",
+    // marginBottom: "10px",
+    // marginLeft: '2rem',
+    // fontSize: "1.5em",
   },
-  bidSection: {
-    marginTop: "40px",
-  },
+  // bidSection: {
+  //   marginTop: "40px",
+  //   [theme.breakpoints.down('md')]: {
+  //     marginBottom: '50px'
+  //   }
+  // },
   bidButton: {
     border: "2px solid black",
     padding: "5px 20px",
     borderRadius: "5px",
     margin: "10px 0 30px 0",
   },
-});
+
+}));
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const classes = useStyles();
@@ -178,7 +182,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 </Typography>
 
                 <div style={{ marginTop: "30px", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                  <img src={player.Image} alt="No Image" height="350px" width="250px"
+                  <img src={player.Image} className="playerCard" alt="No Image" 
                     style={{
                       // margin: '0 auto'
                       // marginLeft: '-10%',
@@ -190,13 +194,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     className={classes.playerDetailsWrapper} >
                     {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography className={classes.playerDetails}>
+                      <Typography className='playerDetails'>
                         Runs: {player.Runs}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography className='playerDetails'>
                         Batting Average: {player.Batavg}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography  className='playerDetails'>
                         Strike Rate: {player.strikerate}
                       </Typography>
                     </div>
@@ -205,16 +209,16 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     {/* <Grid item xs={3}> */}
 
                     <div>
-                      <Typography className={classes.playerDetails}>
+                      <Typography className='playerDetails'>
                         Wickets: {player.wickets}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography  className='playerDetails'>
                         Economy: {player.economy}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography  className='playerDetails'>
                         Bowling Average: {player.Bowlavg}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography className='playerDetails'>
                         Rating: {player.rating}
                       </Typography>
                     </div>
@@ -223,7 +227,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   </div>
                 </div>
 
-                <div className={classes.bidSection}>
+                <div className='bidSection'>
                   <div className="bidButtonStyle">
                     <Typography color="primary" variant="h5">
                       {" "}

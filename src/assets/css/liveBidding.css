@@ -32,7 +32,27 @@
     height: inherit;
     padding: 1.2rem 0.8rem 0.4rem 0.8rem;
 }
+.playerDetails{
+    /* color: "#1B2C89", // blue */
+    /* color: "#D7A864", // golden */
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    
+}
+.playerCard{
+    /* height="350px" width="250px" */
+    height: 350px;
+    width: 250px
+}
 
+.bidSection{
+
+    margin-top: 40px;
+
+}
 
 .bidButtonStyle{
     display: flex;
@@ -71,3 +91,20 @@
     background-color: rgba(0, 0, 0, 0.405);
 }
 
+
+@media screen and (max-width: 1200px) {
+    .leftGridTop{
+        padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+    }
+
+    .playerDetails{
+        font-size: 0.8rem;
+    }
+    .playerCard{
+        height: 270px;
+        width: 200px;
+    }
+    .bidSection{
+        
+    }
+}

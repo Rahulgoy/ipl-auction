@@ -28,6 +28,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     color: theme.palette.common.white,
+    font: adminTheme.palette.common.white
   },
 }))(TableCell);
 

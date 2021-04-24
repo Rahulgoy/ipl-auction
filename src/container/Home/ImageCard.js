@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
       transform: "scale(1.1)",
     },
     [theme.breakpoints.down("md")]: {
-      height: 360,
+      height: 320,
+      
     },
   },
   title: {
