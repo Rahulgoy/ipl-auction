@@ -96,7 +96,7 @@ export default function ImageCard({ Image, checked, title, link }) {
                 </Button>
               </Link>
               <Button
-                href=""
+                href="https://firebasestorage.googleapis.com/v0/b/ipl-auction-7dbdb.appspot.com/o/logos%2FRuleBook.pdf?alt=media&token=7be029af-f85f-4192-8f5c-99b63ae1dba1"
                 variant="contained"
                 size="medium"
                 className={classes.button}
@@ -115,7 +115,8 @@ export default function ImageCard({ Image, checked, title, link }) {
                 Enter {title} Auction
               </Button>
               <Button
-                href=""
+                href="https://drive.google.com/file/d/1A_CyGdMkSU8BUdoUuzQT30VJcZvvEBdq/view"
+                target="_blank"
                 variant="contained"
                 size="medium"
                 className={classes.button}
